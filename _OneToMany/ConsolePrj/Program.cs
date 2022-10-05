@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Linq;
-using System.Text.Json;
 
 using Microsoft.EntityFrameworkCore; //Pour la méthode Include() d'un DbSet, ainsi que pour la méthode AsNoTracking().
+
+using Transverse.Common.DebugTools;
 
 using DataAccess;
 using Domaine.MyEntities;
@@ -52,13 +53,13 @@ namespace ConsolePrj
         private static void DisplayLivres()
         {
             Console.WriteLine("\n\n ----- Liste des Livres ---- \n");
-            //ShowData(myDbContext.Livres); //<< Non pas directement comme ça, car comme il s'agit de lazy loading, le reader Json dans ShowData() va vouloir lire un truc pas encore récupéré, un truc comme ça :)
+            //Debug.ShowData(myDbContext.Livres); //<< Non pas directement comme ça, car comme il s'agit de lazy loading, le reader Json dans Debug.ShowData() va vouloir lire un truc pas encore récupéré, un truc comme ça :)
 
             // .AsNoTracking<Livre>() ci-dessous sert JUSTE pour ne pas que les livres soient mis en cache,
             //    (en effet ma connexion (usage du même DbContext tout du long, reste ouverte tout du long de mon essai))
             //    En effet, si mise en cache il y avait, mon exemple ne serait pas démonstratif, et la liste des Livres serait déjà chargée
             //    VU QUE ici DisplayLivres() est appelée en tout premier !
-            ShowData(myDbContext.Livres
+            Debug.ShowData(myDbContext.Livres
                     .AsNoTracking<Livre>()
                     .ToList()); //pour pouvoir utiliser ToList() sur un DbSet, il m'a fallu faire un : using System.Linq
         }
@@ -67,13 +68,13 @@ namespace ConsolePrj
         {
             Console.WriteLine("\n\n ----- Liste des Bibliotheques MAIS sans détail des Livres ---- \n");
 
-            ShowData(myDbContext.Bibliotheques.ToList()); //pour pouvoir utiliser ToList() sur un DbSet, il m'a fallu faire un : using System.Linq
+            Debug.ShowData(myDbContext.Bibliotheques.ToList()); //pour pouvoir utiliser ToList() sur un DbSet, il m'a fallu faire un : using System.Linq
         }
 
         private static void DisplayBibliothequesAvecDetailLivres()
         {
             Console.WriteLine("\n\n ----- Liste des Bibliotheques AVEC détail des Livres (grâce à l'usage de Include() sur le DbSet ---- \n");
-            ShowData(myDbContext.Bibliotheques.Include(b => b.Livres).ToList()); //Pour pouvoir utiliser Include() sur le DbSet, il m'a fallu faire un : using Microsoft.EntityFrameworkCore
+            Debug.ShowData(myDbContext.Bibliotheques.Include(b => b.Livres).ToList()); //Pour pouvoir utiliser Include() sur le DbSet, il m'a fallu faire un : using Microsoft.EntityFrameworkCore
             //Grâce à Include() dans la requête, EF comprend qu'il doit pour chaque Bibliotheque traitée,
             // récupérer tous les enreg. Livre qui ont pour valeur de FK (champ BibliothequeId) : l'Id de la dite Bibliotheque.
             // (Rappel: la classe Bibliotheque a bien un membre : IList<Livre> Livres).
@@ -112,19 +113,5 @@ namespace ConsolePrj
             return !myDbContext.Bibliotheques.Any();
         }
 
-
-
-        //----------------------------------------------------
-
-        private static void ShowData(object data)
-        {
-            Console.WriteLine(GetSerializedData(data));
-
-        }
-
-        private static string GetSerializedData(object data)
-        {
-            return JsonSerializer.Serialize(data, new JsonSerializerOptions() { WriteIndented = true });
-        }
     }
 }
