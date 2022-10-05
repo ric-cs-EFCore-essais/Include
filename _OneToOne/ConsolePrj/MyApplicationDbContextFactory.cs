@@ -1,8 +1,14 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System;
+
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 
+using Transverse.Common.DebugTools;  //Issu d'un Nuget perso. mis dans ./../../../zzzzCommon/zzMyLocalPublishedPackages/
+
+using Infra.Common.DataAccess.Interfaces;  //Issu d'un Nuget perso. mis dans ./../../../zzzzCommon/zzMyLocalPublishedPackages/
+using Infra.Common.DataAccess;  //Issu d'un Nuget perso. mis dans ./../../../zzzzCommon/zzMyLocalPublishedPackages/
+
 using DataAccess;
-using System;
 
 namespace ConsolePrj
 {
@@ -27,23 +33,19 @@ namespace ConsolePrj
 
         public MyApplicationDbContext CreateDbContext(string[] args) //sera appelée automatiquement par EF en cas de besoin
         {
+            IDBServerAccessConfiguration dbServerAccessConfiguration = new DBServerAccessConfiguration()
+            {
+                DatabaseName = "Essais_EF_Include_OneToOne"
+            };
+            Debug.ShowData(dbServerAccessConfiguration);
+
+            var connectionString = dbServerAccessConfiguration.GetConnectionString();
+
             var optionsBuilder = new DbContextOptionsBuilder<MyApplicationDbContext>();
 
-            string server = string.Empty;
-            string user = string.Empty;
-            string password = string.Empty;
-            string databaseName = string.Empty;
+            optionsBuilder.UseSqlServer(connectionString);
 
-            //server = @"PC-RP-VM-W10PRO\SQL_SERVER_2019"; user = "SA2"; databaseName = "Essais_EF_Include_OneToOne"; //Home
-
-            server = "localhost,17433"; user = "SA3"; databaseName = "Essais_EF_Include_OneToOne";  //Job
-
-            password = "SS2019PSw";
-
-            optionsBuilder.UseSqlServer(@$"Server={server}; Database={databaseName}; User Id={user}; Password={password};");
-            var retour = new MyApplicationDbContext(optionsBuilder.Options);
-
-            return retour;
+            return new MyApplicationDbContext(optionsBuilder.Options);
         }
 
         public MyApplicationDbContext GetDbContext() //Méthode perso. !

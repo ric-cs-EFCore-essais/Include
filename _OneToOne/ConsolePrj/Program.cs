@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Linq;
-using System.Text.Json;
 
 using Microsoft.EntityFrameworkCore; //Pour la méthode Include() d'un DbSet, ainsi que pour la méthode AsNoTracking().
 
-using DataAccess;
-using Domaine.MyEntities;
+using Transverse.Common.DebugTools;
 
+using Domaine.MyEntities;
+using DataAccess;
 
 namespace ConsolePrj
 {
@@ -58,7 +58,7 @@ namespace ConsolePrj
             //    (en effet ma connexion (usage du même DbContext tout du long, reste ouverte tout du long de mon essai))
             //    En effet, si mise en cache il y avait, mon exemple ne serait pas démonstratif, et la liste des Voitures serait déjà chargée
             //    VU QUE ici DisplayVoitures() est appelée en tout premier !
-            ShowData(myDbContext.Voitures
+            Debug.ShowData(myDbContext.Voitures
                     .AsNoTracking<Voiture>()
                     .ToList()); //pour pouvoir utiliser ToList() sur un DbSet, il m'a fallu faire un : using System.Linq
         }
@@ -67,13 +67,13 @@ namespace ConsolePrj
         {
             Console.WriteLine("\n\n ----- Liste des PlacesDeParking MAIS sans détail Voiture ---- \n");
 
-            ShowData(myDbContext.PlacesDeParking.ToList()); //pour pouvoir utiliser ToList() sur un DbSet, il m'a fallu faire un : using System.Linq
+            Debug.ShowData(myDbContext.PlacesDeParking.ToList()); //pour pouvoir utiliser ToList() sur un DbSet, il m'a fallu faire un : using System.Linq
         }
 
         private static void DisplayPlacesDeParkingAvecDetailVoiture()
         {
             Console.WriteLine("\n\n ----- Liste des PlacesDeParking AVEC détail Voiture (grâce à l'usage de Include() sur le DbSet ---- \n");
-            ShowData(myDbContext.PlacesDeParking.Include(p => p.Voiture).ToList()); //Pour pouvoir utiliser Include() sur le DbSet, il m'a fallu faire un : using Microsoft.EntityFrameworkCore
+            Debug.ShowData(myDbContext.PlacesDeParking.Include(p => p.Voiture).ToList()); //Pour pouvoir utiliser Include() sur le DbSet, il m'a fallu faire un : using Microsoft.EntityFrameworkCore
             //Grâce à Include() dans la requête, EF comprend qu'il doit pour chaque PlaceDeParking traitée,
             // récupérer l'enreg. Voiture qui a pour Id la valeur du champ VoitureId de la dite PlaceDeParking.
             // (Rappel: la classe PlaceDeParking a bien un membre : Voiture (nullable en l'occurence)).
@@ -111,21 +111,6 @@ namespace ConsolePrj
         private static bool estBaseVierge()
         {
             return !myDbContext.PlacesDeParking.Any();
-        }
-
-
-
-        //----------------------------------------------------
-
-        private static void ShowData(object data)
-        {
-            Console.WriteLine(GetSerializedData(data));
-
-        }
-
-        private static string GetSerializedData(object data)
-        {
-            return JsonSerializer.Serialize(data, new JsonSerializerOptions() { WriteIndented = true });
         }
     }
 }
