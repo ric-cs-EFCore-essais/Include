@@ -23,7 +23,7 @@
 
 
 	<ItemGroup>
-		<AssetsSourceFiles Include="./../../../.specificitesPoste/**/*.*" />
+		<AssetsSourceFiles Include="./../../../../.specificitesPoste/**/*.*" />
 	</ItemGroup>
 	<Target Name="CopyCustomContent" AfterTargets="AfterBuild">
 		<Copy SourceFiles="@(AssetsSourceFiles)" DestinationFolder="$(OutDir)/_MyAssets" SkipUnchangedFiles="true" />
