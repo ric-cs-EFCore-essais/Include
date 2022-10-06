@@ -33,11 +33,8 @@ namespace ConsolePrj
             Console.ReadKey();
 
 
-            ModifierLivreDId2();
-            Console.ReadKey();
-
-            DisplayLivres();
-            Console.ReadKey();
+            //ModifierLivreDId2(); Console.ReadKey();
+            //DisplayLivres(); Console.ReadKey();
         }
 
         private static void ModifierLivreDId2()
@@ -73,7 +70,7 @@ namespace ConsolePrj
 
         private static void DisplayBibliothequesAvecDetailLivres()
         {
-            Console.WriteLine("\n\n ----- Liste des Bibliotheques AVEC détail des Livres (grâce à l'usage de Include() sur le DbSet ---- \n");
+            Console.WriteLine("\n\n ----- Liste des Bibliotheques AVEC détail des Livres (grâce à l'usage de Include() sur le DbSet) ---- \n");
             Debug.ShowData(myDbContext.Bibliotheques.Include(b => b.Livres).ToList()); //Pour pouvoir utiliser Include() sur le DbSet, il m'a fallu faire un : using Microsoft.EntityFrameworkCore
             //Grâce à Include() dans la requête, EF comprend qu'il doit pour chaque Bibliotheque traitée,
             // récupérer tous les enreg. Livre qui ont pour valeur de FK (champ BibliothequeId) : l'Id de la dite Bibliotheque.
