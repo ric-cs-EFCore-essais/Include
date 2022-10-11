@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 
 using Domain.Entities.Ports;
 using Infra.DataSet.Interfaces;
@@ -8,7 +9,7 @@ namespace Infra.DataContext.Ports
     public abstract class APortsDataContext
     {
         protected IDataSet<Port> portsDataSet;
-        public IQueryable<Port> Ports 
+        public IList<Port> Ports 
         { 
             get 
             {
@@ -17,7 +18,7 @@ namespace Infra.DataContext.Ports
         }
 
         protected IDataSet<Ville> villesDataSet;
-        public IQueryable<Ville> Villes
+        public IList<Ville> Villes
         {
             get
             {

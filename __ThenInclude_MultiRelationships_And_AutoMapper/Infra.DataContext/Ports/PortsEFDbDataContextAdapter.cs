@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 
 using Domain.Entities.Ports;
 
@@ -11,19 +12,19 @@ namespace Infra.DataContext.Ports
     {
         private readonly PortsEFDbDataContext portsEFDbDataContext;
 
-        public IQueryable<Port> Ports
+        public IList<Port> Ports
         {
             get
             {
-                return portsEFDbDataContext.Ports;
+                return portsEFDbDataContext.Ports.ToList();
             }
         }
 
-        public IQueryable<Ville> Villes
+        public IList<Ville> Villes
         {
             get
             {
-                return portsEFDbDataContext.Villes;
+                return portsEFDbDataContext.Villes.ToList();
             }
         }
 

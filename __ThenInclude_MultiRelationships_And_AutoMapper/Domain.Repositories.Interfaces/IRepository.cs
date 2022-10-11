@@ -10,6 +10,9 @@ namespace Domain.Repositories.Interfaces
         TEntity Get(int id);
 
         IList<TEntity> GetAll();
+
+        IRepository<TEntity> Add(TEntity entity);
+        IRepository<TEntity> AddRange(IList<TEntity> entities);
     }
     
 }

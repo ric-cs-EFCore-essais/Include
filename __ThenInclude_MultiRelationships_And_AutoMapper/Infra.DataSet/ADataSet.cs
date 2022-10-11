@@ -1,4 +1,4 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
 
 using Domain.Entities.Interfaces;
 
@@ -7,8 +7,8 @@ namespace Infra.DataSet
     public abstract class ADataSet<TEntity>
         where TEntity : IEntity
     {
-        private IQueryable<TEntity> entities;
-        public IQueryable<TEntity> Entities
+        private IList<TEntity> entities;
+        public IList<TEntity> Entities
         {
             get
             {
@@ -16,6 +16,6 @@ namespace Infra.DataSet
             }
         }
 
-        protected abstract IQueryable<TEntity> Load();
+        protected abstract IList<TEntity> Load();
     }
 }

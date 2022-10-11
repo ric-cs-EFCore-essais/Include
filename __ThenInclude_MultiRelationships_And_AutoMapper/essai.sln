@@ -31,13 +31,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infra.UnitsOfWork", "Infra.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infra.DataContext", "Infra.DataContext\Infra.DataContext.csproj", "{F0B4D7DE-0949-4CE6-B138-99F045A0C81A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infra.DataSet", "Infra.DataSet\Infra.DataSet.csproj", "{501E7803-28A8-43CC-B2D6-4D4BDBCC46F8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infra.DataSet", "Infra.DataSet\Infra.DataSet.csproj", "{501E7803-28A8-43CC-B2D6-4D4BDBCC46F8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infra.UnitsOfWork.Interfaces", "Infra.UnitsOfWork.Interfaces\Infra.UnitsOfWork.Interfaces.csproj", "{CC22D9CA-D70F-4B87-90FA-8231A428EDAF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infra.UnitsOfWork.Interfaces", "Infra.UnitsOfWork.Interfaces\Infra.UnitsOfWork.Interfaces.csproj", "{CC22D9CA-D70F-4B87-90FA-8231A428EDAF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infra.DataContext.Interfaces", "Infra.DataContext.Interfaces\Infra.DataContext.Interfaces.csproj", "{4812B35D-CC5F-4D1C-90B0-FCC4440FCB08}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infra.DataContext.Interfaces", "Infra.DataContext.Interfaces\Infra.DataContext.Interfaces.csproj", "{4812B35D-CC5F-4D1C-90B0-FCC4440FCB08}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infra.DataSet.Interfaces", "Infra.DataSet.Interfaces\Infra.DataSet.Interfaces.csproj", "{E2D437B8-19DB-4FC3-BB77-16721F75AAB9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infra.DataSet.Interfaces", "Infra.DataSet.Interfaces\Infra.DataSet.Interfaces.csproj", "{E2D437B8-19DB-4FC3-BB77-16721F75AAB9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "zzTESTS", "zzTESTS", "{E067D38E-3A81-4B46-9323-31CEFB908E5A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

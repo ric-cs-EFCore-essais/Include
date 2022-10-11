@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 
 using Domain.Entities.Interfaces;
 using Infra.DataSet.Interfaces;
@@ -13,9 +12,9 @@ namespace Infra.DataSet
         {
         }
 
-        protected override IQueryable<TEntity> Load()
+        protected override IList<TEntity> Load()
         {
-            var retour = new List<TEntity>().AsQueryable();
+            var retour = new List<TEntity>();
             return retour;
         }
 

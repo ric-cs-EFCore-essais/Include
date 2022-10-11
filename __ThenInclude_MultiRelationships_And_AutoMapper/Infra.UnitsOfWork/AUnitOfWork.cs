@@ -1,4 +1,6 @@
-﻿using Infra.DataContext.Interfaces;
+﻿using System;
+
+using Infra.DataContext.Interfaces;
 
 namespace Infra.UnitsOfWork
 {
@@ -18,6 +20,7 @@ namespace Infra.UnitsOfWork
 
         public void Dispose()
         {
+            Console.WriteLine("DISPOSING unit of work .... !");
             dataContext.Dispose();
         }
     }

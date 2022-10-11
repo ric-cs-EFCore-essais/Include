@@ -7,8 +7,8 @@ namespace Domain.Entities.Ports
         public string Nom { get; init; }
 
 
-        public Ancre Ancre { get; init; }
-        public Capitaine Capitaine { get; init; }
+        //public Ancre Ancre { get; init; }
+        //public Capitaine Capitaine { get; init; }
 
 
     }

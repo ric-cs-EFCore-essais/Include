@@ -61,7 +61,7 @@ namespace Infra.DataContext.Properties {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à D:/Ports.json.
+        ///   Recherche une chaîne localisée semblable à I:/Ports.json.
         /// </summary>
         internal static string PortsJsonFile {
             get {
@@ -70,7 +70,7 @@ namespace Infra.DataContext.Properties {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à D:/Villes.json.
+        ///   Recherche une chaîne localisée semblable à I:/Villes.json.
         /// </summary>
         internal static string VillesJsonFile {
             get {

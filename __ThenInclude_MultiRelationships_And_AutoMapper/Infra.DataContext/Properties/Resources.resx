@@ -118,9 +118,9 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="PortsJsonFile" xml:space="preserve">
-    <value>D:/Ports.json</value>
+    <value>I:/Ports.json</value>
   </data>
   <data name="VillesJsonFile" xml:space="preserve">
-    <value>D:/Villes.json</value>
+    <value>I:/Villes.json</value>
   </data>
 </root>

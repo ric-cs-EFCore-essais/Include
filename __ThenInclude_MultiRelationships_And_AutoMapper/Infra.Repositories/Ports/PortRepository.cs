@@ -1,4 +1,4 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
 
 using Domain.Repositories.Interfaces.Ports;
 using Domain.Entities.Ports;
@@ -12,7 +12,7 @@ namespace Infra.Repositories.Ports
         {
         }
 
-        protected override IQueryable<Port> GetEntities()
+        protected override IList<Port> GetEntities()
         {
             return dataContext.Ports;
         }
