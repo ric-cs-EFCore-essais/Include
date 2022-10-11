@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Domain.DataContext.Interfaces\Domain.DataContext.Interfaces.csproj" />
+    <ProjectReference Include="..\Domain.Repositories.Interfaces\Domain.Repositories.Interfaces.csproj" />
+    <ProjectReference Include="..\Domain.UnitsOfWork.Interfaces\Domain.UnitsOfWork.Interfaces.csproj" />
+    <ProjectReference Include="..\Infra.Repositories\Infra.Repositories.csproj" />
+  </ItemGroup>
+
+</Project>
