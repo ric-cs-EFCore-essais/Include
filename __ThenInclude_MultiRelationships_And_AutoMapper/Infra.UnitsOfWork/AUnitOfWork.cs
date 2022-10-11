@@ -1,4 +1,4 @@
-﻿using Domain.DataContext.Interfaces;
+﻿using Infra.DataContext.Interfaces;
 
 namespace Infra.UnitsOfWork
 {
@@ -18,7 +18,7 @@ namespace Infra.UnitsOfWork
 
         public void Dispose()
         {
-            //
+            dataContext.Dispose();
         }
     }
 }

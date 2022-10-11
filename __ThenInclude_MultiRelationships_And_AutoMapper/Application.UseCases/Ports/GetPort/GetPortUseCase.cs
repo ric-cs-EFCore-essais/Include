@@ -25,10 +25,10 @@ namespace Application.UseCases.Ports.GetPort
             var retour = new GetPortUseCaseResponseDTO();
 
             int portId = requestDTO.PortId;
-            Port port = portRepository.Find(portId);
+            Port port = portRepository.Get(portId);
             if (port is not null)
             {
-                var ville = villeRepository.FindByPort(portId);
+                var ville = villeRepository.GetByPort(portId);
                 if (ville is not null)
                 {
                     retour.Id = port.Id;

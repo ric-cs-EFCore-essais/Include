@@ -1,8 +1,8 @@
 ﻿using Domain.Repositories.Interfaces.Ports;
-using Domain.UnitsOfWork.Interfaces;
-using Domain.DataContext.Interfaces;
 
-using Infra.Repositories;
+using Infra.Repositories.Ports;
+using Infra.UnitsOfWork.Interfaces;
+using Infra.DataContext.Interfaces.Ports;
 
 namespace Infra.UnitsOfWork.Ports
 {
@@ -11,7 +11,7 @@ namespace Infra.UnitsOfWork.Ports
         public IVilleRepository VilleRepository { get; private set; }
         public IPortRepository PortRepository { get; private set; }
 
-        public PortsUnitOfWork(IDataContext dataContext) : base(dataContext)
+        public PortsUnitOfWork(IPortsDataContext dataContext) : base(dataContext)
         {
             PortRepository = new PortRepository(dataContext);
             VilleRepository = new VilleRepository(dataContext);

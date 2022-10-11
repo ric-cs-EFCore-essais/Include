@@ -1,14 +1,20 @@
-﻿using Domain.Entities.Ports;
+﻿using System.Linq;
+
 using Domain.Repositories.Interfaces.Ports;
-using Domain.DataContext.Interfaces;
+using Domain.Entities.Ports;
+using Infra.DataContext.Interfaces.Ports;
 
-namespace Infra.Repositories
+namespace Infra.Repositories.Ports
 {
-    public class PortRepository : ARepository<Port>, IPortRepository
+    public class PortRepository : APortsRepository<Port>, IPortRepository
     {
-        public PortRepository(IDataContext dataContext): base(dataContext)
+        public PortRepository(IPortsDataContext dataContext) : base(dataContext)
         {
+        }
 
+        protected override IQueryable<Port> GetEntities()
+        {
+            return dataContext.Ports;
         }
     }
 }

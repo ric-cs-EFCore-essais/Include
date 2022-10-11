@@ -2,27 +2,20 @@
 using System.Linq;
 
 using Domain.Entities.Interfaces;
-using Domain.DataContext.Interfaces;
 
 namespace Infra.Repositories
 {
     public abstract class ARepository<TEntity>
         where TEntity: IEntity
     {
-        private readonly IDataContext dataContext;
-
-        protected ARepository(IDataContext dataContext)
+        protected ARepository()
         {
-            this.dataContext = dataContext;
         }
 
-        protected IQueryable<TEntity> GetEntities()
-        {
-            var retour = dataContext.Set<TEntity>();
-            return retour;
-        }
+        protected abstract IQueryable<TEntity> GetEntities();
 
-        public TEntity Find(int id)
+
+        public TEntity Get( int id)
         {
             var retour = GetEntities().SingleOrDefault(entity => entity.Id == id);
             return retour;

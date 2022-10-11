@@ -4,6 +4,6 @@ namespace Domain.Repositories.Interfaces.Ports
 {
     public interface IVilleRepository : IRepository<Ville>
     {
-        Ville FindByPort(int portId);
+        Ville GetByPort(int portId);
     }
 }

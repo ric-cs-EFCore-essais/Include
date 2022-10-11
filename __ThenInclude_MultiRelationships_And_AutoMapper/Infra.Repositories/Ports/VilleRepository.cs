@@ -1,19 +1,23 @@
 ﻿using System.Linq;
 
-using Domain.Entities.Ports;
 using Domain.Repositories.Interfaces.Ports;
-using Domain.DataContext.Interfaces;
+using Domain.Entities.Ports;
+using Infra.DataContext.Interfaces.Ports;
 
-namespace Infra.Repositories
+namespace Infra.Repositories.Ports
 {
-    public class VilleRepository : ARepository<Ville>, IVilleRepository
+    public class VilleRepository : APortsRepository<Ville>, IVilleRepository
     {
-        public VilleRepository(IDataContext dataContext): base(dataContext)
+        public VilleRepository(IPortsDataContext dataContext): base(dataContext)
         {
-
         }
 
-        public Ville FindByPort(int portId)
+        protected override IQueryable<Ville> GetEntities()
+        {
+            return dataContext.Villes;
+        }
+
+        public Ville GetByPort(int portId)
         {
             var retour = GetEntities().SingleOrDefault(ville => ville.Ports.Select(port => port.Id).Contains(portId));
             return retour;
