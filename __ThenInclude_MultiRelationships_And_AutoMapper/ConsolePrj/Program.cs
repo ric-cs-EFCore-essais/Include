@@ -48,7 +48,7 @@ namespace ConsolePrj
                 //Debug.ShowData(unitOfWork.PortRepository.GetAll());
                 //Debug.ShowData(portsUnitOfWork.PortRepository.Get(1));
 
-                portsUnitOfWork.Commit();
+                //portsUnitOfWork.Commit();
             }
         }
 

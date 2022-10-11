@@ -9,6 +9,8 @@ namespace Domain.Entities.Ports
     {
         public string Intitule { get; init; }
 
-        public IList<CapitaineDiplome> CapitainesDiplomes;
+        public IList<CapitaineDiplome> CapitainesDiplomes; // Pour la relation Many to Many (Capitaine / Diplome)
+                                                           // Laquelle relation fera qu'EF créera automatiquement une table
+                                                           // de liaison de nom : CapitaineDiplome
     }
 }

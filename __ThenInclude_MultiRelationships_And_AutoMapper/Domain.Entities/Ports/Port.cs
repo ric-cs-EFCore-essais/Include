@@ -10,7 +10,10 @@ namespace Domain.Entities.Ports
         public string Nom { get; init; }
 
 
-        public IList<Bateau> Bateaux { get; init; }
+        public int VilleId { get; init; } //Juste pour rendre ce champ obligatoire (c-à-d pas :  int? VilleId)
+
+
+        public IList<Bateau> Bateaux { get; init; } //<< De ce fait, EF créera automatiquement une FK PortId dans la table Bateaux
 
     }
 }

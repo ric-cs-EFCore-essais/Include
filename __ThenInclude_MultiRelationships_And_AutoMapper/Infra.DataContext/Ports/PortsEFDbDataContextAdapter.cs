@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 using Domain.Entities.Ports;
@@ -35,6 +36,7 @@ namespace Infra.DataContext.Ports
         
         public void Dispose()
         {
+            Console.WriteLine("portsEFDbDataContext.Dispose !!");
             portsEFDbDataContext.Dispose();
         }
 
