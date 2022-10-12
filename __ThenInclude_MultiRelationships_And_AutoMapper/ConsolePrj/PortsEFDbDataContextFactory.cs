@@ -50,10 +50,10 @@ namespace ConsolePrj
 
         public PortsEFDbDataContext GetDbContext() //Méthode perso. !
         {
-            if (this._dbContext is null)
-            {
+            //if (this._dbContext is null)
+            //{
                 this._dbContext = CreateDbContext(new[] { "" });
-            }
+            //}
 
             return this._dbContext;
         }

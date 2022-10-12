@@ -3,17 +3,31 @@ using System.Linq;
 
 using Domain.Entities.Interfaces;
 using Domain.Repositories.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace Infra.Repositories
 {
-    public abstract class ARepository<TEntity>: IRepository<TEntity>
-        where TEntity: IEntity
+    public abstract class ARepository<TEntity> : ARepository0<TEntity, IList<TEntity>>
+        where TEntity : IEntity
     {
-        protected ARepository()
+
+    }
+
+    public abstract class ARepository2<TEntity> : ARepository0<TEntity, DbSet<TEntity>>
+        where TEntity : IEntity
+    {
+
+    }
+
+    public abstract class ARepository0<TEntity, TEntities>  //: IRepository<TEntity>
+        where TEntity: IEntity
+        where TEntities : IList<TEntity>
+    {
+        protected ARepository0()
         {
         }
 
-        protected abstract IList<TEntity> GetEntities();
+        protected abstract TEntities GetEntities();
 
 
         public TEntity Get( int id)
@@ -22,13 +36,14 @@ namespace Infra.Repositories
             return retour;
         }
 
-        public IList<TEntity> GetAll()
+        public TEntities GetAll()
         {
             var retour = GetEntities();
             return retour;
         }
 
-        public IRepository<TEntity> Add(TEntity entity)
+        //public IRepository<TEntity> Add(TEntity entity)
+        public ARepository0<TEntity, TEntities> Add(TEntity entity)
         {
             GetEntities().Add(entity);
             return this;
@@ -36,9 +51,10 @@ namespace Infra.Repositories
 
         public IRepository<TEntity> AddRange(IList<TEntity> entities)
         {
+            GetEntities().AsQueryable().Concat(entities);
             foreach (var entity in entities)
             {
-                this.Add(entity);
+                Add(entity);
             }
             return this;
         }

@@ -14,7 +14,7 @@ namespace Infra.Repositories.Ports
 
         protected override IList<Port> GetEntities()
         {
-            return dataContext.Ports;
+            return dataContext.Ports.Entities;
         }
     }
 }

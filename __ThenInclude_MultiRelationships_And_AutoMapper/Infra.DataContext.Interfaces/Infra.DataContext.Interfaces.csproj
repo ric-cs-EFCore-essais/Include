@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Domain.Entities\Domain.Entities.csproj" />
+    <ProjectReference Include="..\Infra.DataSet.Interfaces\Infra.DataSet.Interfaces.csproj" />
   </ItemGroup>
 
 </Project>

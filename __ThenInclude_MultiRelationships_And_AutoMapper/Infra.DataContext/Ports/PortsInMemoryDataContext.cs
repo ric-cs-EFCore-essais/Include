@@ -8,8 +8,11 @@ namespace Infra.DataContext.Ports
     {
         public PortsInMemoryDataContext(): base()
         {
-            portsDataSet = new InMemoryDataSet<Port>();
-            villesDataSet = new InMemoryDataSet<Ville>();
+            //portsDataSet = new InMemoryDataSet<Port>();
+            //villesDataSet = new InMemoryDataSet<Ville>();
+
+            Ports = new InMemoryDataSet<Port>();
+            Villes = new InMemoryDataSet<Ville>();
         }
     }
 }

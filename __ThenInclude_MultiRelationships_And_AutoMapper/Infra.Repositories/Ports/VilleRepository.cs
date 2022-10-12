@@ -15,7 +15,7 @@ namespace Infra.Repositories.Ports
 
         protected override IList<Ville> GetEntities()
         {
-            return dataContext.Villes;
+            return dataContext.Villes.Entities;
         }
 
         public Ville GetByPort(int portId)

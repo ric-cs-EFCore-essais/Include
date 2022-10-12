@@ -9,8 +9,12 @@ namespace Infra.DataContext.Ports
     {
         public PortsJsonFilesDataContext(): base()
         {
-            portsDataSet = new JsonFileDataSet<Port>(Resources.PortsJsonFile);
-            villesDataSet = new JsonFileDataSet<Ville>(Resources.VillesJsonFile);
+            //portsDataSet = new JsonFileDataSet<Port>(Resources.PortsJsonFile);
+            //villesDataSet = new JsonFileDataSet<Ville>(Resources.VillesJsonFile);
+
+            Ports = new JsonFileDataSet<Port>(Resources.PortsJsonFile);
+            Villes = new JsonFileDataSet<Ville>(Resources.VillesJsonFile);
+
         }
     }
 }

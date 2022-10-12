@@ -3,6 +3,8 @@
 using Infra.Repositories.Ports;
 using Infra.UnitsOfWork.Interfaces;
 using Infra.DataContext.Interfaces.Ports;
+using Domain.Entities.Ports;
+using System.Linq;
 
 namespace Infra.UnitsOfWork.Ports
 {
