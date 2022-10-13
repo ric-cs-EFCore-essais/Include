@@ -14,7 +14,7 @@ namespace Infra.Repositories.Ports
         {
         }
 
-        protected override IEnumerableQueryable<Ville> GetEntities()
+        protected override IListEnriched<Ville> GetEntities()
         {
             return dataContext.Villes.Entities;
         }

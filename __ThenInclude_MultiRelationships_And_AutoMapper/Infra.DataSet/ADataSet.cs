@@ -8,8 +8,8 @@ namespace Infra.DataSet
     public abstract class ADataSet<TEntity>
         where TEntity : AEntity
     {
-        private IEnumerableQueryable<TEntity> entities;
-        public IEnumerableQueryable<TEntity> Entities
+        private IListEnriched<TEntity> entities;
+        public IListEnriched<TEntity> Entities
         {
             get
             {
@@ -17,6 +17,6 @@ namespace Infra.DataSet
             }
         }
 
-        protected abstract IEnumerableQueryable<TEntity> Load();
+        protected abstract IListEnriched<TEntity> Load();
     }
 }

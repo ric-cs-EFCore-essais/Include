@@ -157,11 +157,11 @@ namespace ConsolePrj
                                               ;
 
 
-                Debug.ShowData(portsUnitOfWork.PortRepository.GetAll());
-                Console.ReadKey();
-                Debug.ShowData(portsUnitOfWork.PortRepository.Get(1));
+                //Debug.ShowData(portsUnitOfWork.PortRepository.GetAll());Console.ReadKey();
+                //Debug.ShowData(portsUnitOfWork.PortRepository.Get(1));
+                Debug.ShowData(portsUnitOfWork.PortRepository.Find(port => port.Nom.Contains("1")));
 
-                //portsUnitOfWork.Commit();
+                portsUnitOfWork.Commit();
             }
         }
 

@@ -13,9 +13,9 @@ namespace Infra.DataSet
         {
         }
 
-        protected override IEnumerableQueryable<TEntity> Load()
+        protected override IListEnriched<TEntity> Load()
         {
-            var retour = new QueryableList<TEntity>();
+            var retour = new ListEnriched<TEntity>();
             return retour;
         }
 

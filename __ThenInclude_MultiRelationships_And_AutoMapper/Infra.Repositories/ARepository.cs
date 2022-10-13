@@ -3,12 +3,16 @@ using System.Linq;
 
 using Domain.Repositories.Interfaces;
 using Domain.Entities;
+using System;
 
 namespace Infra.Repositories
 {
+    
+    //>>> ATTENTION : un ToList() crée une COPIE de l'ensemble des entités !!!
+
     public abstract class ARepository<TEntity, TEntities> : IRepository<TEntity, TEntities>
         where TEntity : AEntity
-        where TEntities : IEnumerableQueryable<TEntity>
+        where TEntities : IListEnriched<TEntity>
     {
         protected abstract TEntities GetEntities();
 
@@ -18,9 +22,15 @@ namespace Infra.Repositories
             return retour;
         }
 
+        public IEnumerable<TEntity> Find(Func<TEntity, bool> filter)
+        {
+            var retour = GetEntities().Where(entity => filter(entity));
+            return retour;
+        }
+
         public IEnumerable<TEntity> GetAll()
         {
-            var retour = GetEntities().Where(entity => entity.Id > 1).ToList();
+            var retour = GetEntities().ToList();
             return retour;
         }
 

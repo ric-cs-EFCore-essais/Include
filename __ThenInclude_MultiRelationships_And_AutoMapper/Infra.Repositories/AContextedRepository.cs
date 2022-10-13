@@ -1,15 +1,17 @@
 ﻿using Domain.Repositories.Interfaces;
-using Domain.Entities;
+using Infra.DataContext.Interfaces;
 
+using Domain.Entities;
 
 namespace Infra.Repositories
 {
-    public abstract class AContextedRepository<TEntity, TContext> : ARepository<TEntity, IEnumerableQueryable<TEntity>>
+    public abstract class AContextedRepository<TEntity, TDataContext> : ARepository<TEntity, IListEnriched<TEntity>>
         where TEntity : AEntity
+        where TDataContext: IDataContext
     {
-        protected readonly TContext dataContext;
+        protected readonly TDataContext dataContext;
 
-        protected AContextedRepository(TContext dataContext)
+        protected AContextedRepository(TDataContext dataContext = null)
         {
             this.dataContext = dataContext;
         }

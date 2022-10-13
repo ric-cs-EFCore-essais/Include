@@ -20,11 +20,11 @@ namespace Infra.Repositories.Ports
     //}
     public class PortRepository : APortsRepository<Port>, IPortRepository
     {
-        public PortRepository(IPortsDataContext dataContext) : base(dataContext)
+        public PortRepository(IPortsDataContext dataContext = null) : base(dataContext)
         {
         }
 
-        protected override IEnumerableQueryable<Port> GetEntities()
+        protected override IListEnriched<Port> GetEntities()
         {
             return dataContext.Ports.Entities;
         }

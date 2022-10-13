@@ -1,7 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using Domain.Repositories.Interfaces;
+
 using Domain.Entities;
-using Domain.Entities.Interfaces;
-using Domain.Repositories.Interfaces;
 
 namespace Infra.DataSet.Interfaces
 {
@@ -9,7 +8,7 @@ namespace Infra.DataSet.Interfaces
     public interface IDataSet<TEntity>
         where TEntity : AEntity
     {
-        IEnumerableQueryable<TEntity> Entities { get; }
+        IListEnriched<TEntity> Entities { get; }
 
         void Save(); 
     }
