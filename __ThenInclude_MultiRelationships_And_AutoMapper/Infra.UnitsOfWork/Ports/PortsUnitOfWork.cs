@@ -10,13 +10,16 @@ namespace Infra.UnitsOfWork.Ports
 {
     public class PortsUnitOfWork : AUnitOfWork, IUnitOfWork
     {
-        public IVilleRepository VilleRepository { get; private set; }
-        public IPortRepository PortRepository { get; private set; }
+        public IVilleRepository VilleRepository { get; init; }
+        public IPortRepository PortRepository { get; init; }
 
-        public PortsUnitOfWork(IPortsDataContext dataContext) : base(dataContext)
+        public PortsUnitOfWork(
+            IVilleRepository villeRepository,
+            IPortRepository portRepository
+        ): base(null)
         {
-            PortRepository = new PortRepository(dataContext);
-            VilleRepository = new VilleRepository(dataContext);
+            this.VilleRepository = villeRepository;
+            this.PortRepository = portRepository;
         }
     }
 }

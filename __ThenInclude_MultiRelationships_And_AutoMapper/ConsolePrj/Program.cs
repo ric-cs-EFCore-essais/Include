@@ -9,6 +9,8 @@ using Infra.DataContext.Interfaces.Ports;
 using Infra.DataContext.Ports;
 using Infra.UnitsOfWork.Ports;
 using System.Collections.ObjectModel;
+using Domain.Repositories.Interfaces.Ports;
+using Infra.Repositories.Ports;
 
 namespace ConsolePrj
 {
@@ -23,29 +25,29 @@ namespace ConsolePrj
     {
         static void Main(string[] args)
         {
-            //Tester_PortsJsonFilesDataContext();
-            Tester_PortsEFDbDataContextAdapter();
+            Tester_PortsJsonFilesDataContext();
+            //Tester_PortsEFDbDataContextAdapter();
 
             Console.WriteLine("\n\nOk"); Console.ReadKey();
         }
 
-        private static void Tester_PortsEFDbDataContextAdapter()
-        {
-            PortsEFDbDataContext portsEFDbDataContext = (new PortsEFDbDataContextFactory()).GetDbContext();
-            IPortsDataContext portsDataContext = new PortsEFDbDataContextAdapter(portsEFDbDataContext);
+        //private static void Tester_PortsEFDbDataContextAdapter()
+        //{
+        //    PortsEFDbDataContext portsEFDbDataContext = (new PortsEFDbDataContextFactory()).GetDbContext();
+        //    IPortsDataContext portsDataContext = new PortsEFDbDataContextAdapter(portsEFDbDataContext);
 
-            using (
-            PortsUnitOfWork portsUnitOfWork = new PortsUnitOfWork(portsDataContext as IPortsDataContext)
-            //;
-            )
-            {
-                portsUnitOfWork.VilleRepository.AddRange(GetVilles());
-                //portsEFDbDataContext.Set<Ville>().Add(new Ville { Nom = "NewOne" });
-                //Console.WriteLine(portsEFDbDataContext.Set<Ville>().Where(ville => ville.Nom.StartsWith("N")).Count());
-                //Console.WriteLine(portsEFDbDataContext.Villes.Where(ville => ville.Nom.StartsWith("N")).Count());
-                portsUnitOfWork.Commit();
-            }
-        }
+        //    using (
+        //    PortsUnitOfWork portsUnitOfWork = new PortsUnitOfWork(portsDataContext as IPortsDataContext)
+        //    //;
+        //    )
+        //    {
+        //        portsUnitOfWork.VilleRepository.AddRange(GetVilles());
+        //        //portsEFDbDataContext.Set<Ville>().Add(new Ville { Nom = "NewOne" });
+        //        //Console.WriteLine(portsEFDbDataContext.Set<Ville>().Where(ville => ville.Nom.StartsWith("N")).Count());
+        //        //Console.WriteLine(portsEFDbDataContext.Villes.Where(ville => ville.Nom.StartsWith("N")).Count());
+        //        portsUnitOfWork.Commit();
+        //    }
+        //}
 
         //private static void Tester_PortsEFDbDataContextAdapterOld()
         //{
@@ -143,11 +145,15 @@ namespace ConsolePrj
         {
             IPortsDataContext portsDataContext = new PortsJsonFilesDataContext();
 
-            using (PortsUnitOfWork portsUnitOfWork = new PortsUnitOfWork(portsDataContext))
-            {
-                //portsUnitOfWork.PortRepository.AddRange(GetPorts());
+            IVilleRepository villeRepository = new VilleRepository(portsDataContext);
+            IPortRepository portRepository = new PortRepository(portsDataContext);
 
-                //Debug.ShowData(portsUnitOfWork.PortRepository.GetAll());
+            //using (PortsUnitOfWork portsUnitOfWork = new PortsUnitOfWork(portsDataContext))
+            using (PortsUnitOfWork portsUnitOfWork = new PortsUnitOfWork(villeRepository, portRepository))
+            {
+                portsUnitOfWork.PortRepository.AddRange(GetPorts());
+
+                Debug.ShowData(portsUnitOfWork.PortRepository.GetAll());
                 //Debug.ShowData(portsUnitOfWork.PortRepository.Get(1));
 
                 //portsUnitOfWork.Commit();

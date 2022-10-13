@@ -25,17 +25,17 @@ namespace Infra.DataSet
 
         public void Save()
         {
-            var jsonFileContent = JsonSerializer.Serialize<IList<TEntity>>(Entities);
+            var jsonFileContent = JsonSerializer.Serialize<List<TEntity>>(Entities);
             File.WriteAllText(jsonFile, jsonFileContent);
         }
 
-        protected override IList<TEntity> Load()
+        protected override List<TEntity> Load()
         {
-            IList<TEntity> retour;
+            List<TEntity> retour;
             var jsonFileContent = GetFileContent();
             if (!string.IsNullOrWhiteSpace(jsonFileContent))
             {
-                retour = JsonSerializer.Deserialize<IList<TEntity>>(jsonFileContent);
+                retour = JsonSerializer.Deserialize<List<TEntity>>(jsonFileContent);
 
             }
             else

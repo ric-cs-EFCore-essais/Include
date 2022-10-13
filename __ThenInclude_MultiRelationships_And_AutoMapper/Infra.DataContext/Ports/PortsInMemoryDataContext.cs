@@ -1,5 +1,6 @@
-﻿using Domain.Entities.Ports;
-using Infra.DataContext.Interfaces.Ports;
+﻿using Infra.DataContext.Interfaces.Ports;
+
+using Domain.Entities.Ports;
 using Infra.DataSet;
 
 namespace Infra.DataContext.Ports
@@ -8,9 +9,6 @@ namespace Infra.DataContext.Ports
     {
         public PortsInMemoryDataContext(): base()
         {
-            //portsDataSet = new InMemoryDataSet<Port>();
-            //villesDataSet = new InMemoryDataSet<Ville>();
-
             Ports = new InMemoryDataSet<Port>();
             Villes = new InMemoryDataSet<Ville>();
         }

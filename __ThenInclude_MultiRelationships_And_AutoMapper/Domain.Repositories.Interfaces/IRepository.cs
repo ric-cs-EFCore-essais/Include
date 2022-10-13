@@ -1,18 +1,22 @@
 ﻿using System.Collections.Generic;
 
-using Domain.Entities.Interfaces;
+using Domain.Entities;
 
 namespace Domain.Repositories.Interfaces
 {
-    public interface IRepository<TEntity>
-        where TEntity : IEntity
+    public interface IRepository<TEntity, TEntities>
+        where TEntity : AEntity
+        where TEntities : IEnumerableQueryable<TEntity>
     {
         TEntity Get(int id);
-
-        IList<TEntity> GetAll();
-
-        IRepository<TEntity> Add(TEntity entity);
-        IRepository<TEntity> AddRange(IList<TEntity> entities);
+        IEnumerable<TEntity> GetAll();
+        IRepository<TEntity, TEntities> Add(TEntity entity);
+        IRepository<TEntity, TEntities> AddRange(IEnumerable<TEntity> entities);
     }
-    
+
+    public interface IRepository<TEntity>: IRepository<TEntity, List<TEntity>>
+        where TEntity : AEntity
+    {
+    }
+
 }

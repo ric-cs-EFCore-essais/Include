@@ -1,61 +1,38 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-using Domain.Entities.Interfaces;
 using Domain.Repositories.Interfaces;
-using Microsoft.EntityFrameworkCore;
+using Domain.Entities;
 
 namespace Infra.Repositories
 {
-    public abstract class ARepository<TEntity> : ARepository0<TEntity, IList<TEntity>>
-        where TEntity : IEntity
+    public abstract class ARepository<TEntity, TEntities> : IRepository<TEntity, TEntities>
+        where TEntity : AEntity
+        where TEntities : List<TEntity>, IEnumerableQueryable<TEntity>
     {
-
-    }
-
-    public abstract class ARepository2<TEntity> : ARepository0<TEntity, DbSet<TEntity>>
-        where TEntity : IEntity
-    {
-
-    }
-
-    public abstract class ARepository0<TEntity, TEntities>  //: IRepository<TEntity>
-        where TEntity: IEntity
-        where TEntities : IList<TEntity>
-    {
-        protected ARepository0()
-        {
-        }
-
         protected abstract TEntities GetEntities();
 
-
-        public TEntity Get( int id)
+        public TEntity Get(int id)
         {
-            var retour = GetEntities().AsQueryable().SingleOrDefault(entity => entity.Id == id);
+            var retour = GetEntities().SingleOrDefault(entity => entity.Id == id);
             return retour;
         }
 
-        public TEntities GetAll()
+        public IEnumerable<TEntity> GetAll()
         {
-            var retour = GetEntities();
+            var retour = GetEntities().ToList();
             return retour;
         }
 
-        //public IRepository<TEntity> Add(TEntity entity)
-        public ARepository0<TEntity, TEntities> Add(TEntity entity)
+        public IRepository<TEntity, TEntities> Add(TEntity entity)
         {
             GetEntities().Add(entity);
             return this;
         }
 
-        public IRepository<TEntity> AddRange(IList<TEntity> entities)
+        public IRepository<TEntity, TEntities> AddRange(IEnumerable<TEntity> entities)
         {
-            GetEntities().AsQueryable().Concat(entities);
-            foreach (var entity in entities)
-            {
-                Add(entity);
-            }
+            GetEntities().AddRange(entities);
             return this;
         }
     }

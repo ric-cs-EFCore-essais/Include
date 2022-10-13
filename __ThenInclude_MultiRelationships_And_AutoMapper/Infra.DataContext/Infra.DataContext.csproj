@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Domain.Entities\Domain.Entities.csproj" />
+    <ProjectReference Include="..\Domain.Repositories.Interfaces\Domain.Repositories.Interfaces.csproj" />
     <ProjectReference Include="..\Infra.DataContext.Interfaces\Infra.DataContext.Interfaces.csproj" />
     <ProjectReference Include="..\Infra.DataSet\Infra.DataSet.csproj" />
   </ItemGroup>

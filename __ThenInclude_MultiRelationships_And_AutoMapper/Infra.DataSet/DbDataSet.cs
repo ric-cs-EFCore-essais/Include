@@ -17,7 +17,7 @@ namespace Infra.DataSet
             throw new System.NotImplementedException();
         }
 
-        protected override IList<TEntity> Load()
+        protected override List<TEntity> Load()
         {
             var retour = new List<TEntity>();
             return retour;

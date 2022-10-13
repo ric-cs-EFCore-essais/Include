@@ -1,18 +1,15 @@
-﻿using Domain.Entities.Interfaces;
+﻿using Domain.Entities;
+
 using Infra.DataContext.Interfaces.Ports;
 
 namespace Infra.Repositories.Ports
 {
-    public abstract class APortsRepository<TEntity>: ARepository<TEntity>
-        where TEntity : IEntity
+    public abstract class APortsRepository<TEntity>: AContextedRepository<TEntity, IPortsDataContext>
+        where TEntity : AEntity
     {
-        protected IPortsDataContext dataContext;
-
-        //Le DataContext est la grappe de stockage des diverses Entités (Les Port, les Ville, etc...)
-        protected APortsRepository(IPortsDataContext dataContext) : base()
+        protected APortsRepository(IPortsDataContext dataContext): base(dataContext)
         {
-            this.dataContext = dataContext;
-        }
 
+        }
     }
 }

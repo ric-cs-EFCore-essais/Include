@@ -1,15 +1,14 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 
 using Domain.Entities.Interfaces;
 
 namespace Infra.DataSet.Interfaces
 {
+    //Chargé de la sauvegarde et du chargement des entités.
     public interface IDataSet<TEntity>
         where TEntity : IEntity
     {
-        IList<TEntity> Entities { get; }
-        IQueryable<TEntity> EntitiesAsQueryable { get; }
+        List<TEntity> Entities { get; }
 
         void Save(); 
     }

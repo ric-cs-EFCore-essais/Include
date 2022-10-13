@@ -1,7 +1,8 @@
-﻿using Domain.Entities.Ports;
-using Infra.DataContext.Interfaces.Ports;
-using Infra.DataContext.Properties;
+﻿using Infra.DataContext.Interfaces.Ports;
+
+using Domain.Entities.Ports;
 using Infra.DataSet;
+using Infra.DataContext.Properties;
 
 namespace Infra.DataContext.Ports
 {
@@ -9,12 +10,8 @@ namespace Infra.DataContext.Ports
     {
         public PortsJsonFilesDataContext(): base()
         {
-            //portsDataSet = new JsonFileDataSet<Port>(Resources.PortsJsonFile);
-            //villesDataSet = new JsonFileDataSet<Ville>(Resources.VillesJsonFile);
-
             Ports = new JsonFileDataSet<Port>(Resources.PortsJsonFile);
             Villes = new JsonFileDataSet<Ville>(Resources.VillesJsonFile);
-
         }
     }
 }

@@ -12,7 +12,7 @@ namespace Infra.DataSet
         {
         }
 
-        protected override IList<TEntity> Load()
+        protected override List<TEntity> Load()
         {
             var retour = new List<TEntity>();
             return retour;
