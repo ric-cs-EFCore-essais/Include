@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
-
+using Domain.Entities;
 using Domain.Entities.Interfaces;
+using Domain.Repositories.Interfaces;
 using Infra.DataSet.Interfaces;
 
 namespace Infra.DataSet
 {
     public class JsonFileDataSet<TEntity>: ADataSet<TEntity>, IDataSet<TEntity>
-        where TEntity : IEntity
+        where TEntity : AEntity
     {
         private readonly string jsonFile;
 
@@ -25,22 +26,22 @@ namespace Infra.DataSet
 
         public void Save()
         {
-            var jsonFileContent = JsonSerializer.Serialize<List<TEntity>>(Entities);
+            var jsonFileContent = JsonSerializer.Serialize<IEnumerableQueryable<TEntity>>(Entities);
             File.WriteAllText(jsonFile, jsonFileContent);
         }
 
-        protected override List<TEntity> Load()
+        protected override IEnumerableQueryable<TEntity> Load()
         {
-            List<TEntity> retour;
+            IEnumerableQueryable<TEntity> retour;
             var jsonFileContent = GetFileContent();
             if (!string.IsNullOrWhiteSpace(jsonFileContent))
             {
-                retour = JsonSerializer.Deserialize<List<TEntity>>(jsonFileContent);
+                retour = JsonSerializer.Deserialize<QueryableList<TEntity>>(jsonFileContent);
 
             }
             else
             {
-                retour = new List<TEntity>();
+                retour = new QueryableList<TEntity>();
             }
 
             return retour;

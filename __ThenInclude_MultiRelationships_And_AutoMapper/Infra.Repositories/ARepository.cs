@@ -8,7 +8,7 @@ namespace Infra.Repositories
 {
     public abstract class ARepository<TEntity, TEntities> : IRepository<TEntity, TEntities>
         where TEntity : AEntity
-        where TEntities : List<TEntity>, IEnumerableQueryable<TEntity>
+        where TEntities : IEnumerableQueryable<TEntity>
     {
         protected abstract TEntities GetEntities();
 
@@ -20,7 +20,7 @@ namespace Infra.Repositories
 
         public IEnumerable<TEntity> GetAll()
         {
-            var retour = GetEntities().ToList();
+            var retour = GetEntities().Where(entity => entity.Id > 1).ToList();
             return retour;
         }
 

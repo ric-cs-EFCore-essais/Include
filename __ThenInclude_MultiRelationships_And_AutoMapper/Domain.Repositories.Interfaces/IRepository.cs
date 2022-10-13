@@ -14,7 +14,7 @@ namespace Domain.Repositories.Interfaces
         IRepository<TEntity, TEntities> AddRange(IEnumerable<TEntity> entities);
     }
 
-    public interface IRepository<TEntity>: IRepository<TEntity, List<TEntity>>
+    public interface IRepository<TEntity>: IRepository<TEntity, IEnumerableQueryable<TEntity>>
         where TEntity : AEntity
     {
     }

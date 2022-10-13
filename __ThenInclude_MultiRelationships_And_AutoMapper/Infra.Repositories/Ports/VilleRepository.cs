@@ -16,7 +16,7 @@ namespace Infra.Repositories.Ports
 
         protected override IEnumerableQueryable<Ville> GetEntities()
         {
-            return dataContext.Villes as IEnumerableQueryable<Ville>;
+            return dataContext.Villes.Entities;
         }
 
         public Ville GetByPort(int portId)

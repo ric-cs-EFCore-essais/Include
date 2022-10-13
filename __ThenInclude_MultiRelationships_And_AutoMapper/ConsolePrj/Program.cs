@@ -151,10 +151,15 @@ namespace ConsolePrj
             //using (PortsUnitOfWork portsUnitOfWork = new PortsUnitOfWork(portsDataContext))
             using (PortsUnitOfWork portsUnitOfWork = new PortsUnitOfWork(villeRepository, portRepository))
             {
-                portsUnitOfWork.PortRepository.AddRange(GetPorts());
+                portsUnitOfWork.PortRepository.AddRange(GetPorts())
+                                              .Add(new Port { Id = 3, Nom = "33111" })
+                                              .Add(new Port { Id = 4, Nom = "4444111" })
+                                              ;
+
 
                 Debug.ShowData(portsUnitOfWork.PortRepository.GetAll());
-                //Debug.ShowData(portsUnitOfWork.PortRepository.Get(1));
+                Console.ReadKey();
+                Debug.ShowData(portsUnitOfWork.PortRepository.Get(1));
 
                 //portsUnitOfWork.Commit();
             }

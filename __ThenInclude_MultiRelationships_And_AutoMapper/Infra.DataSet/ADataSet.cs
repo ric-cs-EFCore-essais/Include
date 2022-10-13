@@ -1,14 +1,15 @@
 ﻿using System.Collections.Generic;
-
+using Domain.Entities;
 using Domain.Entities.Interfaces;
+using Domain.Repositories.Interfaces;
 
 namespace Infra.DataSet
 {
     public abstract class ADataSet<TEntity>
-        where TEntity : IEntity
+        where TEntity : AEntity
     {
-        private List<TEntity> entities;
-        public List<TEntity> Entities
+        private IEnumerableQueryable<TEntity> entities;
+        public IEnumerableQueryable<TEntity> Entities
         {
             get
             {
@@ -16,6 +17,6 @@ namespace Infra.DataSet
             }
         }
 
-        protected abstract List<TEntity> Load();
+        protected abstract IEnumerableQueryable<TEntity> Load();
     }
 }

@@ -1,26 +1,27 @@
-﻿using System.Collections.Generic;
+﻿//using System.Collections.Generic;
 
-using Domain.Entities.Interfaces;
-using Infra.DataSet.Interfaces;
+//using Domain.Entities.Interfaces;
+//using Domain.Repositories.Interfaces;
+//using Infra.DataSet.Interfaces;
 
-namespace Infra.DataSet
-{
-    public class DbDataSet<TEntity>: ADataSet<TEntity>, IDataSet<TEntity>
-        where TEntity : IEntity
-    {
-        public DbDataSet(): base()
-        {
-        }
+//namespace Infra.DataSet
+//{
+//    public class DbDataSet<TEntity>: ADataSet<TEntity>, IDataSet<TEntity>
+//        where TEntity : IEntity
+//    {
+//        public DbDataSet(): base()
+//        {
+//        }
 
-        public void Save()
-        {
-            throw new System.NotImplementedException();
-        }
+//        public void Save()
+//        {
+//            throw new System.NotImplementedException();
+//        }
 
-        protected override List<TEntity> Load()
-        {
-            var retour = new List<TEntity>();
-            return retour;
-        }
-    }
-}
+//        protected override IEnumerableQueryable<TEntity> Load()
+//        {
+//            var retour = new List2<TEntity>();
+//            return retour;
+//        }
+//    }
+//}

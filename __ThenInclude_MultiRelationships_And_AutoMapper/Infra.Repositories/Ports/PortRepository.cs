@@ -7,22 +7,25 @@ using Domain.Entities.Ports;
 using Transverse.Common.DebugTools;
 using System;
 using System.Collections.Generic;
+using System.Collections;
+using System.Linq;
+using Domain.Entities;
+using System.Linq.Expressions;
 
 namespace Infra.Repositories.Ports
 {
+    //public interface IEnumerableQueryable<T>: IList<T>
+    //{
+    //    void AddRange();
+    //}
     public class PortRepository : APortsRepository<Port>, IPortRepository
     {
         public PortRepository(IPortsDataContext dataContext) : base(dataContext)
         {
         }
 
-        protected override List<Port> GetEntities()
+        protected override IEnumerableQueryable<Port> GetEntities()
         {
-            Console.WriteLine("1");
-            Debug.ShowData(dataContext.Ports.Entities);
-            Debug.ShowData(dataContext.Ports.Entities);
-            Debug.ShowData(dataContext.Ports.Entities as IEnumerableQueryable<Port>);
-            Console.WriteLine("2");
             return dataContext.Ports.Entities;
         }
     }
