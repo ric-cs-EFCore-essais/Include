@@ -1,10 +1,7 @@
 ﻿using Domain.Repositories.Interfaces.Ports;
-
-using Infra.Repositories.Ports;
 using Infra.UnitsOfWork.Interfaces;
 using Infra.DataContext.Interfaces.Ports;
-using Domain.Entities.Ports;
-using System.Linq;
+
 
 namespace Infra.UnitsOfWork.Ports
 {
@@ -14,9 +11,10 @@ namespace Infra.UnitsOfWork.Ports
         public IPortRepository PortRepository { get; init; }
 
         public PortsUnitOfWork(
+            IPortsDataContext portsDataContext,
             IVilleRepository villeRepository,
             IPortRepository portRepository
-        ): base(null)
+        ): base(portsDataContext)
         {
             this.VilleRepository = villeRepository;
             this.PortRepository = portRepository;

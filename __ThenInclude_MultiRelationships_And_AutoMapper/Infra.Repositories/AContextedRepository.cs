@@ -3,6 +3,7 @@ using Infra.DataContext.Interfaces;
 
 using Domain.Entities;
 
+
 namespace Infra.Repositories
 {
     public abstract class AContextedRepository<TEntity, TDataContext> : ARepository<TEntity, IListEnriched<TEntity>>
@@ -11,7 +12,7 @@ namespace Infra.Repositories
     {
         protected readonly TDataContext dataContext;
 
-        protected AContextedRepository(TDataContext dataContext = null)
+        protected AContextedRepository(TDataContext dataContext)
         {
             this.dataContext = dataContext;
         }

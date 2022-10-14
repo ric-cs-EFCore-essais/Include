@@ -8,7 +8,7 @@ using System;
 namespace Infra.Repositories
 {
     
-    //>>> ATTENTION : un ToList() crée une COPIE de l'ensemble des entités !!!
+    //>>> ATTENTION : un ToList() crée une COPIE de la dite liste !!!
 
     public abstract class ARepository<TEntity, TEntities> : IRepository<TEntity, TEntities>
         where TEntity : AEntity

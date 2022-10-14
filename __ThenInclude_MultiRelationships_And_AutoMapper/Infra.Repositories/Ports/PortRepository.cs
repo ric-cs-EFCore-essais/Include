@@ -14,13 +14,9 @@ using System.Linq.Expressions;
 
 namespace Infra.Repositories.Ports
 {
-    //public interface IEnumerableQueryable<T>: IList<T>
-    //{
-    //    void AddRange();
-    //}
     public class PortRepository : APortsRepository<Port>, IPortRepository
     {
-        public PortRepository(IPortsDataContext dataContext = null) : base(dataContext)
+        public PortRepository(IPortsDataContext dataContext) : base(dataContext)
         {
         }
 

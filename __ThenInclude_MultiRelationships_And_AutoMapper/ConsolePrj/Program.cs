@@ -143,13 +143,7 @@ namespace ConsolePrj
 
         private static void Tester_PortsJsonFilesDataContext()
         {
-            IPortsDataContext portsDataContext = new PortsJsonFilesDataContext();
-
-            IVilleRepository villeRepository = new VilleRepository(portsDataContext);
-            IPortRepository portRepository = new PortRepository(portsDataContext);
-
-            //using (PortsUnitOfWork portsUnitOfWork = new PortsUnitOfWork(portsDataContext))
-            using (PortsUnitOfWork portsUnitOfWork = new PortsUnitOfWork(villeRepository, portRepository))
+            using (PortsUnitOfWork portsUnitOfWork = new PortsUnitOfWorkFactory().GetInstance())
             {
                 portsUnitOfWork.PortRepository.AddRange(GetPorts())
                                               .Add(new Port { Id = 3, Nom = "33111" })
@@ -164,6 +158,14 @@ namespace ConsolePrj
                 portsUnitOfWork.Commit();
             }
         }
+
+
+        private static IEnumerable<int> GetV()
+        {
+            yield return 10;
+            yield return 100;
+        }
+
 
 
         private static IList<Ville> GetVilles()
