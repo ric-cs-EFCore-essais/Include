@@ -2,16 +2,20 @@
 using System.Collections.Generic;
 using System.Linq;
 
-using Domain.Entities.Interfaces;
+using Microsoft.EntityFrameworkCore;
+
 using Domain.Repositories.Interfaces;
+
+using Domain.Entities;
+
 
 namespace Infra.Repositories
 {
     //>>> ATTENTION : un ToList() crée une COPIE de la dite liste !!!
 
     public abstract class ARepository<TEntity, TEntities> : IRepository<TEntity>
-        where TEntity : IEntity
-        where TEntities : IListEnriched<TEntity>
+        where TEntity : AEntity
+        where TEntities : DbSet<TEntity>
     {
         protected abstract TEntities GetEntities();
 

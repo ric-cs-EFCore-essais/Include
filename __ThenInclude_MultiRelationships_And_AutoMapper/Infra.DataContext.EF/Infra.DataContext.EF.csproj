@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Infra.Common.DataAccess.Interfaces" Version="1.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.17" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.17" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Domain.Entities\Domain.Entities.csproj" />
+    <ProjectReference Include="..\Infra.DataContext.EF.Interfaces\Infra.DataContext.EF.Interfaces.csproj" />
+    <ProjectReference Include="..\Infra.DataContext.Interfaces\Infra.DataContext.Interfaces.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -2,15 +2,15 @@
 using System.IO;
 using System.Text.Json;
 
+using Domain.Entities.Interfaces;
 using Domain.Repositories.Interfaces;
 using Infra.DataSet.Interfaces;
 
-using Domain.Entities;
 
 namespace Infra.DataSet
 {
     public class JsonFileDataSet<TEntity>: ADataSet<TEntity>, IDataSet<TEntity>
-        where TEntity : AEntity
+        where TEntity : IEntity
     {
         private readonly string jsonFile;
 

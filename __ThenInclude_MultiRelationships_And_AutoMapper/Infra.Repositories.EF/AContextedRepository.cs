@@ -1,13 +1,13 @@
-﻿using Domain.Entities.Interfaces;
-using Domain.Repositories.Interfaces;
-using Infra.DataContext.Interfaces;
+﻿using Microsoft.EntityFrameworkCore;
+
+using Domain.Entities;
 
 namespace Infra.Repositories
 {
     public abstract class AContextedRepository<TEntity, TEntities, TDataContext> : ARepository<TEntity, TEntities>
-        where TEntity : IEntity
-        where TEntities : IListEnriched<TEntity>
-        where TDataContext: IDataContext
+        where TEntity : AEntity
+        where TEntities : DbSet<TEntity>
+        where TDataContext: DbContext
     {
         protected readonly TDataContext dataContext;
 

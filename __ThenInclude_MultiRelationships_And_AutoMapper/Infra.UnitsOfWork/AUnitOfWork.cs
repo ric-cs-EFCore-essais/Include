@@ -15,7 +15,7 @@ namespace Infra.UnitsOfWork
 
         public void Commit()
         {
-            dataContext.SaveChanges();
+            dataContext.Save();
         }
 
         public void Dispose()

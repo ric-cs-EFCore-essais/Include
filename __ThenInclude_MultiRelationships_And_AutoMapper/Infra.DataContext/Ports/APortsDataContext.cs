@@ -13,7 +13,7 @@ namespace Infra.DataContext.Ports
         {
         }
 
-        public void SaveChanges()
+        public void Save()
         {
             Ports?.Save();
             Villes?.Save();

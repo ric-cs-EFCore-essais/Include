@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Infra.DataContext.Migrations
+namespace Infra.DataContext.EF.Migrations
 {
     public partial class Creation_Tables : Migration
     {
@@ -142,7 +142,8 @@ namespace Infra.DataContext.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Bateaux_AncreId",
                 table: "Bateaux",
-                column: "AncreId");
+                column: "AncreId",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Bateaux_CapitaineId",

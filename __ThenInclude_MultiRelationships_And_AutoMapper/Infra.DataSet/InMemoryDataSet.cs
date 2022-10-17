@@ -1,13 +1,11 @@
-﻿using System.Collections.Generic;
-using Domain.Entities;
-using Domain.Entities.Interfaces;
+﻿using Domain.Entities.Interfaces;
 using Domain.Repositories.Interfaces;
 using Infra.DataSet.Interfaces;
 
 namespace Infra.DataSet
 {
     public class InMemoryDataSet<TEntity>: ADataSet<TEntity>, IDataSet<TEntity>
-        where TEntity : AEntity
+        where TEntity : IEntity
     {
         public InMemoryDataSet(): base()
         {

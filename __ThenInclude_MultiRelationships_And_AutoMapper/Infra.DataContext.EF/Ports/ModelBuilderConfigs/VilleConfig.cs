@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 using Domain.Entities.Ports;
 
-namespace DataAccess.ModelBuilderConfigs
+namespace Infra.DataContext.EF.Ports.ModelBuilderConfigs
 {
     public class VilleConfig : IEntityTypeConfiguration<Ville>
     {

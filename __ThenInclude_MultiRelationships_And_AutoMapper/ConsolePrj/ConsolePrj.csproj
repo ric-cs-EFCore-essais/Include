@@ -6,29 +6,25 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Infra.Common.DataAccess" Version="2.0.1" />
-    <PackageReference Include="Infra.Common.DataAccess.Interfaces" Version="1.0.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.17" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.17">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.17" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.17">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="Transverse.Common.DebugTools" Version="1.0.3" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <ProjectReference Include="..\Infra.DataContext.EF\Infra.DataContext.EF.csproj" />
     <ProjectReference Include="..\Infra.DataContext\Infra.DataContext.csproj" />
+    <ProjectReference Include="..\Infra.UnitsOfWork.EF.Factories\Infra.UnitsOfWork.EF.Factories.csproj" />
+    <ProjectReference Include="..\Infra.UnitsOfWork.Factories\Infra.UnitsOfWork.Factories.csproj" />
     <ProjectReference Include="..\Infra.UnitsOfWork\Infra.UnitsOfWork.csproj" />
   </ItemGroup>
 
 
   <ItemGroup>
     <AssetsSourceFiles Include="./../../../../.specificitesPoste/**/*.*" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <PackageReference Include="Infra.Common.DataAccess" Version="2.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.17">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
   <Target Name="CopyCustomContent" AfterTargets="AfterBuild">
     <Copy SourceFiles="@(AssetsSourceFiles)" DestinationFolder="$(OutDir)/_MyAssets" SkipUnchangedFiles="true" />

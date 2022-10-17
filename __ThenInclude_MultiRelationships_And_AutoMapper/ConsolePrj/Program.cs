@@ -10,25 +10,58 @@ using Infra.DataContext.Ports;
 using Infra.UnitsOfWork.Ports;
 using System.Collections.ObjectModel;
 using Domain.Repositories.Interfaces.Ports;
-using Infra.Repositories.Ports;
+using Infra.UnitsOfWork.Factories.Ports;
+using Infra.UnitsOfWork.Interfaces.Ports;
+using Infra.DataContext.EF.Interfaces;
+using Infra.DataContext.EF.Ports;
+using Infra.Common.DataAccess.Interfaces;
 
 namespace ConsolePrj
 {
-    class Toto : IDisposable
-    {
-        public void Dispose()
-        {
-            Console.WriteLine("ICI");
-        }
-    }
+    //class Toto : IDisposable
+    //{
+    //    public void Dispose()
+    //    {
+    //        Console.WriteLine("ICI");
+    //    }
+    //}
     static class Program
     {
         static void Main(string[] args)
         {
-            Tester_PortsJsonFilesDataContext();
-            //Tester_PortsEFDbDataContextAdapter();
+            //Tester_PortsJsonFilesDataContext();
+            Tester_PortsDbDataContext();
 
             Console.WriteLine("\n\nOk"); Console.ReadKey();
+        }
+
+        private static void Tester_PortsDbDataContext()
+        {
+            PortsDBServerAccessConfigurationFactory portsDBServerAccessConfigurationFactory = new PortsDBServerAccessConfigurationFactory();
+            IDBServerAccessConfiguration portsDBServerAccessConfiguration = portsDBServerAccessConfigurationFactory.GetSingleton();
+
+            IDbDataContextFactory<PortsDbDataContext> dbDataContextFactory = Infra.DataContext.EF.Ports.PortsDbDataContextFactory.GetSingleton(portsDBServerAccessConfiguration);
+            using (IPortsUnitOfWork portsUnitOfWork = new Infra.UnitsOfWork.EF.Factories.Ports.PortsUnitOfWorkFactory(dbDataContextFactory).GetInstance())
+            {
+                //Debug.ShowData(portsUnitOfWork.VilleRepository.GetAll()); Console.ReadKey();
+
+                if (!portsUnitOfWork.VilleRepository.GetAll().Any()) 
+                {
+                    portsUnitOfWork.VilleRepository.AddRange(GetVilles());
+                    portsUnitOfWork.VilleRepository.Add(new Ville { Nom = "Gibraltar" });
+                    portsUnitOfWork.VilleRepository.Add(new Ville { Nom = "Miami" });
+                    portsUnitOfWork.Commit();
+                }
+
+                //Debug.ShowData(portsUnitOfWork.VilleRepository.GetAll()); Console.ReadKey();
+                //Debug.ShowData(portsUnitOfWork.VilleRepository.Get(1)); Console.ReadKey();
+
+
+                Func<Ville, bool> filtre = ville => ville.Nom.Contains("M");
+
+            > METTRE UNE EXPRESSION A LA PLACE (pour les 2)
+                //Debug.ShowData(portsUnitOfWork.VilleRepository.Find()); Console.ReadKey();
+            }
         }
 
         //private static void Tester_PortsEFDbDataContextAdapter()
@@ -143,28 +176,28 @@ namespace ConsolePrj
 
         private static void Tester_PortsJsonFilesDataContext()
         {
-            using (PortsUnitOfWork portsUnitOfWork = new PortsUnitOfWorkFactory().GetInstance())
+            using (IPortsUnitOfWork portsUnitOfWork = new PortsUnitOfWorkFactory().GetInstance())
             {
-                portsUnitOfWork.PortRepository.AddRange(GetPorts())
-                                              .Add(new Port { Id = 3, Nom = "33111" })
-                                              .Add(new Port { Id = 4, Nom = "4444111" })
-                                              ;
+                Debug.ShowData(portsUnitOfWork.PortRepository.GetAll()); Console.ReadKey();
 
+                portsUnitOfWork.PortRepository.AddRange(GetPorts());
+                portsUnitOfWork.PortRepository.Add(new Port { Id = 3, Nom = "33111" });
+                portsUnitOfWork.PortRepository.Add(new Port { Id = 4, Nom = "4444111" });
 
-                //Debug.ShowData(portsUnitOfWork.PortRepository.GetAll());Console.ReadKey();
-                //Debug.ShowData(portsUnitOfWork.PortRepository.Get(1));
-                Debug.ShowData(portsUnitOfWork.PortRepository.Find(port => port.Nom.Contains("1")));
+                Debug.ShowData(portsUnitOfWork.PortRepository.GetAll());Console.ReadKey();
+                Debug.ShowData(portsUnitOfWork.PortRepository.Get(1)); Console.ReadKey();
+                Debug.ShowData(portsUnitOfWork.PortRepository.Find(port => port.Nom.Contains("1"))); Console.ReadKey();
 
                 portsUnitOfWork.Commit();
             }
         }
 
 
-        private static IEnumerable<int> GetV()
-        {
-            yield return 10;
-            yield return 100;
-        }
+        //private static IEnumerable<int> GetV()
+        //{
+        //    yield return 10;
+        //    yield return 100;
+        //}
 
 
 
@@ -213,27 +246,27 @@ namespace ConsolePrj
             {
                 new Port
                 {
-                    Id = 1,
+                    //Id = 1,
                     Nom = "Port 1 de Marseille",
                     Bateaux = new List<Bateau>
                     {
-                        new Bateau { Id = 1, Nom = "P1M - Bateau1" },
-                        new Bateau { Id = 2, Nom = "P1M - Bateau2" },
-                        new Bateau { Id = 3, Nom = "P1M - Bateau3" },
-                        new Bateau { Id = 4, Nom = "P1M - Bateau4" },
+                        new Bateau { /*Id = 1,*/ Nom = "P1M - Bateau1" },
+                        new Bateau { /*Id = 2,*/ Nom = "P1M - Bateau2" },
+                        new Bateau { /*Id = 3,*/ Nom = "P1M - Bateau3" },
+                        new Bateau { /*Id = 4,*/ Nom = "P1M - Bateau4" },
                     }
                 },
 
                 new Port
                 {
-                    Id = 2,
+                    //Id = 2,
                     Nom = "Port 2 de Marseille",
                     Bateaux = new List<Bateau>
                     {
-                        new Bateau { Id = 5, Nom = "P2M - Bateau1" },
-                        new Bateau { Id = 6, Nom = "P2M - Bateau2" },
-                        new Bateau { Id = 7, Nom = "P2M - Bateau3" },
-                        new Bateau { Id = 8, Nom = "P2M - Bateau4" },
+                        new Bateau { /*Id = 5,*/ Nom = "P2M - Bateau1" },
+                        new Bateau { /*Id = 6,*/ Nom = "P2M - Bateau2" },
+                        new Bateau { /*Id = 7,*/ Nom = "P2M - Bateau3" },
+                        new Bateau { /*Id = 8,*/ Nom = "P2M - Bateau4" },
                     }
                 },
             };

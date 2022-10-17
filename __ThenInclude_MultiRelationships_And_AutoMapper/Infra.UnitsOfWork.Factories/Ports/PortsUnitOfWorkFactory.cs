@@ -1,18 +1,21 @@
-﻿using Domain.Repositories.Interfaces.Ports;
-using Infra.DataContext.Interfaces.Ports;
+﻿using Infra.DataContext.Interfaces.Ports;
+using Domain.Repositories.Interfaces.Ports;
+using Infra.UnitsOfWork.Interfaces.Ports;
+
 using Infra.DataContext.Ports;
 using Infra.Repositories.Ports;
+using Infra.UnitsOfWork.Ports;
 
-namespace Infra.UnitsOfWork.Ports
+namespace Infra.UnitsOfWork.Factories.Ports
 {
-    public class PortsUnitOfWorkFactory
+    public class PortsUnitOfWorkFactory : IPortsUnitOfWorkFactory
     {
-        private PortsJsonFilesDataContext portsDataContext;
+        private IPortsDataContext portsDataContext;
 
         private IVilleRepository villeRepository;
         private IPortRepository portRepository;
 
-        public PortsUnitOfWork GetInstance()
+        public IPortsUnitOfWork GetInstance()
         {
             var retour = new PortsUnitOfWork(
                 GetDataContext(),
@@ -24,7 +27,13 @@ namespace Infra.UnitsOfWork.Ports
 
         private IPortsDataContext GetDataContext()
         {
-            var retour = portsDataContext ?? (portsDataContext = new PortsJsonFilesDataContext());
+            var retour = portsDataContext ?? (portsDataContext = CreateDataContext());
+            return retour;
+        }
+
+        private IPortsDataContext CreateDataContext()
+        {
+            var retour = new PortsJsonFilesDataContext();
             return retour;
         }
 

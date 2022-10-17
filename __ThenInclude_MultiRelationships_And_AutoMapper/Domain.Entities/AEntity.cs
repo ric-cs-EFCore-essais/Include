@@ -1,6 +1,8 @@
-﻿namespace Domain.Entities
+﻿using Domain.Entities.Interfaces;
+
+namespace Domain.Entities
 {
-    public abstract class AEntity
+    public abstract class AEntity : IEntity
     {
         public int Id { get; init; }
     }

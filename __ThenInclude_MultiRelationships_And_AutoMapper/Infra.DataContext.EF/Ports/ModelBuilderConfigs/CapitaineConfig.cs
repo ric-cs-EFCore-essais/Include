@@ -3,11 +3,11 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 using Domain.Entities.Ports;
 
-namespace DataAccess.ModelBuilderConfigs
+namespace Infra.DataContext.EF.Ports.ModelBuilderConfigs
 {
-    public class PortConfig : IEntityTypeConfiguration<Port>
+    public class CapitaineConfig : IEntityTypeConfiguration<Capitaine>
     {
-        public void Configure(EntityTypeBuilder<Port> entityModelBuilder)
+        public void Configure(EntityTypeBuilder<Capitaine> entityModelBuilder)
         {
             entityModelBuilder.Property(entity => entity.Nom).IsRequired();
         }
