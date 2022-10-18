@@ -18,7 +18,7 @@ namespace ConsolePrj
     {                                                                                        // EF saura comment créer son instance de type
                                                                                              //  PortsDbDataContext
                                                                                              // (la méthode CreateDbContext sera alors appelée automatiquement).
-        private IDBServerAccessConfiguration dbServerAccessConfiguration; //Type perso.
+        private readonly IDBServerAccessConfiguration dbServerAccessConfiguration; //Type perso.
 
         private IDbDataContextFactory<PortsDbDataContext> realFactory; //Type perso.
 

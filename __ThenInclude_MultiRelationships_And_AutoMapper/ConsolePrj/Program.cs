@@ -1,30 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 
+using Infra.Common.DataAccess.Interfaces;
 using Transverse.Common.DebugTools;
 
-using Domain.Entities.Ports;
-using Infra.DataContext.Interfaces.Ports;
-using Infra.DataContext.Ports;
-using Infra.UnitsOfWork.Ports;
-using System.Collections.ObjectModel;
-using Domain.Repositories.Interfaces.Ports;
-using Infra.UnitsOfWork.Factories.Ports;
 using Infra.UnitsOfWork.Interfaces.Ports;
 using Infra.DataContext.EF.Interfaces;
+
+using Domain.Entities.Ports;
+using Infra.UnitsOfWork.Factories.Ports;
 using Infra.DataContext.EF.Ports;
-using Infra.Common.DataAccess.Interfaces;
+using Tests.FakeData.Ports;
 
 namespace ConsolePrj
 {
-    //class Toto : IDisposable
-    //{
-    //    public void Dispose()
-    //    {
-    //        Console.WriteLine("ICI");
-    //    }
-    //}
     static class Program
     {
         static void Main(string[] args)
@@ -43,22 +34,20 @@ namespace ConsolePrj
             IDbDataContextFactory<PortsDbDataContext> dbDataContextFactory = Infra.DataContext.EF.Ports.PortsDbDataContextFactory.GetSingleton(portsDBServerAccessConfiguration);
             using (IPortsUnitOfWork portsUnitOfWork = new Infra.UnitsOfWork.EF.Factories.Ports.PortsUnitOfWorkFactory(dbDataContextFactory).GetInstance())
             {
-                //Debug.ShowData(portsUnitOfWork.VilleRepository.GetAll()); Console.ReadKey();
+                //Debug.ShowData(portsUnitOfWork.VilleRepository.GetAll()); Console.ReadKey(); Console.WriteLine("\n\n");
 
-                if (!portsUnitOfWork.VilleRepository.GetAll().Any()) 
-                {
-                    portsUnitOfWork.VilleRepository.AddRange(GetVilles());
-                    portsUnitOfWork.VilleRepository.Add(new Ville { Nom = "Gibraltar" });
-                    portsUnitOfWork.VilleRepository.Add(new Ville { Nom = "Miami" });
-                    portsUnitOfWork.Commit();
-                    Console.WriteLine("DONE"); Console.ReadKey();
-                }
-
-                Debug.ShowData(portsUnitOfWork.VilleRepository.GetAll()); Console.ReadKey();
-                Debug.ShowData(portsUnitOfWork.VilleRepository.Get(1)); Console.ReadKey();
+                SeedRepositoriesIfEmpty(portsUnitOfWork);
 
 
-                Debug.ShowData(portsUnitOfWork.VilleRepository.Find(ville => ville.Nom.StartsWith("M"))); Console.ReadKey(); //Conversion auto. du filtre, en LINQ Expression !
+                Expression<Func<Ville, bool>> filtreExpression = ville => ville.Nom.StartsWith("M"); //Conversion auto. du filtre, en LINQ Expression !
+                Debug.ShowData(portsUnitOfWork.VilleRepository.Find(filtreExpression)); Console.ReadKey();
+                //Debug.ShowData(portsUnitOfWork.VilleRepository.Find(ville => ville.Nom.StartsWith("M"))); Console.ReadKey(); //Autre syntaxe : conversion auto. du filtre, en LINQ Expression !
+                Console.WriteLine("\n\n");
+
+                Debug.ShowData(portsUnitOfWork.VilleRepository.GetAll()); Console.ReadKey(); Console.WriteLine("\n\n");
+                Debug.ShowData(portsUnitOfWork.VilleRepository.Get(1)); Console.ReadKey(); Console.WriteLine("\n\n");
+
+                Debug.ShowData(portsUnitOfWork.VilleRepository.GetByPort(portId:3)); Console.ReadKey(); Console.WriteLine("\n\n");
             }
         }
 
@@ -66,92 +55,61 @@ namespace ConsolePrj
         {
             using (IPortsUnitOfWork portsUnitOfWork = new PortsUnitOfWorkFactory().GetInstance())
             {
-                Debug.ShowData(portsUnitOfWork.PortRepository.GetAll()); Console.ReadKey();
+                //Debug.ShowData(portsUnitOfWork.PortRepository.GetAll()); Console.ReadKey(); Console.WriteLine("\n\n");
 
-                portsUnitOfWork.PortRepository.AddRange(GetPorts());
-                portsUnitOfWork.PortRepository.Add(new Port { Id = 3, Nom = "33111" });
-                portsUnitOfWork.PortRepository.Add(new Port { Id = 4, Nom = "4444111" });
+                var autoInitIds = true;
+                SeedRepositoriesIfEmpty(portsUnitOfWork, autoInitIds);
 
-                Debug.ShowData(portsUnitOfWork.PortRepository.GetAll());Console.ReadKey();
-                Debug.ShowData(portsUnitOfWork.PortRepository.Get(1)); Console.ReadKey();
-                Debug.ShowData(portsUnitOfWork.PortRepository.Find(port => port.Nom.Contains("1"))); Console.ReadKey(); //Conversion auto. du filtre, en LINQ Expression !
 
-                portsUnitOfWork.Commit();
+                Expression<Func<Port, bool>> filtreExpression = port => port.Nom.Contains("4"); //Conversion auto. du filtre, en LINQ Expression !
+                Debug.ShowData(portsUnitOfWork.PortRepository.Find(filtreExpression)); Console.ReadKey();
+                //Debug.ShowData(portsUnitOfWork.PortRepository.Find(port => port.Nom.Contains("4"))); Console.ReadKey(); //Autre syntaxe : conversion auto. du filtre, en LINQ Expression !
+                Console.WriteLine("\n\n");
+
+                Debug.ShowData(portsUnitOfWork.PortRepository.GetAll());Console.ReadKey(); Console.WriteLine("\n\n");
+                Debug.ShowData(portsUnitOfWork.PortRepository.Get(3)); Console.ReadKey(); Console.WriteLine("\n\n");
+
+                Debug.ShowData(portsUnitOfWork.VilleRepository.GetByPort(portId: 3)); Console.ReadKey(); Console.WriteLine("\n\n");
+
             }
         }
 
-
-        private static IList<Ville> GetVilles()
+        private static void SeedRepositoriesIfEmpty(IPortsUnitOfWork portsUnitOfWork, bool autoInitIds = false)
         {
-            var retours = new List<Ville>
+            if (!portsUnitOfWork.VilleRepository.GetAll().Any())
             {
-                new Ville
-                {
-                    Nom = "Marseille",
-                },
+                portsUnitOfWork.VilleRepository.AddRange(PortsFakeData.GetVilles(autoInitIds));
+                portsUnitOfWork.Commit();
+                Console.WriteLine("REMPLISSAGE Villes DONE"); Console.ReadKey();
+            }
 
-                new Ville
-                {
-                    Nom = "La Rochelle",
-                },
-
-                new Ville
-                {
-                    Nom = "Lisieux",
-                },
-
-                new Ville
-                {
-                    Nom = "Fréjus",
-                },
-
-                new Ville
-                {
-                    Nom = "Cannes",
-                },
-
-                new Ville
-                {
-                    Nom = "Nice",
-                },
-
-            };
-
-            return retours;
-        }
-
-        private static IList<Port> GetPorts()
-        {
-            var retours = new List<Port>
+            if (!portsUnitOfWork.PortRepository.GetAll().Any())
             {
-                new Port
-                {
-                    //Id = 1,
-                    Nom = "Port 1 de Marseille",
-                    Bateaux = new List<Bateau>
-                    {
-                        new Bateau { /*Id = 1,*/ Nom = "P1M - Bateau1" },
-                        new Bateau { /*Id = 2,*/ Nom = "P1M - Bateau2" },
-                        new Bateau { /*Id = 3,*/ Nom = "P1M - Bateau3" },
-                        new Bateau { /*Id = 4,*/ Nom = "P1M - Bateau4" },
-                    }
-                },
+                portsUnitOfWork.PortRepository.AddRange(PortsFakeData.GetPorts(autoInitIds));
+                portsUnitOfWork.Commit();
+                Console.WriteLine("REMPLISSAGE Ports DONE"); Console.ReadKey();
+            }
 
-                new Port
-                {
-                    //Id = 2,
-                    Nom = "Port 2 de Marseille",
-                    Bateaux = new List<Bateau>
-                    {
-                        new Bateau { /*Id = 5,*/ Nom = "P2M - Bateau1" },
-                        new Bateau { /*Id = 6,*/ Nom = "P2M - Bateau2" },
-                        new Bateau { /*Id = 7,*/ Nom = "P2M - Bateau3" },
-                        new Bateau { /*Id = 8,*/ Nom = "P2M - Bateau4" },
-                    }
-                },
-            };
+            if (!portsUnitOfWork.AncreRepository.GetAll().Any())
+            {
+                portsUnitOfWork.AncreRepository.AddRange(PortsFakeData.GetAncres(autoInitIds));
+                portsUnitOfWork.Commit();
+                Console.WriteLine("REMPLISSAGE Ancres DONE"); Console.ReadKey();
+            }
 
-            return retours;
+            if (!portsUnitOfWork.DiplomeRepository.GetAll().Any())
+            {
+                portsUnitOfWork.DiplomeRepository.AddRange(PortsFakeData.GetDiplomes(autoInitIds));
+                portsUnitOfWork.Commit();
+                Console.WriteLine("REMPLISSAGE Diplomes DONE"); Console.ReadKey();
+            }
+
+            if (!portsUnitOfWork.CapitaineRepository.GetAll().Any())
+            {
+                portsUnitOfWork.CapitaineRepository.AddRange(PortsFakeData.GetCapitaines(autoInitIds));
+                portsUnitOfWork.Commit();
+                Console.WriteLine("REMPLISSAGE Capitaines DONE"); Console.ReadKey();
+            }
         }
     }
 }

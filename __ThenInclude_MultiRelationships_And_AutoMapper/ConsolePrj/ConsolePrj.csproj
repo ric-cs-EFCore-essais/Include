@@ -11,6 +11,7 @@
     <ProjectReference Include="..\Infra.UnitsOfWork.EF.Factories\Infra.UnitsOfWork.EF.Factories.csproj" />
     <ProjectReference Include="..\Infra.UnitsOfWork.Factories\Infra.UnitsOfWork.Factories.csproj" />
     <ProjectReference Include="..\Infra.UnitsOfWork\Infra.UnitsOfWork.csproj" />
+    <ProjectReference Include="..\Tests.FakeData\Tests.FakeData.csproj" />
   </ItemGroup>
 
 

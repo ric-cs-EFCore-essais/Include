@@ -8,6 +8,9 @@ namespace Infra.DataContext.Ports
     {
         public IDataSet<Port> Ports { get; protected set; }
         public IDataSet<Ville> Villes { get; protected set; }
+        public IDataSet<Ancre> Ancres { get; protected set; }
+        public IDataSet<Diplome> Diplomes { get; protected set; }
+        public IDataSet<Capitaine> Capitaines { get; protected set; }
 
         protected APortsDataContext()
         {
@@ -17,6 +20,9 @@ namespace Infra.DataContext.Ports
         {
             Ports?.Save();
             Villes?.Save();
+            Ancres?.Save();
+            Diplomes?.Save();
+            Capitaines?.Save();
         }
 
         public void Dispose()

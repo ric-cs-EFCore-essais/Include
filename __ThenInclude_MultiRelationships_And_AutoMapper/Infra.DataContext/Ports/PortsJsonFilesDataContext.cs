@@ -11,8 +11,18 @@ namespace Infra.DataContext.Ports
     {
         public PortsJsonFilesDataContext(): base()
         {
-            Ports = new JsonFileDataSet<Port>(Resources.PortsJsonFile);
-            Villes = new JsonFileDataSet<Ville>(Resources.VillesJsonFile);
+            Ports = new JsonFileDataSet<Port>(GetJsonFileFullName(Resources.PortsJsonFile));
+            Villes = new JsonFileDataSet<Ville>(GetJsonFileFullName(Resources.VillesJsonFile));
+            Ancres = new JsonFileDataSet<Ancre>(GetJsonFileFullName(Resources.AncresJsonFile));
+            Diplomes = new JsonFileDataSet<Diplome>(GetJsonFileFullName(Resources.DiplomesJsonFile));
+            Capitaines = new JsonFileDataSet<Capitaine>(GetJsonFileFullName(Resources.CapitainesJsonFile));
         }
+
+        private static string GetJsonFileFullName(string jsonFileName)
+        {
+            var retour = $"{Resources.JsonFilesPath}{jsonFileName}";
+            return retour;
+        }
+
     }
 }

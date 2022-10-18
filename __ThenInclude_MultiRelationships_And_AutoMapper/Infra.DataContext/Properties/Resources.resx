@@ -117,10 +117,28 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AncresJsonFile" xml:space="preserve">
+    <value>Ancres.json</value>
+  </data>
+  <data name="BateauxJsonFile" xml:space="preserve">
+    <value>Bateaux.json</value>
+  </data>
+  <data name="CapitainesDiplomesJsonFile" xml:space="preserve">
+    <value>CapitainesDiplomes.json</value>
+  </data>
+  <data name="CapitainesJsonFile" xml:space="preserve">
+    <value>Capitaines.json</value>
+  </data>
+  <data name="DiplomesJsonFile" xml:space="preserve">
+    <value>Diplomes.json</value>
+  </data>
+  <data name="JsonFilesPath" xml:space="preserve">
+    <value>D:/</value>
+  </data>
   <data name="PortsJsonFile" xml:space="preserve">
-    <value>I:/Ports.json</value>
+    <value>Ports.json</value>
   </data>
   <data name="VillesJsonFile" xml:space="preserve">
-    <value>I:/Villes.json</value>
+    <value>Villes.json</value>
   </data>
 </root>

@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 
 using Microsoft.EntityFrameworkCore;
 
@@ -20,9 +21,27 @@ namespace Infra.Repositories.Ports
             return dataContext.Villes;
         }
 
+        public override Ville Get(int id)
+        {
+            var retour = IncludingPorts(GetEntities()).SingleOrDefault(entity => entity.Id == id);
+            return retour;
+        }
+
+        public override IEnumerable<Ville> GetAll()
+        {
+            var retour = IncludingPorts(GetEntities()).ToList();
+            return retour;
+        }
+
+        private IQueryable<Ville> IncludingPorts(IQueryable<Ville> villesQuery)
+        {
+            var retour = villesQuery.Include(ville => ville.Ports);
+            return retour;
+        }
+
         public Ville GetByPort(int portId)
         {
-            var retour = GetEntities().SingleOrDefault(ville => ville.Ports.Select(port => port.Id).Contains(portId));
+            var retour = IncludingPorts(GetEntities()).SingleOrDefault(ville => ville.Ports.Select(port => port.Id).Contains(portId));
             return retour;
         }
 

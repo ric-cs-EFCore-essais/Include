@@ -61,7 +61,61 @@ namespace Infra.DataContext.Properties {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à I:/Ports.json.
+        ///   Recherche une chaîne localisée semblable à Ancres.json.
+        /// </summary>
+        internal static string AncresJsonFile {
+            get {
+                return ResourceManager.GetString("AncresJsonFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Bateaux.json.
+        /// </summary>
+        internal static string BateauxJsonFile {
+            get {
+                return ResourceManager.GetString("BateauxJsonFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à CapitainesDiplomes.json.
+        /// </summary>
+        internal static string CapitainesDiplomesJsonFile {
+            get {
+                return ResourceManager.GetString("CapitainesDiplomesJsonFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Capitaines.json.
+        /// </summary>
+        internal static string CapitainesJsonFile {
+            get {
+                return ResourceManager.GetString("CapitainesJsonFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Diplomes.json.
+        /// </summary>
+        internal static string DiplomesJsonFile {
+            get {
+                return ResourceManager.GetString("DiplomesJsonFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à D:/.
+        /// </summary>
+        internal static string JsonFilesPath {
+            get {
+                return ResourceManager.GetString("JsonFilesPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Ports.json.
         /// </summary>
         internal static string PortsJsonFile {
             get {
@@ -70,7 +124,7 @@ namespace Infra.DataContext.Properties {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à I:/Villes.json.
+        ///   Recherche une chaîne localisée semblable à Villes.json.
         /// </summary>
         internal static string VillesJsonFile {
             get {

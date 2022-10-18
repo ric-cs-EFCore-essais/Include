@@ -19,7 +19,7 @@ namespace Infra.Repositories
     {
         protected abstract TEntities GetEntities();
 
-        public TEntity Get(int id)
+        public virtual TEntity Get(int id)
         {
             var retour = GetEntities().SingleOrDefault(entity => entity.Id == id);
             return retour;
@@ -28,11 +28,11 @@ namespace Infra.Repositories
         //public IEnumerable<TEntity> Find(Func<TEntity, bool> filter)
         public IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> filterExpression)
         {
-            var retour = GetEntities().Where(filterExpression);
+            var retour = GetEntities().Where(filterExpression).ToList();
             return retour;
         }
 
-        public IEnumerable<TEntity> GetAll()
+        public virtual IEnumerable<TEntity> GetAll()
         {
             var retour = GetEntities().ToList();
             return retour;

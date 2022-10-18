@@ -8,15 +8,24 @@ namespace Infra.UnitsOfWork.Ports
     {
         public IVilleRepository VilleRepository { get; init; }
         public IPortRepository PortRepository { get; init; }
+        public IAncreRepository AncreRepository { get; }
+        public IDiplomeRepository DiplomeRepository { get; }
+        public ICapitaineRepository CapitaineRepository { get; }
 
         public PortsUnitOfWork(
             IDataContext portsDataContext,
             IVilleRepository villeRepository,
-            IPortRepository portRepository
+            IPortRepository portRepository,
+            IAncreRepository ancreRepository,
+            IDiplomeRepository diplomeRepository,
+            ICapitaineRepository capitaineRepository
         ) : base(portsDataContext)
         {
-            this.VilleRepository = villeRepository;
-            this.PortRepository = portRepository;
+            VilleRepository = villeRepository;
+            PortRepository = portRepository;
+            AncreRepository = ancreRepository;
+            DiplomeRepository = diplomeRepository;
+            CapitaineRepository = capitaineRepository;
         }
     }
 }

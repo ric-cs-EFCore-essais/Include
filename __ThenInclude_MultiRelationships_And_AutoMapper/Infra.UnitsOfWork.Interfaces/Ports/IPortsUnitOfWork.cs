@@ -6,5 +6,8 @@ namespace Infra.UnitsOfWork.Interfaces.Ports
     {
         IPortRepository PortRepository { get; init; }
         IVilleRepository VilleRepository { get; init; }
+        IAncreRepository AncreRepository { get; init; }
+        IDiplomeRepository DiplomeRepository { get; init; }
+        ICapitaineRepository CapitaineRepository { get; init; }
     }
 }

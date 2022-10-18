@@ -8,5 +8,8 @@ namespace Infra.DataContext.Interfaces.Ports
     {
         IDataSet<Port> Ports { get; }
         IDataSet<Ville> Villes { get; }
+        IDataSet<Ancre> Ancres { get; }
+        IDataSet<Diplome> Diplomes { get; }
+        IDataSet<Capitaine> Capitaines { get; }
     }
 }
