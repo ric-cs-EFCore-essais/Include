@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 
 using Domain.Entities.Interfaces;
 using Domain.Repositories.Interfaces;
@@ -21,9 +22,10 @@ namespace Infra.Repositories
             return retour;
         }
 
-        public IEnumerable<TEntity> Find(Func<TEntity, bool> filter)
+        //public IEnumerable<TEntity> Find(Func<TEntity, bool> filter)
+        public IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> filterExpression)
         {
-            var retour = GetEntities().Where(entity => filter(entity));
+            var retour = GetEntities().AsQueryable().Where(filterExpression);
             return retour;
         }
 

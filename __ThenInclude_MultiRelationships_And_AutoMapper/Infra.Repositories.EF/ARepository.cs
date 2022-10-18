@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 
 using Microsoft.EntityFrameworkCore;
 
 using Domain.Repositories.Interfaces;
 
 using Domain.Entities;
-
 
 namespace Infra.Repositories
 {
@@ -25,9 +25,10 @@ namespace Infra.Repositories
             return retour;
         }
 
-        public IEnumerable<TEntity> Find(Func<TEntity, bool> filter)
+        //public IEnumerable<TEntity> Find(Func<TEntity, bool> filter)
+        public IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> filterExpression)
         {
-            var retour = GetEntities().Where(entity => filter(entity));
+            var retour = GetEntities().Where(filterExpression);
             return retour;
         }
 
