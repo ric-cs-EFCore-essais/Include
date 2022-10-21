@@ -14,6 +14,8 @@ namespace Infra.DataContext.Ports
             Ancres = new InMemoryDataSet<Ancre>();
             Diplomes = new InMemoryDataSet<Diplome>();
             Capitaines = new InMemoryDataSet<Capitaine>();
+            CapitainesDiplomes = new InMemoryDataSet<CapitaineDiplome>();
+            Bateaux = new InMemoryDataSet<Bateau>();
         }
     }
 }

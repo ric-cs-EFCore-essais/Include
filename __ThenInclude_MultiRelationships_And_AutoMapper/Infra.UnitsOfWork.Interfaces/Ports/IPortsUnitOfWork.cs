@@ -9,5 +9,7 @@ namespace Infra.UnitsOfWork.Interfaces.Ports
         IAncreRepository AncreRepository { get; init; }
         IDiplomeRepository DiplomeRepository { get; init; }
         ICapitaineRepository CapitaineRepository { get; init; }
+        ICapitaineDiplomeRepository CapitaineDiplomeRepository { get; init; }
+        IBateauRepository BateauRepository { get; init; }
     }
 }

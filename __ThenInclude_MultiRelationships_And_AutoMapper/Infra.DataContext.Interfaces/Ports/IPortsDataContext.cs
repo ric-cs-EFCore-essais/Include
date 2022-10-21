@@ -11,5 +11,7 @@ namespace Infra.DataContext.Interfaces.Ports
         IDataSet<Ancre> Ancres { get; }
         IDataSet<Diplome> Diplomes { get; }
         IDataSet<Capitaine> Capitaines { get; }
+        IDataSet<CapitaineDiplome> CapitainesDiplomes { get; }
+        IDataSet<Bateau> Bateaux { get; }
     }
 }

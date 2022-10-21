@@ -14,6 +14,7 @@ using Infra.UnitsOfWork.Factories.Ports;
 using Infra.DataContext.EF.Ports;
 using Tests.FakeData.Ports;
 
+
 namespace ConsolePrj
 {
     static class Program
@@ -34,6 +35,11 @@ namespace ConsolePrj
             IDbDataContextFactory<PortsDbDataContext> dbDataContextFactory = Infra.DataContext.EF.Ports.PortsDbDataContextFactory.GetSingleton(portsDBServerAccessConfiguration);
             using (IPortsUnitOfWork portsUnitOfWork = new Infra.UnitsOfWork.EF.Factories.Ports.PortsUnitOfWorkFactory(dbDataContextFactory).GetInstance())
             {
+                var port = portsUnitOfWork.PortRepository.Get(2);
+                Debug.ShowData(port); //Debug.ShowData gère désormais bien les dépendances cycliques (ici : Capitaine -> CapitainesDiplomes -> Capitaine, et Diplome -> CapitaineDiplomes -> Diplome). (Gère en ignorant).
+                Console.ReadKey(); Console.WriteLine("\n\n");
+                
+
                 //Debug.ShowData(portsUnitOfWork.VilleRepository.GetAll()); Console.ReadKey(); Console.WriteLine("\n\n");
 
                 SeedRepositoriesIfEmpty(portsUnitOfWork);
@@ -70,6 +76,7 @@ namespace ConsolePrj
                 Debug.ShowData(portsUnitOfWork.PortRepository.Get(3)); Console.ReadKey(); Console.WriteLine("\n\n");
 
                 Debug.ShowData(portsUnitOfWork.VilleRepository.GetByPort(portId: 3)); Console.ReadKey(); Console.WriteLine("\n\n");
+                Debug.ShowData(portsUnitOfWork.VilleRepository.Get(1)); Console.ReadKey(); Console.WriteLine("\n\n");
 
             }
         }
@@ -109,6 +116,20 @@ namespace ConsolePrj
                 portsUnitOfWork.CapitaineRepository.AddRange(PortsFakeData.GetCapitaines(autoInitIds));
                 portsUnitOfWork.Commit();
                 Console.WriteLine("REMPLISSAGE Capitaines DONE"); Console.ReadKey();
+            }
+
+            if (!portsUnitOfWork.CapitaineDiplomeRepository.GetAll().Any())
+            {
+                portsUnitOfWork.CapitaineDiplomeRepository.AddRange(PortsFakeData.GetCapitainesDiplomes(autoInitIds));
+                portsUnitOfWork.Commit();
+                Console.WriteLine("REMPLISSAGE CapitainesDiplomes DONE"); Console.ReadKey();
+            }
+
+            if (!portsUnitOfWork.BateauRepository.GetAll().Any())
+            {
+                portsUnitOfWork.BateauRepository.AddRange(PortsFakeData.GetBateaux(autoInitIds));
+                portsUnitOfWork.Commit();
+                Console.WriteLine("REMPLISSAGE Bateaux DONE"); Console.ReadKey();
             }
         }
     }

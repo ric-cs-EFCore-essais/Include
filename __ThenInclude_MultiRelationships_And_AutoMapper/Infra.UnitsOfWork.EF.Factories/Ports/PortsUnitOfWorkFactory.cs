@@ -19,6 +19,9 @@ namespace Infra.UnitsOfWork.EF.Factories.Ports
         private IAncreRepository ancreRepository;
         private IDiplomeRepository diplomeRepository;
         private ICapitaineRepository capitaineRepository;
+        private ICapitaineDiplomeRepository capitaineDiplomeRepository;
+        private IBateauRepository bateauRepository;
+
 
         public PortsUnitOfWorkFactory(IDbDataContextFactory<PortsDbDataContext> dbDataContextFactory)
         {
@@ -33,7 +36,9 @@ namespace Infra.UnitsOfWork.EF.Factories.Ports
                 GetPortRepository(),
                 GetAncreRepository(),
                 GetDiplomeRepository(),
-                GetCapitaineRepository()
+                GetCapitaineRepository(),
+                GetCapitaineDiplomeRepository(),
+                GetBateauRepository()
             );
             return retour;
         }
@@ -77,6 +82,18 @@ namespace Infra.UnitsOfWork.EF.Factories.Ports
         private ICapitaineRepository GetCapitaineRepository()
         {
             var retour = capitaineRepository ?? (capitaineRepository = new CapitaineRepository(GetDataContext()));
+            return retour;
+        }
+
+        private ICapitaineDiplomeRepository GetCapitaineDiplomeRepository()
+        {
+            var retour = capitaineDiplomeRepository ?? (capitaineDiplomeRepository = new CapitaineDiplomeRepository(GetDataContext()));
+            return retour;
+        }
+
+        private IBateauRepository GetBateauRepository()
+        {
+            var retour = bateauRepository ?? (bateauRepository = new BateauRepository(GetDataContext()));
             return retour;
         }
     }

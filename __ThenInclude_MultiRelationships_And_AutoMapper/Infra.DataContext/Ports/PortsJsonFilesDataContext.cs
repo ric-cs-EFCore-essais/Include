@@ -16,6 +16,8 @@ namespace Infra.DataContext.Ports
             Ancres = new JsonFileDataSet<Ancre>(GetJsonFileFullName(Resources.AncresJsonFile));
             Diplomes = new JsonFileDataSet<Diplome>(GetJsonFileFullName(Resources.DiplomesJsonFile));
             Capitaines = new JsonFileDataSet<Capitaine>(GetJsonFileFullName(Resources.CapitainesJsonFile));
+            CapitainesDiplomes = new JsonFileDataSet<CapitaineDiplome>(GetJsonFileFullName(Resources.CapitainesDiplomesJsonFile));
+            Bateaux = new JsonFileDataSet<Bateau>(GetJsonFileFullName(Resources.BateauxJsonFile));
         }
 
         private static string GetJsonFileFullName(string jsonFileName)

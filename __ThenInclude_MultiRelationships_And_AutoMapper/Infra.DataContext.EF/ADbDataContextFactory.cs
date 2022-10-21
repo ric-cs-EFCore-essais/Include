@@ -26,12 +26,12 @@ namespace Infra.DataContext.EF.Ports
         public TDbDataContext GetSqlServerInstance()
         {
             var optionsBuilder = new DbContextOptionsBuilder<TDbDataContext>();
-            ConfigureOptionsBuilder(optionsBuilder);
+            ConfigureOptionsBuilderForSqlServer(optionsBuilder);
 
             return CreateDbDataContext(optionsBuilder.Options);
         }
 
-        private void ConfigureOptionsBuilder(DbContextOptionsBuilder<TDbDataContext> optionsBuilder)
+        private void ConfigureOptionsBuilderForSqlServer(DbContextOptionsBuilder<TDbDataContext> optionsBuilder)
         {
             var connectionString = dbServerAccessConfiguration.GetConnectionString();
             optionsBuilder.UseSqlServer(connectionString);
