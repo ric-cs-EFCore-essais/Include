@@ -2,7 +2,6 @@
 using System.Linq;
 
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Query; //Pour IIncludableQueryable
 
 using Domain.Repositories.Interfaces.Ports;
 
@@ -11,11 +10,6 @@ using Infra.DataContext.EF.Ports;
 
 namespace Infra.Repositories.Ports
 {
-    public class PortAvecVille : Port
-    {
-        public Ville Ville { get; }
-    }
-
     public class PortRepository : APortsRepository<Port>, IPortRepository
     {
         public PortRepository(PortsDbDataContext dataContext) : base(dataContext)
