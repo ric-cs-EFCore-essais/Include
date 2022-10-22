@@ -42,6 +42,7 @@ namespace Infra.Repositories.Ports
         private IQueryable<Port> IncludingBateaux(IQueryable<Port> portsQuery)
         {
             var retour = portsQuery
+                            .Include(port => port.Ville)
                             .Include(port => port.Bateaux)
                                 .ThenInclude(bateau => bateau.Capitaine)
                                     .ThenInclude(capitaine => capitaine.CapitainesDiplomes) //ATTENTION : CapitainesDiplomes doit être une property (au sens : property C#)
@@ -50,7 +51,6 @@ namespace Infra.Repositories.Ports
 
                             .Include(port => port.Bateaux)
                                 .ThenInclude(bateau => bateau.Ancre)
-
                             ;
             return retour;
         }

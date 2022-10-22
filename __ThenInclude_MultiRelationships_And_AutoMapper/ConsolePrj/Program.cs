@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 
@@ -21,28 +20,30 @@ namespace ConsolePrj
     {
         static void Main(string[] args)
         {
-            //Tester_PortsJsonFilesDataContext();
-            Tester_PortsDbDataContext();
+            Tester_PortsJsonFilesDataContext();
+            //Tester_PortsDbDataContext();
 
             Console.WriteLine("\n\nOk"); Console.ReadKey();
         }
 
         private static void Tester_PortsDbDataContext()
         {
+            Console.WriteLine("\n\n***********  Tester_PortsDbDataContext() ***********\n\n");
+
             PortsDBServerAccessConfigurationFactory portsDBServerAccessConfigurationFactory = new PortsDBServerAccessConfigurationFactory();
             IDBServerAccessConfiguration portsDBServerAccessConfiguration = portsDBServerAccessConfigurationFactory.GetSingleton();
 
             IDbDataContextFactory<PortsDbDataContext> dbDataContextFactory = Infra.DataContext.EF.Ports.PortsDbDataContextFactory.GetSingleton(portsDBServerAccessConfiguration);
             using (IPortsUnitOfWork portsUnitOfWork = new Infra.UnitsOfWork.EF.Factories.Ports.PortsUnitOfWorkFactory(dbDataContextFactory).GetInstance())
             {
+                SeedRepositoriesIfEmpty(portsUnitOfWork);
+
                 var port = portsUnitOfWork.PortRepository.Get(2);
                 Debug.ShowData(port); //Debug.ShowData gère désormais bien les dépendances cycliques (ici : Capitaine -> CapitainesDiplomes -> Capitaine, et Diplome -> CapitaineDiplomes -> Diplome). (Gère en ignorant).
                 Console.ReadKey(); Console.WriteLine("\n\n");
-                
+                //return;
 
                 //Debug.ShowData(portsUnitOfWork.VilleRepository.GetAll()); Console.ReadKey(); Console.WriteLine("\n\n");
-
-                SeedRepositoriesIfEmpty(portsUnitOfWork);
 
 
                 Expression<Func<Ville, bool>> filtreExpression = ville => ville.Nom.StartsWith("M"); //Conversion auto. du filtre, en LINQ Expression !
@@ -59,12 +60,20 @@ namespace ConsolePrj
 
         private static void Tester_PortsJsonFilesDataContext()
         {
+            Console.WriteLine("\n\n***********  Tester_PortsJsonFilesDataContext() ***********\n\n");
+
             using (IPortsUnitOfWork portsUnitOfWork = new PortsUnitOfWorkFactory().GetInstance())
             {
-                //Debug.ShowData(portsUnitOfWork.PortRepository.GetAll()); Console.ReadKey(); Console.WriteLine("\n\n");
-
                 var autoInitIds = true;
                 SeedRepositoriesIfEmpty(portsUnitOfWork, autoInitIds);
+
+                var port = portsUnitOfWork.PortRepository.Get(2);
+                Debug.ShowData(port); //Debug.ShowData gère désormais bien les dépendances cycliques (ici : Capitaine -> CapitainesDiplomes -> Capitaine, et Diplome -> CapitaineDiplomes -> Diplome). (Gère en ignorant).
+                Console.ReadKey(); Console.WriteLine("\n\n");
+                //return;
+
+
+                //Debug.ShowData(portsUnitOfWork.PortRepository.GetAll()); Console.ReadKey(); Console.WriteLine("\n\n");
 
 
                 Expression<Func<Port, bool>> filtreExpression = port => port.Nom.Contains("4"); //Conversion auto. du filtre, en LINQ Expression !
