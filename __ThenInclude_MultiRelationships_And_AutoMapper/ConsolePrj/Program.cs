@@ -42,10 +42,13 @@ namespace ConsolePrj
             {
                 SeedRepositoriesIfEmpty(portsUnitOfWork);
 
+                //>>>Debug.ShowData gère désormais bien les dépendances cycliques (ici : Capitaine -> CapitainesDiplomes -> Capitaine, et Diplome -> CapitaineDiplomes -> Diplome). (Gère en ignorant).
+
+                chrono.Start();
                 var port = portsUnitOfWork.PortRepository.Get(2);
-                Debug.ShowData(port); //Debug.ShowData gère désormais bien les dépendances cycliques (ici : Capitaine -> CapitainesDiplomes -> Capitaine, et Diplome -> CapitaineDiplomes -> Diplome). (Gère en ignorant).
-                Console.ReadKey(); Console.WriteLine("\n\n");
-                //return;
+                chrono.StopAndShowDuration();
+                Debug.ShowData(port);
+                Console.ReadKey(); Console.WriteLine("\n\n"); return;
 
                 //Debug.ShowData(portsUnitOfWork.VilleRepository.GetAll()); Console.ReadKey(); Console.WriteLine("\n\n");
 
