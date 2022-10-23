@@ -23,7 +23,9 @@ namespace Infra.Repositories.Ports
 
         public override Port Get(int id)
         {
-            var retour = IncludingBateaux(GetEntities()).SingleOrDefault(entity => entity.Id == id);
+            var retour = 
+                IncludingBateaux(GetEntities())
+                .SingleOrDefault(entity => entity.Id == id);
             return retour;
         }
 
@@ -40,7 +42,7 @@ namespace Infra.Repositories.Ports
                             .Include(port => port.Bateaux)
                                 .ThenInclude(bateau => bateau.Capitaine)
                                     .ThenInclude(capitaine => capitaine.CapitainesDiplomes) //ATTENTION : CapitainesDiplomes doit être une property (au sens : property C#)
-                                        //.ThenInclude(capitaineDiplome => capitaineDiplome.DiplomeId) //<<<<INTERDIT, il doit s'agir d'une instance
+                                                                                            //.ThenInclude(capitaineDiplome => capitaineDiplome.DiplomeId) //<<<<INTERDIT, il doit s'agir d'une instance
                                             .ThenInclude(capitaineDiplome => capitaineDiplome.Diplome)
 
                             .Include(port => port.Bateaux)

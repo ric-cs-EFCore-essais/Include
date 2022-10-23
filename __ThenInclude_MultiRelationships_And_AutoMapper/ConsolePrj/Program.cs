@@ -18,8 +18,12 @@ namespace ConsolePrj
 {
     static class Program
     {
+        static Chrono chrono;
+
         static void Main(string[] args)
         {
+            chrono = new Chrono();
+
             Tester_PortsJsonFilesDataContext();
             //Tester_PortsDbDataContext();
 
@@ -67,14 +71,17 @@ namespace ConsolePrj
                 var autoInitIds = true;
                 SeedRepositoriesIfEmpty(portsUnitOfWork, autoInitIds);
 
+                //>>> Debug.ShowData gère désormais bien les dépendances cycliques (ici : Capitaine -> CapitainesDiplomes -> Capitaine, et Diplome -> CapitaineDiplomes -> Diplome). (Gère en ignorant).
+
+                chrono.Start();
                 var port = portsUnitOfWork.PortRepository.Get(2);
-                Debug.ShowData(port); //Debug.ShowData gère désormais bien les dépendances cycliques (ici : Capitaine -> CapitainesDiplomes -> Capitaine, et Diplome -> CapitaineDiplomes -> Diplome). (Gère en ignorant).
-                Console.ReadKey(); Console.WriteLine("\n\n");
-                //return;
+                chrono.StopAndShowDuration();
+                Debug.ShowData(port); Console.ReadKey(); Console.WriteLine("\n\n"); return;
 
-
-                //Debug.ShowData(portsUnitOfWork.PortRepository.GetAll()); Console.ReadKey(); Console.WriteLine("\n\n");
-
+                //chrono.Start();
+                //var ports = portsUnitOfWork.PortRepository.GetAll();
+                //chrono.StopAndShowDuration();
+                //Debug.ShowData(ports); Console.ReadKey(); Console.WriteLine("\n\n"); return;
 
                 Expression<Func<Port, bool>> filtreExpression = port => port.Nom.Contains("4"); //Conversion auto. du filtre, en LINQ Expression !
                 Debug.ShowData(portsUnitOfWork.PortRepository.Find(filtreExpression)); Console.ReadKey();
