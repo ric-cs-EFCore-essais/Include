@@ -1,9 +1,10 @@
-﻿using Infra.DataContext.Interfaces.Ports;
+﻿using System.IO;
+
+using Infra.DataContext.Interfaces.Ports;
 
 using Domain.Entities.Ports;
 using Infra.DataSet;
-using Infra.DataContext.Properties;
-
+using Infra.DataContext.Properties.Ports;
 
 namespace Infra.DataContext.Ports
 {
@@ -11,18 +12,21 @@ namespace Infra.DataContext.Ports
     {
         public PortsJsonFilesDataContext(): base()
         {
-            Ports = new JsonFileDataSet<Port>(GetJsonFileFullName(Resources.PortsJsonFile));
-            Villes = new JsonFileDataSet<Ville>(GetJsonFileFullName(Resources.VillesJsonFile));
-            Ancres = new JsonFileDataSet<Ancre>(GetJsonFileFullName(Resources.AncresJsonFile));
-            Diplomes = new JsonFileDataSet<Diplome>(GetJsonFileFullName(Resources.DiplomesJsonFile));
-            Capitaines = new JsonFileDataSet<Capitaine>(GetJsonFileFullName(Resources.CapitainesJsonFile));
-            CapitainesDiplomes = new JsonFileDataSet<CapitaineDiplome>(GetJsonFileFullName(Resources.CapitainesDiplomesJsonFile));
-            Bateaux = new JsonFileDataSet<Bateau>(GetJsonFileFullName(Resources.BateauxJsonFile));
+            Ports = new JsonFileDataSet<Port>(GetJsonFileFullName(PortsResources.PortsJsonFile));
+            Villes = new JsonFileDataSet<Ville>(GetJsonFileFullName(PortsResources.VillesJsonFile));
+            Ancres = new JsonFileDataSet<Ancre>(GetJsonFileFullName(PortsResources.AncresJsonFile));
+            Diplomes = new JsonFileDataSet<Diplome>(GetJsonFileFullName(PortsResources.DiplomesJsonFile));
+            Capitaines = new JsonFileDataSet<Capitaine>(GetJsonFileFullName(PortsResources.CapitainesJsonFile));
+            CapitainesDiplomes = new JsonFileDataSet<CapitaineDiplome>(GetJsonFileFullName(PortsResources.CapitainesDiplomesJsonFile));
+            Bateaux = new JsonFileDataSet<Bateau>(GetJsonFileFullName(PortsResources.BateauxJsonFile));
         }
 
         private static string GetJsonFileFullName(string jsonFileName)
         {
-            var retour = $"{Resources.JsonFilesPath}{jsonFileName}";
+            var jsonFilesPath = Directory.Exists(PortsResources.JsonFilesPath_Home) ? 
+                                    PortsResources.JsonFilesPath_Home : PortsResources.JsonFilesPath_Job;
+
+            var retour = $"{jsonFilesPath}{jsonFileName}";
             return retour;
         }
 

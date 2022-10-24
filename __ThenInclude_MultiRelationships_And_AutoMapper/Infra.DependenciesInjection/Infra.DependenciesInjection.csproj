@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Infra.Common.DataAccess" Version="2.0.1" />
+    <PackageReference Include="Infra.Common.DataAccess.Interfaces" Version="1.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.1" />
+    <PackageReference Include="Transverse.Common.DebugTools" Version="1.0.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Application.UseCases.Interfaces\Application.UseCases.Interfaces.csproj" />
+    <ProjectReference Include="..\Application.UseCases\Application.UseCases.csproj" />
+    <ProjectReference Include="..\Domain.Repositories.Interfaces\Domain.Repositories.Interfaces.csproj" />
+    <ProjectReference Include="..\Infra.Controllers\Infra.Controllers.csproj" />
+    <ProjectReference Include="..\Infra.UnitsOfWork.EF.Factories\Infra.UnitsOfWork.EF.Factories.csproj" />
+    <ProjectReference Include="..\Infra.UnitsOfWork.Factories\Infra.UnitsOfWork.Factories.csproj" />
+  </ItemGroup>
+
+</Project>

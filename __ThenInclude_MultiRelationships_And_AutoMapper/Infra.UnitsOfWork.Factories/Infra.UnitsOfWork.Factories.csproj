@@ -7,7 +7,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Infra.DataContext\Infra.DataContext.csproj" />
     <ProjectReference Include="..\Infra.Repositories\Infra.Repositories.csproj" />
-    <ProjectReference Include="..\Infra.UnitsOfWork.Interfaces\Infra.UnitsOfWork.Interfaces.csproj" />
     <ProjectReference Include="..\Infra.UnitsOfWork\Infra.UnitsOfWork.csproj" />
   </ItemGroup>
 

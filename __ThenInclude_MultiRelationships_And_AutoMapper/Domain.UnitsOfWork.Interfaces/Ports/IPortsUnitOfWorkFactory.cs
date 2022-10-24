@@ -1,4 +1,4 @@
-﻿namespace Infra.UnitsOfWork.Interfaces.Ports
+﻿namespace Domain.UnitsOfWork.Interfaces.Ports
 {
     public interface IPortsUnitOfWorkFactory
     {

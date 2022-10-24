@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Transverse.Common.DebugTools" Version="1.0.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Application.UseCases.Interfaces\Application.UseCases.Interfaces.csproj" />
+    <ProjectReference Include="..\Infra.Controllers.Interfaces\Infra.Controllers.Interfaces.csproj" />
+  </ItemGroup>
+
+</Project>

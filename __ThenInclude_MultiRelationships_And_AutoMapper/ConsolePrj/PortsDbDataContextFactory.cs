@@ -6,6 +6,7 @@ using Infra.Common.DataAccess.Interfaces;  //Issu d'un Nuget perso. mis dans ./.
 
 using Infra.DataContext.EF.Interfaces;
 using Infra.DataContext.EF.Ports;
+using Infra.DependenciesInjection.Ports.Factories;
 
 namespace ConsolePrj
 {

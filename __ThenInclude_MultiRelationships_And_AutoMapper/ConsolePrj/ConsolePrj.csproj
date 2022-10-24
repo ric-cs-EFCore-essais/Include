@@ -6,8 +6,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Infra.Controllers\Infra.Controllers.csproj" />
     <ProjectReference Include="..\Infra.DataContext.EF\Infra.DataContext.EF.csproj" />
     <ProjectReference Include="..\Infra.DataContext\Infra.DataContext.csproj" />
+    <ProjectReference Include="..\Infra.DependenciesInjection\Infra.DependenciesInjection.csproj" />
     <ProjectReference Include="..\Infra.UnitsOfWork.EF.Factories\Infra.UnitsOfWork.EF.Factories.csproj" />
     <ProjectReference Include="..\Infra.UnitsOfWork.Factories\Infra.UnitsOfWork.Factories.csproj" />
     <ProjectReference Include="..\Infra.UnitsOfWork\Infra.UnitsOfWork.csproj" />
@@ -26,7 +28,6 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Transverse.Common.DebugTools" Version="1.0.4" />
   </ItemGroup>
   <Target Name="CopyCustomContent" AfterTargets="AfterBuild">
     <Copy SourceFiles="@(AssetsSourceFiles)" DestinationFolder="$(OutDir)/_MyAssets" SkipUnchangedFiles="true" />

@@ -5,14 +5,16 @@ using System.Linq.Expressions;
 using Infra.Common.DataAccess.Interfaces;
 using Transverse.Common.DebugTools;
 
-using Infra.UnitsOfWork.Interfaces.Ports;
+using Domain.UnitsOfWork.Interfaces.Ports;
 using Infra.DataContext.EF.Interfaces;
 
 using Domain.Entities.Ports;
 using Infra.UnitsOfWork.Factories.Ports;
 using Infra.DataContext.EF.Ports;
 using Tests.FakeData.Ports;
-
+using Infra.Controllers.Ports;
+using Infra.DependenciesInjection.Ports.Factories;
+using Infra.DependenciesInjection.Ports;
 
 namespace ConsolePrj
 {
@@ -20,14 +22,29 @@ namespace ConsolePrj
     {
         static Chrono chrono;
 
-        static void Main(string[] args)
+        static void Main(string[] requestArgs)
         {
-            chrono = new Chrono();
+            //Tester();
 
-            Tester_PortsJsonFilesDataContext();
-            //Tester_PortsDbDataContext();
+            requestArgs = new[] { "get/port", "2"};
+            TreatRequest(requestArgs);
 
             Console.WriteLine("\n\nOk"); Console.ReadKey();
+        }
+
+        private static void TreatRequest(string[] requestArgs)
+        {
+            FrontController frontController = DependenciesInjectionConfiguration.GetSingleton().GetFrontController();
+
+            string response = frontController.TreatRequest(requestArgs);
+            Console.WriteLine(response);
+        }
+
+        private static void Tester()
+        {
+            chrono = new Chrono();
+            Tester_PortsJsonFilesDataContext();
+            //Tester_PortsDbDataContext();
         }
 
         private static void Tester_PortsDbDataContext()
@@ -61,7 +78,7 @@ namespace ConsolePrj
                 Debug.ShowData(portsUnitOfWork.VilleRepository.GetAll()); Console.ReadKey(); Console.WriteLine("\n\n");
                 Debug.ShowData(portsUnitOfWork.VilleRepository.Get(1)); Console.ReadKey(); Console.WriteLine("\n\n");
 
-                Debug.ShowData(portsUnitOfWork.VilleRepository.GetByPort(portId:3)); Console.ReadKey(); Console.WriteLine("\n\n");
+                Debug.ShowData(portsUnitOfWork.VilleRepository.GetByPort(portId: 3)); Console.ReadKey(); Console.WriteLine("\n\n");
             }
         }
 
@@ -91,7 +108,7 @@ namespace ConsolePrj
                 //Debug.ShowData(portsUnitOfWork.PortRepository.Find(port => port.Nom.Contains("4"))); Console.ReadKey(); //Autre syntaxe : conversion auto. du filtre, en LINQ Expression !
                 Console.WriteLine("\n\n");
 
-                Debug.ShowData(portsUnitOfWork.PortRepository.GetAll());Console.ReadKey(); Console.WriteLine("\n\n");
+                Debug.ShowData(portsUnitOfWork.PortRepository.GetAll()); Console.ReadKey(); Console.WriteLine("\n\n");
                 Debug.ShowData(portsUnitOfWork.PortRepository.Get(3)); Console.ReadKey(); Console.WriteLine("\n\n");
 
                 Debug.ShowData(portsUnitOfWork.VilleRepository.GetByPort(portId: 3)); Console.ReadKey(); Console.WriteLine("\n\n");

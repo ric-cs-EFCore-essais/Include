@@ -1,6 +1,6 @@
-﻿using Infra.DataContext.Interfaces.Ports;
+﻿using Domain.UnitsOfWork.Interfaces.Ports;
 using Domain.Repositories.Interfaces.Ports;
-using Infra.UnitsOfWork.Interfaces.Ports;
+using Infra.DataContext.Interfaces.Ports;
 
 using Infra.DataContext.Ports;
 using Infra.Repositories.Ports;

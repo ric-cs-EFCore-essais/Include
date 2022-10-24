@@ -3,7 +3,7 @@ using Infra.Common.DataAccess;
 
 using Transverse.Common.DebugTools;
 
-namespace ConsolePrj
+namespace Infra.DependenciesInjection.Ports.Factories
 {
     public class PortsDBServerAccessConfigurationFactory
     {

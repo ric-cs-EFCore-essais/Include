@@ -4,8 +4,8 @@ using Application.DTOs.Ports.GetPort;
 
 namespace Application.DTOs.Ports.GetPorts
 {
-    public record GetPortsUseCaseResponseDTO
+    public record GetPortsMinimalDataUseCaseResponseDTO
     {
-        public IList<GetPortUseCaseResponseDTO> Ports { get; }
+        public IList<GetPortMinimalDataUseCaseResponseDTO> Ports { get; }
     }
 }

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Infra.DataContext.Properties {
+namespace Infra.DataContext.Properties.Ports {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace Infra.DataContext.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources {
+    internal class PortsResources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Resources() {
+        internal PortsResources() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace Infra.DataContext.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Infra.DataContext.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Infra.DataContext.Properties.Ports.PortsResources", typeof(PortsResources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -106,11 +106,20 @@ namespace Infra.DataContext.Properties {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à I:/.
+        /// </summary>
+        internal static string JsonFilesPath_Home {
+            get {
+                return ResourceManager.GetString("JsonFilesPath_Home", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à D:/.
         /// </summary>
-        internal static string JsonFilesPath {
+        internal static string JsonFilesPath_Job {
             get {
-                return ResourceManager.GetString("JsonFilesPath", resourceCulture);
+                return ResourceManager.GetString("JsonFilesPath_Job", resourceCulture);
             }
         }
         

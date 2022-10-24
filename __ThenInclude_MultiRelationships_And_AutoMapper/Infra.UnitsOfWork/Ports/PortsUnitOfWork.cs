@@ -1,6 +1,6 @@
-﻿using Infra.DataContext.Interfaces;
+﻿using Domain.UnitsOfWork.Interfaces.Ports;
 using Domain.Repositories.Interfaces.Ports;
-using Infra.UnitsOfWork.Interfaces.Ports;
+using Infra.DataContext.Interfaces;
 
 namespace Infra.UnitsOfWork.Ports
 {

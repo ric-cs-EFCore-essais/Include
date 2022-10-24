@@ -1,6 +1,6 @@
 ﻿using Domain.Repositories.Interfaces.Ports;
 
-namespace Infra.UnitsOfWork.Interfaces.Ports
+namespace Domain.UnitsOfWork.Interfaces.Ports
 {
     public interface IPortsUnitOfWork: IUnitOfWork
     {

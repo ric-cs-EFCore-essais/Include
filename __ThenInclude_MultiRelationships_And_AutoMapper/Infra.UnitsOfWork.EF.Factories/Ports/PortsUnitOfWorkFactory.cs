@@ -1,5 +1,5 @@
 ﻿using Domain.Repositories.Interfaces.Ports;
-using Infra.UnitsOfWork.Interfaces.Ports;
+using Domain.UnitsOfWork.Interfaces.Ports;
 
 using Infra.DataContext.EF.Interfaces;
 
