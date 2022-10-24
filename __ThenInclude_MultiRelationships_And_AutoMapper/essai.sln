@@ -59,6 +59,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infra.Controllers.Interface
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain.UnitsOfWork.Interfaces", "Domain.UnitsOfWork.Interfaces\Domain.UnitsOfWork.Interfaces.csproj", "{C600CCF1-0905-4A53-A664-A3BDF3CBC47C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infra.Mappers.DTOs", "Infra.Mappers.DTOs\Infra.Mappers.DTOs.csproj", "{58A2BA77-CD4B-4509-ABD8-2E3402E04F3B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application.DTOs.Mappers.Interfaces", "Application.DTOs.Mappers.Interfaces\Application.DTOs.Mappers.Interfaces.csproj", "{6156D887-A536-4AFD-890D-32E458364A3B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -157,6 +161,14 @@ Global
 		{C600CCF1-0905-4A53-A664-A3BDF3CBC47C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C600CCF1-0905-4A53-A664-A3BDF3CBC47C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C600CCF1-0905-4A53-A664-A3BDF3CBC47C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{58A2BA77-CD4B-4509-ABD8-2E3402E04F3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58A2BA77-CD4B-4509-ABD8-2E3402E04F3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58A2BA77-CD4B-4509-ABD8-2E3402E04F3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58A2BA77-CD4B-4509-ABD8-2E3402E04F3B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6156D887-A536-4AFD-890D-32E458364A3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6156D887-A536-4AFD-890D-32E458364A3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6156D887-A536-4AFD-890D-32E458364A3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6156D887-A536-4AFD-890D-32E458364A3B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -184,6 +196,8 @@ Global
 		{753E099D-2F42-4FA0-9F25-3DB48762FCAB} = {03EFC4D4-ECC6-45AE-98CD-0550F60809C7}
 		{CD302147-7ECE-4614-8202-936570181503} = {03EFC4D4-ECC6-45AE-98CD-0550F60809C7}
 		{C600CCF1-0905-4A53-A664-A3BDF3CBC47C} = {FB244541-C06B-4C5A-B916-DEDE7B1BE2C5}
+		{58A2BA77-CD4B-4509-ABD8-2E3402E04F3B} = {03EFC4D4-ECC6-45AE-98CD-0550F60809C7}
+		{6156D887-A536-4AFD-890D-32E458364A3B} = {2523C244-76E7-4F36-8C6B-3D94722D315B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FD246169-0175-47B6-8987-7F57BA2841CC}
