@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Application.DTOs.Mappers.Interfaces\Application.DTOs.Mappers.Interfaces.csproj" />
     <ProjectReference Include="..\Application.DTOs\Application.DTOs.csproj" />
     <ProjectReference Include="..\Application.UseCases.Interfaces\Application.UseCases.Interfaces.csproj" />
     <ProjectReference Include="..\Domain.Repositories.Interfaces\Domain.Repositories.Interfaces.csproj" />
