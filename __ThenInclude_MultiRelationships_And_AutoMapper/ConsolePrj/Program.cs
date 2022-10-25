@@ -24,7 +24,7 @@ namespace ConsolePrj
 
         static void Main(string[] requestArgs)
         {
-            //Tester();
+            //Tester(); return;
 
             //requestArgs = new[] { "get/port", "2"};
             requestArgs = new[] { "get/ports" };
