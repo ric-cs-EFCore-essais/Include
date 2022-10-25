@@ -1,16 +1,19 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using System;
 
+using Microsoft.Extensions.DependencyInjection;
+
+using Domain.UnitsOfWork.Interfaces.Ports;
 using Application.UseCases.Interfaces.Ports;
+using Infra.DataContext.EF.Interfaces;
+using Infra.Controllers.Interfaces.Ports;
 
 using Application.UseCases.Ports.GetPort;
-using Domain.UnitsOfWork.Interfaces.Ports;
-using Infra.UnitsOfWork.Factories.Ports;
 using Application.UseCases.Ports.GetPorts;
-using System;
-using Infra.Controllers.Ports;
-using Infra.Controllers.Interfaces.Ports;
-using Infra.DataContext.EF.Interfaces;
+using Application.UseCases.Ports.GetVilles;
+using Infra.UnitsOfWork.Factories.Ports;
+
 using Infra.DataContext.EF.Ports;
+using Infra.Controllers.Ports;
 using Infra.DependenciesInjection.Ports.Factories;
 using Infra.Mappers.DTOs.AutoMapper.Ports;
 
@@ -18,7 +21,7 @@ namespace Infra.DependenciesInjection.Ports
 {
     public class DependenciesInjectionConfiguration
     {
-        private readonly bool EF_Mode = true;
+        private readonly bool EF_Mode = false;
 
         private static DependenciesInjectionConfiguration dependenciesInjectionConfiguration;
 
@@ -73,9 +76,11 @@ namespace Infra.DependenciesInjection.Ports
         private void ConfigureUseCases()
         {
             servicesCollection
-                .AddSingleton<IGetPortMinimalDataUseCase, GetPortMinimalDataUseCase>()
                 .AddSingleton<IGetPortsMinimalDataUseCase, GetPortsMinimalDataUseCase>()
                 .AddSingleton<IGetPortsFullDataUseCase, GetPortsFullDataUseCase>()
+                .AddSingleton<IGetPortMinimalDataUseCase, GetPortMinimalDataUseCase>()
+                .AddSingleton<IGetPortFullDataUseCase, GetPortFullDataUseCase>()
+                .AddSingleton<IGetVillesWithNameContainingUseCase, GetVillesWithNameContainingUseCase>()
             ;
         }
 

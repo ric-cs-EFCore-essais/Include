@@ -9,7 +9,8 @@ namespace Application.UseCases.Ports.GetPort
 {
     public class GetPortMinimalDataUseCase: APortsUseCase<GetPortMinimalDataUseCaseRequestDTO, GetPortMinimalDataUseCaseResponseDTO>, IGetPortMinimalDataUseCase
     {
-        public GetPortMinimalDataUseCase(IPortsUnitOfWorkFactory portsUnitOfWorkFactory, IPortsDTOsMapper portsDTOsMapper) : base(portsUnitOfWorkFactory, portsDTOsMapper)
+        public GetPortMinimalDataUseCase(IPortsUnitOfWorkFactory portsUnitOfWorkFactory, IPortsDTOsMapper portsDTOsMapper) 
+            : base(portsUnitOfWorkFactory, portsDTOsMapper)
         {
         }
 

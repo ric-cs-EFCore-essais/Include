@@ -2,7 +2,7 @@
 
 namespace Application.DTOs.Ports.GetPorts
 {
-    public record PortMinimalDataForGetPortsMinimalDataUseCaseResponseDTO
+    public record PortFullDataForGetPortsFullDataUseCaseResponseDTO
     {
         public int Id { get; set; }
 

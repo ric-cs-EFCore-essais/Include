@@ -11,8 +11,9 @@ namespace Application.DTOs.Ports.GetPort
 
         public string NomVille { get; set; }
 
-        //IList<BateauDTO> Bateaux { get; }
+        public IList<BateauDTO> Bateaux { get;  set; }
 
+        public int NombreBateaux { get; set; }
 
     }
 }

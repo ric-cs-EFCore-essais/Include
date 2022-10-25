@@ -6,6 +6,8 @@ namespace Infra.Controllers.Interfaces.Ports
     {
         string GetPortMinimalData(IList<string> args);
         string GetPortsFullData(IList<string> args);
+
         string GetPortsMinimalData(IList<string> args);
+        string GetPortFullData(IList<string> args);
     }
 }

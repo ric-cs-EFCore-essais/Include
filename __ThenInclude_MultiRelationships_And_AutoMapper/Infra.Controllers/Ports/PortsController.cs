@@ -10,31 +10,22 @@ namespace Infra.Controllers.Ports
 {
     public class PortsController : AController, IPortsController
     {
-        private readonly IGetPortsFullDataUseCase getPortsFullDataUseCase;
         private readonly IGetPortsMinimalDataUseCase getPortsMinimalDataUseCase;
+        private readonly IGetPortsFullDataUseCase getPortsFullDataUseCase;
         private readonly IGetPortMinimalDataUseCase getPortMinimalDataUseCase;
+        private readonly IGetPortFullDataUseCase getPortFullDataUseCase;
 
         public PortsController(
-            IGetPortsFullDataUseCase getPortsFullDataUseCase,
             IGetPortsMinimalDataUseCase getPortsMinimalDataUseCase,
-            IGetPortMinimalDataUseCase getPortMinimalDataUseCase
-        ): base()
+            IGetPortsFullDataUseCase getPortsFullDataUseCase,
+            IGetPortMinimalDataUseCase getPortMinimalDataUseCase,
+            IGetPortFullDataUseCase getPortFullDataUseCase
+        ) : base()
         {
-            this.getPortsFullDataUseCase = getPortsFullDataUseCase;
             this.getPortsMinimalDataUseCase = getPortsMinimalDataUseCase;
+            this.getPortsFullDataUseCase = getPortsFullDataUseCase;
             this.getPortMinimalDataUseCase = getPortMinimalDataUseCase;
-        }
-
-        public string GetPortsFullData(IList<string> args)
-        {
-            var getPortsFullDataUseCaseRequestDTO = new GetPortsFullDataUseCaseRequestDTO()
-            {
-            };
-
-            var responseDTO = getPortsFullDataUseCase.Execute(getPortsFullDataUseCaseRequestDTO);
-
-            var retour = GetSerializedDTO<GetPortsFullDataUseCaseResponseDTO>(responseDTO);
-            return retour;
+            this.getPortFullDataUseCase = getPortFullDataUseCase;
         }
 
         public string GetPortsMinimalData(IList<string> args)
@@ -49,6 +40,19 @@ namespace Infra.Controllers.Ports
             return retour;
         }
 
+        public string GetPortsFullData(IList<string> args)
+        {
+            var getPortsFullDataUseCaseRequestDTO = new GetPortsFullDataUseCaseRequestDTO()
+            {
+            };
+
+            var responseDTO = getPortsFullDataUseCase.Execute(getPortsFullDataUseCaseRequestDTO);
+
+            var retour = GetSerializedDTO<GetPortsFullDataUseCaseResponseDTO>(responseDTO);
+            return retour;
+        }
+
+
         public string GetPortMinimalData(IList<string> args)
         {
             var getPortMinimalDataUseCaseRequestDTO = new GetPortMinimalDataUseCaseRequestDTO()
@@ -59,6 +63,19 @@ namespace Infra.Controllers.Ports
             var responseDTO = getPortMinimalDataUseCase.Execute(getPortMinimalDataUseCaseRequestDTO);
 
             var retour = GetSerializedDTO<GetPortMinimalDataUseCaseResponseDTO>(responseDTO);
+            return retour;
+        }
+
+        public string GetPortFullData(IList<string> args)
+        {
+            var getPortFullDataUseCaseRequestDTO = new GetPortFullDataUseCaseRequestDTO()
+            {
+                PortId = Convert.ToInt32(args[0])
+            };
+
+            var responseDTO = getPortFullDataUseCase.Execute(getPortFullDataUseCaseRequestDTO);
+
+            var retour = GetSerializedDTO<GetPortFullDataUseCaseResponseDTO>(responseDTO);
             return retour;
         }
 

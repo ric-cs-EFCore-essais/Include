@@ -28,7 +28,13 @@ namespace Infra.Repositories
         //public IEnumerable<TEntity> Find(Func<TEntity, bool> filter)
         public IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> filterExpression)
         {
-            var retour = GetEntities().Where(filterExpression).ToList();
+            var retour = FindAsQueryable(filterExpression).ToList();
+            return retour;
+        }
+
+        protected IQueryable<TEntity> FindAsQueryable(Expression<Func<TEntity, bool>> filterExpression)
+        {
+            var retour = GetEntities().Where(filterExpression);
             return retour;
         }
 

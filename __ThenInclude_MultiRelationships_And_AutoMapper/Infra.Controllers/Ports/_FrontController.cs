@@ -24,26 +24,30 @@ namespace Infra.Controllers.Ports
 
             controllersCalls = new Dictionary<string, Func<IList<string>, string>>
             {
-                { "get/ports/fulldata", (IList<string> args) => portsController.GetPortsFullData(args) },
                 { "get/ports", (IList<string> args) => portsController.GetPortsMinimalData(args) },
+                { "get/ports/fulldata", (IList<string> args) => portsController.GetPortsFullData(args) },
                 { "get/port", (IList<string> args) => portsController.GetPortMinimalData(args) },
+                { "get/port/fulldata", (IList<string> args) => portsController.GetPortFullData(args) },
 
-                { "get/villes", (IList<string> args) => villesController.GetVilles(args) },
-                { "get/ville", (IList<string> args) => villesController.GetVille(args) },
+                { "get/villes/withnamecontaining", (IList<string> args) => villesController.GetVillesWithNameContaining(args) }, //Filtrable (via args[1])
             };
         }
 
         public string TreatRequest(string[] requestArgs)
         {
             Func<IList<string>, string> controllerCall;
-            
-            var controllerMethodId = requestArgs[0].ToLower();
 
-            if (controllersCalls.TryGetValue(controllerMethodId, out controllerCall))
-            {
-                return controllerCall(requestArgs.Skip(1).ToList());
+            if (requestArgs.Length >0) {
+                var controllerMethodId = requestArgs[0].ToLower(); //1er argument
+
+                if (controllersCalls.TryGetValue(controllerMethodId, out controllerCall))
+                {
+                    var argumentsApresLe1erArgument = requestArgs.Skip(1).ToList();
+                    return controllerCall(argumentsApresLe1erArgument);
+                }
+                else throw new Exception($"Requête non gérable : controllerMethodId '{controllerMethodId}' non géré.");
             }
-            else throw new Exception($"Requête non gérable : {controllerMethodId}");
+            else throw new Exception($"La Requête nécessite au moins 1 argument (controllerMethodId).");
         }
     }
 }

@@ -1,20 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
+using Application.UseCases.Interfaces.Ports;
 using Infra.Controllers.Interfaces.Ports;
+
+using Application.DTOs.Ports.GetVilles;
 
 namespace Infra.Controllers.Ports
 {
-    public class VillesController : IVillesController
+    public class VillesController : AController, IVillesController
     {
-        public string GetVilles(IList<string> args)
+        private readonly IGetVillesWithNameContainingUseCase getVillesWithNameContainingUseCase;
+
+        public VillesController(
+            IGetVillesWithNameContainingUseCase getVillesWithNameContainingUseCase
+        ) : base()
         {
-            throw new NotImplementedException();
+            this.getVillesWithNameContainingUseCase = getVillesWithNameContainingUseCase;
         }
 
-        public string GetVille(IList<string> args)
+        public string GetVillesWithNameContaining(IList<string> args)
         {
-            throw new NotImplementedException();
+            var getVillesWithNameContainingUseCaseRequestDTO = new GetVillesWithNameContainingUseCaseRequestDTO()
+            {
+                SubString = (args.Count > 0) ? args[0] : string.Empty
+            };
+
+            var responseDTO = getVillesWithNameContainingUseCase.Execute(getVillesWithNameContainingUseCaseRequestDTO);
+
+            var retour = GetSerializedDTO<GetVillesWithNameContainingUseCaseResponseDTO>(responseDTO);
+            return retour;
         }
     }
 }

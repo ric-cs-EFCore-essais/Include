@@ -26,8 +26,11 @@ namespace ConsolePrj
         {
             //Tester(); return;
 
+            //requestArgs = new[] { "get/ports" };
+            //requestArgs = new[] { "get/ports/fulldata" };
             //requestArgs = new[] { "get/port", "2"};
-            requestArgs = new[] { "get/ports" };
+            //requestArgs = new[] { "get/port/fulldata", "2" };
+            //requestArgs = new[] { "get/villes/withnamecontaining", "n"};
             TreatRequest(requestArgs);
 
             Console.WriteLine("\n\nOk"); Console.ReadKey();

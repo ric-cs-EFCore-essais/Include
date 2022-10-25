@@ -1,11 +1,14 @@
 ﻿using System.Collections.Generic;
 
-using Application.DTOs.Ports.GetPort;
 
 namespace Application.DTOs.Ports.GetPorts
 {
     public record GetPortsFullDataUseCaseResponseDTO
     {
-        public IList<GetPortFullDataUseCaseResponseDTO> Ports { get; }
+        public IList<PortFullDataForGetPortsFullDataUseCaseResponseDTO> Ports { get; set; }
+
+        public int NombrePorts { get; set; }
+
+        public double NombreMoyenBateauxParPort { get; set; }
     }
 }
