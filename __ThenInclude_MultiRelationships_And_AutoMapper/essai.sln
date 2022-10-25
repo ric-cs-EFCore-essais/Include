@@ -51,17 +51,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infra.DataContext.EF.Interf
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests.FakeData", "Tests.FakeData\Tests.FakeData.csproj", "{46066460-65CB-4CF8-B13B-00999B5F86F1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infra.Controllers", "Infra.Controllers\Infra.Controllers.csproj", "{3F10B248-4D1C-4D7A-8EAE-DDCC70B014BD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infra.Controllers", "Infra.Controllers\Infra.Controllers.csproj", "{3F10B248-4D1C-4D7A-8EAE-DDCC70B014BD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infra.DependenciesInjection", "Infra.DependenciesInjection\Infra.DependenciesInjection.csproj", "{753E099D-2F42-4FA0-9F25-3DB48762FCAB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infra.DependenciesInjection", "Infra.DependenciesInjection\Infra.DependenciesInjection.csproj", "{753E099D-2F42-4FA0-9F25-3DB48762FCAB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infra.Controllers.Interfaces", "Infra.Controllers.Interfaces\Infra.Controllers.Interfaces.csproj", "{CD302147-7ECE-4614-8202-936570181503}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infra.Controllers.Interfaces", "Infra.Controllers.Interfaces\Infra.Controllers.Interfaces.csproj", "{CD302147-7ECE-4614-8202-936570181503}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain.UnitsOfWork.Interfaces", "Domain.UnitsOfWork.Interfaces\Domain.UnitsOfWork.Interfaces.csproj", "{C600CCF1-0905-4A53-A664-A3BDF3CBC47C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain.UnitsOfWork.Interfaces", "Domain.UnitsOfWork.Interfaces\Domain.UnitsOfWork.Interfaces.csproj", "{C600CCF1-0905-4A53-A664-A3BDF3CBC47C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infra.Mappers.DTOs", "Infra.Mappers.DTOs\Infra.Mappers.DTOs.csproj", "{58A2BA77-CD4B-4509-ABD8-2E3402E04F3B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infra.Mappers.DTOs", "Infra.Mappers.DTOs\Infra.Mappers.DTOs.csproj", "{58A2BA77-CD4B-4509-ABD8-2E3402E04F3B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application.DTOs.Mappers.Interfaces", "Application.DTOs.Mappers.Interfaces\Application.DTOs.Mappers.Interfaces.csproj", "{6156D887-A536-4AFD-890D-32E458364A3B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application.DTOs.Mappers.Interfaces", "Application.DTOs.Mappers.Interfaces\Application.DTOs.Mappers.Interfaces.csproj", "{6156D887-A536-4AFD-890D-32E458364A3B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

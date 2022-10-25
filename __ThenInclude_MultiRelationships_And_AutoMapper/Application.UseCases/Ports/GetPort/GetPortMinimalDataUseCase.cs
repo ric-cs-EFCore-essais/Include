@@ -7,29 +7,18 @@ using Application.DTOs.Ports.GetPort;
 
 namespace Application.UseCases.Ports.GetPort
 {
-    public class GetPortMinimalDataUseCase: IGetPortMinimalDataUseCase
+    public class GetPortMinimalDataUseCase: APortsUseCase<GetPortMinimalDataUseCaseRequestDTO, GetPortMinimalDataUseCaseResponseDTO>, IGetPortMinimalDataUseCase
     {
-        private readonly IPortsUnitOfWorkFactory portsUnitOfWorkFactory;
-        private readonly IPortsDTOsMapper portsDTOsMapper;
-
-        public GetPortMinimalDataUseCase(IPortsUnitOfWorkFactory portsUnitOfWorkFactory, IPortsDTOsMapper portsDTOsMapper)
+        public GetPortMinimalDataUseCase(IPortsUnitOfWorkFactory portsUnitOfWorkFactory, IPortsDTOsMapper portsDTOsMapper) : base(portsUnitOfWorkFactory, portsDTOsMapper)
         {
-            this.portsUnitOfWorkFactory = portsUnitOfWorkFactory;
-            this.portsDTOsMapper = portsDTOsMapper;
         }
 
-        public GetPortMinimalDataUseCaseResponseDTO Execute(GetPortMinimalDataUseCaseRequestDTO requestDTO)
+        protected override GetPortMinimalDataUseCaseResponseDTO TreatRequestDTO(IPortsUnitOfWork portsUnitOfWork, GetPortMinimalDataUseCaseRequestDTO requestDTO)
         {
-            GetPortMinimalDataUseCaseResponseDTO retour = null;
+            int portId = requestDTO.PortId;
+            Port port = portsUnitOfWork.PortRepository.Get(portId);
 
-            using (IPortsUnitOfWork portsUnitOfWork = portsUnitOfWorkFactory.GetInstance())
-            {
-                int portId = requestDTO.PortId;
-                Port port = portsUnitOfWork.PortRepository.Get(portId);
-
-                retour = portsDTOsMapper.Map<Port, GetPortMinimalDataUseCaseResponseDTO>(port);
-            }
-
+            GetPortMinimalDataUseCaseResponseDTO retour = portsDTOsMapper.Map<Port, GetPortMinimalDataUseCaseResponseDTO>(port);
             return retour;
         }
     }

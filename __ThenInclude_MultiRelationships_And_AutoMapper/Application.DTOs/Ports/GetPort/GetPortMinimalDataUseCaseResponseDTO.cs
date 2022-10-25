@@ -1,6 +1,4 @@
 ﻿
-using System.Collections.Generic;
-
 namespace Application.DTOs.Ports.GetPort
 {
     public record GetPortMinimalDataUseCaseResponseDTO

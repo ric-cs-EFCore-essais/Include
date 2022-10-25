@@ -26,7 +26,8 @@ namespace ConsolePrj
         {
             //Tester();
 
-            requestArgs = new[] { "get/port", "2"};
+            //requestArgs = new[] { "get/port", "2"};
+            requestArgs = new[] { "get/ports" };
             TreatRequest(requestArgs);
 
             Console.WriteLine("\n\nOk"); Console.ReadKey();

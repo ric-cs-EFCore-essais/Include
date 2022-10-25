@@ -20,7 +20,7 @@ namespace Infra.UnitsOfWork
 
         public void Dispose()
         {
-            Console.WriteLine("DISPOSING unit of work .... !");
+            Console.WriteLine("DISPOSING unit of work .... !\n");
             dataContext.Dispose();
         }
     }

@@ -16,6 +16,7 @@
     <ProjectReference Include="..\Application.UseCases\Application.UseCases.csproj" />
     <ProjectReference Include="..\Domain.Repositories.Interfaces\Domain.Repositories.Interfaces.csproj" />
     <ProjectReference Include="..\Infra.Controllers\Infra.Controllers.csproj" />
+    <ProjectReference Include="..\Infra.Mappers.DTOs\Infra.Mappers.DTOs.csproj" />
     <ProjectReference Include="..\Infra.UnitsOfWork.EF.Factories\Infra.UnitsOfWork.EF.Factories.csproj" />
     <ProjectReference Include="..\Infra.UnitsOfWork.Factories\Infra.UnitsOfWork.Factories.csproj" />
   </ItemGroup>

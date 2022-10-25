@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 
-namespace Infra.Mappers.DTOs
+namespace Infra.Mappers.DTOs.AutoMapper
 {
     public class AutoMapperFactory
     {
@@ -11,7 +11,7 @@ namespace Infra.Mappers.DTOs
             this.autoMapperConfig = autoMapperConfig;
         }
 
-        IMapper GetInstance()
+        public IMapper GetInstance()
         {
             IMapper retour = autoMapperConfig.CreateMapper();
             return retour;

@@ -12,6 +12,7 @@ using Infra.Controllers.Interfaces.Ports;
 using Infra.DataContext.EF.Interfaces;
 using Infra.DataContext.EF.Ports;
 using Infra.DependenciesInjection.Ports.Factories;
+using Infra.Mappers.DTOs.AutoMapper.Ports;
 
 namespace Infra.DependenciesInjection.Ports
 {
@@ -43,10 +44,21 @@ namespace Infra.DependenciesInjection.Ports
         private void Configure()
         {
             ConfigureUnitsOfWork();
+            ConfigureMappers();
             ConfigureUseCases();
             ConfigureControllers();
 
             servicesProvider = servicesCollection.BuildServiceProvider();
+        }
+
+        private void ConfigureMappers()
+        {
+            servicesCollection
+                .AddSingleton(
+                    (IServiceProvider pServiceProvider) =>
+                        (new PortsDTOsAutoMapperFactory()).GetSingleton() //IPortsDTOsMapper
+                )
+            ;
         }
 
         private void ConfigureControllers()
