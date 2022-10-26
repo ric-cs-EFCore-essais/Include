@@ -10,6 +10,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Domain.Entities.Interfaces\Domain.Entities.Interfaces.csproj" />
+    <ProjectReference Include="..\Domain.Entities.Specifications.Interfaces\Domain.Entities.Specifications.Interfaces.csproj" />
+    <ProjectReference Include="..\Domain.Entities.Specifications\Domain.Entities.Specifications.csproj" />
     <ProjectReference Include="..\Domain.Repositories.Interfaces\Domain.Repositories.Interfaces.csproj" />
     <ProjectReference Include="..\Infra.DataContext\Infra.DataContext.csproj" />
   </ItemGroup>

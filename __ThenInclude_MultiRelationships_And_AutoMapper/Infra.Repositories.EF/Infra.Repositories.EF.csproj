@@ -9,6 +9,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Domain.Entities.Specifications.Interfaces\Domain.Entities.Specifications.Interfaces.csproj" />
+    <ProjectReference Include="..\Domain.Entities.Specifications\Domain.Entities.Specifications.csproj" />
     <ProjectReference Include="..\Domain.Entities\Domain.Entities.csproj" />
     <ProjectReference Include="..\Domain.Repositories.Interfaces\Domain.Repositories.Interfaces.csproj" />
     <ProjectReference Include="..\Infra.DataContext.EF\Infra.DataContext.EF.csproj" />

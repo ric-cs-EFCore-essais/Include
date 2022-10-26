@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
 
 using Microsoft.EntityFrameworkCore;
 
 using Domain.Repositories.Interfaces.Ports;
+using Domain.Entities.Specifications.Interfaces;
 
 using Domain.Entities.Ports;
+using Domain.Entities.Specifications.Ports;
 using Infra.DataContext.EF.Ports;
-
 
 namespace Infra.Repositories.Ports
 {
@@ -51,10 +51,9 @@ namespace Infra.Repositories.Ports
         public IEnumerable<Ville> GetWithNameContaining(string subString)
         {
             subString = subString.ToLower();
+            ISpecification<Ville> villeWithNameContainingSpecification = new VilleWithNameContainingSpecification(subString);
 
-            Expression<Func<Ville, bool>> villesFilter = (Ville ville) => ville.Nom.ToLower().Contains(subString); //Conversion auto. du filtre (lambda), en LINQ Expression !
-
-            var retours = IncludingPorts(FindAsQueryable(villesFilter));
+            var retours = IncludingPorts(FindAsQueryable(villeWithNameContainingSpecification.FilterExpression));
             
             return retours.ToList();
         }

@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
 
-using Domain.Entities.Ports;
+using Domain.Entities.Specifications.Interfaces;
 using Domain.Repositories.Interfaces;
 using Domain.Repositories.Interfaces.Ports;
-
 using Infra.DataContext.Interfaces.Ports;
 
+using Domain.Entities.Ports;
+using Domain.Entities.Specifications.Ports;
 
 namespace Infra.Repositories.Ports
 {
@@ -65,10 +65,9 @@ namespace Infra.Repositories.Ports
         public IEnumerable<Ville> GetWithNameContaining(string subString)
         {
             subString = subString.ToLower();
-            
-            Expression<Func<Ville, bool>> villesFilter = (Ville ville) => ville.Nom.ToLower().Contains(subString); //Conversion auto. du filtre (lambda), en LINQ Expression !
+            ISpecification<Ville> villeWithNameContainingSpecification = new VilleWithNameContainingSpecification(subString);
 
-            var retours = Find(villesFilter);
+            var retours = Find(villeWithNameContainingSpecification.FilterExpression);
             IncludingPorts(retours as IList<Ville>);
             return retours;
         }
