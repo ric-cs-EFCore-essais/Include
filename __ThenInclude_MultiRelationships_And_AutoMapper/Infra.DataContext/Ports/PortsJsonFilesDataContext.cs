@@ -1,6 +1,4 @@
-﻿using System.IO;
-
-using Infra.DataContext.Interfaces.Ports;
+﻿using Infra.DataContext.Interfaces.Ports;
 
 using Domain.Entities.Ports;
 using Infra.DataSet;
@@ -10,25 +8,35 @@ namespace Infra.DataContext.Ports
 {
     public class PortsJsonFilesDataContext : APortsDataContext, IPortsDataContext
     {
+        private readonly JsonFilesDataContext jsonFilesDataContext;
+
         public PortsJsonFilesDataContext(): base()
         {
-            Ports = new JsonFileDataSet<Port>(GetJsonFileFullName(PortsResources.PortsJsonFile));
-            Villes = new JsonFileDataSet<Ville>(GetJsonFileFullName(PortsResources.VillesJsonFile));
-            Ancres = new JsonFileDataSet<Ancre>(GetJsonFileFullName(PortsResources.AncresJsonFile));
-            Diplomes = new JsonFileDataSet<Diplome>(GetJsonFileFullName(PortsResources.DiplomesJsonFile));
-            Capitaines = new JsonFileDataSet<Capitaine>(GetJsonFileFullName(PortsResources.CapitainesJsonFile));
-            CapitainesDiplomes = new JsonFileDataSet<CapitaineDiplome>(GetJsonFileFullName(PortsResources.CapitainesDiplomesJsonFile));
-            Bateaux = new JsonFileDataSet<Bateau>(GetJsonFileFullName(PortsResources.BateauxJsonFile));
+            jsonFilesDataContext = new JsonFilesDataContext(GetJsonFilesRootPath());
+
+            Ports = new JsonFileDataSet<Port>(GetJsonDataFileFullName(PortsResources.PortsJsonFileName));
+            Villes = new JsonFileDataSet<Ville>(GetJsonDataFileFullName(PortsResources.VillesJsonFileName));
+            Ancres = new JsonFileDataSet<Ancre>(GetJsonDataFileFullName(PortsResources.AncresJsonFileName));
+            Diplomes = new JsonFileDataSet<Diplome>(GetJsonDataFileFullName(PortsResources.DiplomesJsonFileName));
+            Capitaines = new JsonFileDataSet<Capitaine>(GetJsonDataFileFullName(PortsResources.CapitainesJsonFileName));
+            CapitainesDiplomes = new JsonFileDataSet<CapitaineDiplome>(GetJsonDataFileFullName(PortsResources.CapitainesDiplomesJsonFileName));
+            Bateaux = new JsonFileDataSet<Bateau>(GetJsonDataFileFullName(PortsResources.BateauxJsonFileName));
         }
 
-        private static string GetJsonFileFullName(string jsonFileName)
+        private string GetJsonDataFileFullName(string jsonFileName)
         {
-            var jsonFilesPath = Directory.Exists(PortsResources.JsonFilesPath_Home) ? 
-                                    PortsResources.JsonFilesPath_Home : PortsResources.JsonFilesPath_Job;
+            return jsonFilesDataContext.GetJsonDataFileFullName(jsonFileName);
+        }
 
-            var retour = $"{jsonFilesPath}{jsonFileName}";
+        private string GetJsonMetaDataFileFullName(string jsonFileName)
+        {
+            return jsonFilesDataContext.GetJsonMetaDataFileFullName(jsonFileName);
+        }
+
+        private static string GetJsonFilesRootPath()
+        {
+            var retour = (Infra.Common.Environment.IsHome()) ? PortsResources.JsonFilesPath_Home : PortsResources.JsonFilesPath_Job;
             return retour;
         }
-
     }
 }

@@ -117,20 +117,20 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AncresJsonFile" xml:space="preserve">
-    <value>Ancres.json</value>
+  <data name="AncresJsonFileName" xml:space="preserve">
+    <value>Ancres</value>
   </data>
-  <data name="BateauxJsonFile" xml:space="preserve">
-    <value>Bateaux.json</value>
+  <data name="BateauxJsonFileName" xml:space="preserve">
+    <value>Bateaux</value>
   </data>
-  <data name="CapitainesDiplomesJsonFile" xml:space="preserve">
-    <value>CapitainesDiplomes.json</value>
+  <data name="CapitainesDiplomesJsonFileName" xml:space="preserve">
+    <value>CapitainesDiplomes</value>
   </data>
-  <data name="CapitainesJsonFile" xml:space="preserve">
-    <value>Capitaines.json</value>
+  <data name="CapitainesJsonFileName" xml:space="preserve">
+    <value>Capitaines</value>
   </data>
-  <data name="DiplomesJsonFile" xml:space="preserve">
-    <value>Diplomes.json</value>
+  <data name="DiplomesJsonFileName" xml:space="preserve">
+    <value>Diplomes</value>
   </data>
   <data name="JsonFilesPath_Home" xml:space="preserve">
     <value>I:/</value>
@@ -138,10 +138,10 @@
   <data name="JsonFilesPath_Job" xml:space="preserve">
     <value>D:/</value>
   </data>
-  <data name="PortsJsonFile" xml:space="preserve">
-    <value>Ports.json</value>
+  <data name="PortsJsonFileName" xml:space="preserve">
+    <value>Ports</value>
   </data>
-  <data name="VillesJsonFile" xml:space="preserve">
-    <value>Villes.json</value>
+  <data name="VillesJsonFileName" xml:space="preserve">
+    <value>Villes</value>
   </data>
 </root>

@@ -61,47 +61,47 @@ namespace Infra.DataContext.Properties.Ports {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Ancres.json.
+        ///   Recherche une chaîne localisée semblable à Ancres.
         /// </summary>
-        internal static string AncresJsonFile {
+        internal static string AncresJsonFileName {
             get {
-                return ResourceManager.GetString("AncresJsonFile", resourceCulture);
+                return ResourceManager.GetString("AncresJsonFileName", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Bateaux.json.
+        ///   Recherche une chaîne localisée semblable à Bateaux.
         /// </summary>
-        internal static string BateauxJsonFile {
+        internal static string BateauxJsonFileName {
             get {
-                return ResourceManager.GetString("BateauxJsonFile", resourceCulture);
+                return ResourceManager.GetString("BateauxJsonFileName", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à CapitainesDiplomes.json.
+        ///   Recherche une chaîne localisée semblable à CapitainesDiplomes.
         /// </summary>
-        internal static string CapitainesDiplomesJsonFile {
+        internal static string CapitainesDiplomesJsonFileName {
             get {
-                return ResourceManager.GetString("CapitainesDiplomesJsonFile", resourceCulture);
+                return ResourceManager.GetString("CapitainesDiplomesJsonFileName", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Capitaines.json.
+        ///   Recherche une chaîne localisée semblable à Capitaines.
         /// </summary>
-        internal static string CapitainesJsonFile {
+        internal static string CapitainesJsonFileName {
             get {
-                return ResourceManager.GetString("CapitainesJsonFile", resourceCulture);
+                return ResourceManager.GetString("CapitainesJsonFileName", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Diplomes.json.
+        ///   Recherche une chaîne localisée semblable à Diplomes.
         /// </summary>
-        internal static string DiplomesJsonFile {
+        internal static string DiplomesJsonFileName {
             get {
-                return ResourceManager.GetString("DiplomesJsonFile", resourceCulture);
+                return ResourceManager.GetString("DiplomesJsonFileName", resourceCulture);
             }
         }
         
@@ -124,20 +124,20 @@ namespace Infra.DataContext.Properties.Ports {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Ports.json.
+        ///   Recherche une chaîne localisée semblable à Ports.
         /// </summary>
-        internal static string PortsJsonFile {
+        internal static string PortsJsonFileName {
             get {
-                return ResourceManager.GetString("PortsJsonFile", resourceCulture);
+                return ResourceManager.GetString("PortsJsonFileName", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Villes.json.
+        ///   Recherche une chaîne localisée semblable à Villes.
         /// </summary>
-        internal static string VillesJsonFile {
+        internal static string VillesJsonFileName {
             get {
-                return ResourceManager.GetString("VillesJsonFile", resourceCulture);
+                return ResourceManager.GetString("VillesJsonFileName", resourceCulture);
             }
         }
     }

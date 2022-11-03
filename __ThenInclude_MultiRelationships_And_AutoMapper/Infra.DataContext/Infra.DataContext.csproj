@@ -5,6 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Infra.Common.DiskElements" Version="1.0.0" />
+    <PackageReference Include="Infra.Common.Environment" Version="1.0.1" />
+    <PackageReference Include="Transverse.Common.Strings" Version="1.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Domain.Entities\Domain.Entities.csproj" />
     <ProjectReference Include="..\Infra.DataContext.Interfaces\Infra.DataContext.Interfaces.csproj" />
     <ProjectReference Include="..\Infra.DataSet\Infra.DataSet.csproj" />
