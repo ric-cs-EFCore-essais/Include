@@ -19,6 +19,7 @@ namespace Application.UseCases.Ports.AddVille
             Ville ville = new Ville { Nom = requestDTO.Nom };
 
             portsUnitOfWork.VilleRepository.Add(ville);
+            portsUnitOfWork.Commit();
 
             AddVilleUseCaseResponseDTO retour = portsDTOsMapper.Map<Ville, AddVilleUseCaseResponseDTO>(ville);
             return retour;

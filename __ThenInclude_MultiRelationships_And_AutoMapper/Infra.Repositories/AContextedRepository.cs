@@ -28,13 +28,7 @@ namespace Infra.Repositories
             return GetDataSet().MetaData;
         }
 
-        public override void Add(TEntity entity)
-        {
-            base.Add(entity);
-            SetEntityId(entity);
-        }
-
-        private void SetEntityId(TEntity entity)
+        protected override void SetEntityId(TEntity entity)
         {
             entity.Id = ++GetMetaData().CurrentAutoIncrementId;
             GetDataSet().SaveMetaData();

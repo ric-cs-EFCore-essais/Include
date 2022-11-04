@@ -10,10 +10,13 @@ using Infra.Controllers.Interfaces.Ports;
 using Application.UseCases.Ports.GetPort;
 using Application.UseCases.Ports.GetPorts;
 using Application.UseCases.Ports.GetVilles;
+using Application.UseCases.Ports.AddVille;
+
 using Infra.UnitsOfWork.Factories.Ports;
 
 using Infra.DataContext.EF.Ports;
 using Infra.Controllers.Ports;
+
 using Infra.DependenciesInjection.Ports.Factories;
 using Infra.Mappers.DTOs.AutoMapper.Ports;
 
@@ -21,6 +24,7 @@ namespace Infra.DependenciesInjection.Ports
 {
     public class DependenciesInjectionConfiguration
     {
+        //private readonly bool EF_Mode = false;
         private readonly bool EF_Mode = true;
 
         private static DependenciesInjectionConfiguration dependenciesInjectionConfiguration;
@@ -81,6 +85,7 @@ namespace Infra.DependenciesInjection.Ports
                 .AddSingleton<IGetPortMinimalDataUseCase, GetPortMinimalDataUseCase>()
                 .AddSingleton<IGetPortFullDataUseCase, GetPortFullDataUseCase>()
                 .AddSingleton<IGetVillesWithNameContainingUseCase, GetVillesWithNameContainingUseCase>()
+                .AddSingleton<IAddVilleUseCase, AddVilleUseCase>()
             ;
         }
 

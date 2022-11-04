@@ -5,6 +5,8 @@ using System.Linq.Expressions;
 
 using Microsoft.EntityFrameworkCore;
 
+using Transverse.Common.DebugTools;
+
 using Domain.Repositories.Interfaces;
 
 using Domain.Entities;
@@ -18,6 +20,7 @@ namespace Infra.Repositories
         where TEntities : DbSet<TEntity>
     {
         protected abstract TEntities GetEntities();
+        protected abstract void SetEntityId(TEntity entity);
 
         public virtual TEntity Get(int id)
         {
@@ -44,16 +47,34 @@ namespace Infra.Repositories
             return retour;
         }
 
-        public virtual void Add(TEntity entity)
+        public void Add(TEntity entity)
         {
-            GetEntities().Add(entity);
+            AddRange(new List<TEntity> { entity });
         }
 
         public void AddRange(IEnumerable<TEntity> entities)
         {
+            CheckIfEntitiesCanBeAdded(entities);
             foreach (var entity in entities)
             {
-                Add(entity);
+                GetEntities().Add(entity);
+                SetEntityId(entity);
+            }
+        }
+
+        private void CheckIfEntitiesCanBeAdded(IEnumerable<TEntity> entities)
+        {
+            foreach (var entity in entities)
+            {
+                CheckIfEntityCanBeAdded(entity);
+            }
+        }
+
+        private void CheckIfEntityCanBeAdded(TEntity entity)
+        {
+            if (entity.Id != 0)
+            {
+                throw new Exception($"entity.Id must be 0, for an insertion operation : {Debug.GetSerializedData(entity)}");
             }
         }
     }

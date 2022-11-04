@@ -16,9 +16,8 @@ namespace Infra.Repositories
             this.dataContext = dataContext;
         }
 
-        public override void Add(TEntity entity)
+        protected override void SetEntityId(TEntity entity)
         {
-            base.Add(entity);
             dataContext.SaveChanges(); //entity.Id également mis à jour
         }
     }

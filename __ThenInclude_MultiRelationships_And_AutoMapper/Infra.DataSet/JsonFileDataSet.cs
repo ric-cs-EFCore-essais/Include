@@ -10,18 +10,15 @@ namespace Infra.DataSet
     public class JsonFileDataSet<TEntity>: ADataSet<TEntity>, IDataSet<TEntity>
         where TEntity : IEntity
     {
-        //2 fichiers json par JsonFileDataSet (1 pour les data, l'autre (éventuel) pour les metadata).
+        //2 fichiers json par JsonFileDataSet (1 pour les data, l'autre pour les metadata).
         private readonly JsonFile<ListEnriched<TEntity>> jsonFileForData;
         private readonly JsonFile<DataSetMetaData> jsonFileForMetaData;
 
-        public JsonFileDataSet(string dataJsonFileFullName, string metaDataJsonFileFullName = null) : base()
+        public JsonFileDataSet(string dataJsonFileFullName, string metaDataJsonFileFullName) : base()
         {
             this.jsonFileForData = new JsonFile<ListEnriched<TEntity>>(dataJsonFileFullName);
 
-            if (metaDataJsonFileFullName is not null)
-            {
-                this.jsonFileForMetaData = new JsonFile<DataSetMetaData>(metaDataJsonFileFullName);
-            }
+            this.jsonFileForMetaData = new JsonFile<DataSetMetaData>(metaDataJsonFileFullName);
         }
 
         public void SaveData()
@@ -36,12 +33,12 @@ namespace Infra.DataSet
 
         public void SaveMetaData()
         {
-            jsonFileForMetaData?.Save();
+            jsonFileForMetaData.Save();
         }
 
         protected override IDataSetMetaData LoadMetaData()
         {
-            return jsonFileForMetaData?.Content;
+            return jsonFileForMetaData.Content;
         }
     }
 }

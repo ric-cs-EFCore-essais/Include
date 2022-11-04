@@ -31,6 +31,7 @@ namespace ConsolePrj
             //requestArgs = new[] { "get/port", "2"};
             //requestArgs = new[] { "get/port/fulldata", "2" };
             //requestArgs = new[] { "get/villes/withnamecontaining", "n"};
+            //requestArgs = new[] { "post/ville/add", "newVilleName"};
             TreatRequest(requestArgs);
 
             Console.WriteLine("\n\nOk"); Console.ReadKey();
@@ -40,7 +41,12 @@ namespace ConsolePrj
         {
             FrontController frontController = DependenciesInjectionConfiguration.GetSingleton().GetFrontController();
 
+            Console.WriteLine("REQUÊTE:");
+            Console.WriteLine(Debug.GetSerializedData(requestArgs));
+
             string response = frontController.TreatRequest(requestArgs);
+
+            Console.WriteLine("\nRÉPONSE (serialized) : ");
             Console.WriteLine(response);
         }
 
@@ -92,8 +98,7 @@ namespace ConsolePrj
 
             using (IPortsUnitOfWork portsUnitOfWork = new PortsUnitOfWorkFactory().GetInstance())
             {
-                var autoInitIds = true;
-                SeedRepositoriesIfEmpty(portsUnitOfWork, autoInitIds);
+                SeedRepositoriesIfEmpty(portsUnitOfWork);
 
                 //>>> Debug.ShowData gère désormais bien les dépendances cycliques (ici : Capitaine -> CapitainesDiplomes -> Capitaine, et Diplome -> CapitaineDiplomes -> Diplome). (Gère en ignorant).
 
@@ -121,53 +126,53 @@ namespace ConsolePrj
             }
         }
 
-        private static void SeedRepositoriesIfEmpty(IPortsUnitOfWork portsUnitOfWork, bool autoInitIds = false)
+        private static void SeedRepositoriesIfEmpty(IPortsUnitOfWork portsUnitOfWork)
         {
             if (!portsUnitOfWork.VilleRepository.GetAll().Any())
             {
-                portsUnitOfWork.VilleRepository.AddRange(PortsFakeData.GetVilles(autoInitIds));
+                portsUnitOfWork.VilleRepository.AddRange(PortsFakeData.GetVilles());
                 portsUnitOfWork.Commit();
                 Console.WriteLine("REMPLISSAGE Villes DONE"); Console.ReadKey();
             }
 
             if (!portsUnitOfWork.PortRepository.GetAll().Any())
             {
-                portsUnitOfWork.PortRepository.AddRange(PortsFakeData.GetPorts(autoInitIds));
+                portsUnitOfWork.PortRepository.AddRange(PortsFakeData.GetPorts());
                 portsUnitOfWork.Commit();
                 Console.WriteLine("REMPLISSAGE Ports DONE"); Console.ReadKey();
             }
 
             if (!portsUnitOfWork.AncreRepository.GetAll().Any())
             {
-                portsUnitOfWork.AncreRepository.AddRange(PortsFakeData.GetAncres(autoInitIds));
+                portsUnitOfWork.AncreRepository.AddRange(PortsFakeData.GetAncres());
                 portsUnitOfWork.Commit();
                 Console.WriteLine("REMPLISSAGE Ancres DONE"); Console.ReadKey();
             }
 
             if (!portsUnitOfWork.DiplomeRepository.GetAll().Any())
             {
-                portsUnitOfWork.DiplomeRepository.AddRange(PortsFakeData.GetDiplomes(autoInitIds));
+                portsUnitOfWork.DiplomeRepository.AddRange(PortsFakeData.GetDiplomes());
                 portsUnitOfWork.Commit();
                 Console.WriteLine("REMPLISSAGE Diplomes DONE"); Console.ReadKey();
             }
 
             if (!portsUnitOfWork.CapitaineRepository.GetAll().Any())
             {
-                portsUnitOfWork.CapitaineRepository.AddRange(PortsFakeData.GetCapitaines(autoInitIds));
+                portsUnitOfWork.CapitaineRepository.AddRange(PortsFakeData.GetCapitaines());
                 portsUnitOfWork.Commit();
                 Console.WriteLine("REMPLISSAGE Capitaines DONE"); Console.ReadKey();
             }
 
             if (!portsUnitOfWork.CapitaineDiplomeRepository.GetAll().Any())
             {
-                portsUnitOfWork.CapitaineDiplomeRepository.AddRange(PortsFakeData.GetCapitainesDiplomes(autoInitIds));
+                portsUnitOfWork.CapitaineDiplomeRepository.AddRange(PortsFakeData.GetCapitainesDiplomes());
                 portsUnitOfWork.Commit();
                 Console.WriteLine("REMPLISSAGE CapitainesDiplomes DONE"); Console.ReadKey();
             }
 
             if (!portsUnitOfWork.BateauRepository.GetAll().Any())
             {
-                portsUnitOfWork.BateauRepository.AddRange(PortsFakeData.GetBateaux(autoInitIds));
+                portsUnitOfWork.BateauRepository.AddRange(PortsFakeData.GetBateaux());
                 portsUnitOfWork.Commit();
                 Console.WriteLine("REMPLISSAGE Bateaux DONE"); Console.ReadKey();
             }

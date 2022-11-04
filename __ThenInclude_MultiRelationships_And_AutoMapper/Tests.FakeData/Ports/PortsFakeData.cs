@@ -8,7 +8,7 @@ namespace Tests.FakeData.Ports
 {
     public static class PortsFakeData
     {
-        public static List<Ville> GetVilles(bool withIds = false)
+        public static List<Ville> GetVilles()
         {
             var retours = new List<Ville>
             {
@@ -54,15 +54,10 @@ namespace Tests.FakeData.Ports
 
             };
 
-            if (withIds)
-            {
-                retours = retours.WithIds<Ville>(1);
-            }
-
             return retours;
         }
 
-        public static List<Port> GetPorts(bool withIds = false)
+        public static List<Port> GetPorts()
         {
             var retours = new List<Port>
             {
@@ -126,15 +121,10 @@ namespace Tests.FakeData.Ports
                 },
             };
 
-            if (withIds)
-            {
-                retours = retours.WithIds<Port>(1);
-            }
-
             return retours;
         }
 
-        public static List<Ancre> GetAncres(bool withIds = false)
+        public static List<Ancre> GetAncres()
         {
             var retours = new List<Ancre>
             {
@@ -220,15 +210,10 @@ namespace Tests.FakeData.Ports
 
             };
 
-            if (withIds)
-            {
-                retours = retours.WithIds<Ancre>(1);
-            }
-
             return retours;
         }
 
-        public static List<Capitaine> GetCapitaines(bool withIds = false)
+        public static List<Capitaine> GetCapitaines()
         {
             var retours = new List<Capitaine>
             {
@@ -269,15 +254,10 @@ namespace Tests.FakeData.Ports
 
             };
 
-            if (withIds)
-            {
-                retours = retours.WithIds<Capitaine>(1);
-            }
-
             return retours;
         }
 
-        public static List<Diplome> GetDiplomes(bool withIds = false)
+        public static List<Diplome> GetDiplomes()
         {
             var retours = new List<Diplome>
             {
@@ -318,16 +298,11 @@ namespace Tests.FakeData.Ports
 
             };
 
-            if (withIds)
-            {
-                retours = retours.WithIds<Diplome>(1);
-            }
-
             return retours;
         }
 
 
-        public static List<CapitaineDiplome> GetCapitainesDiplomes(bool withIds = false)
+        public static List<CapitaineDiplome> GetCapitainesDiplomes()
         {
             var retours = new List<CapitaineDiplome>
             {
@@ -375,15 +350,10 @@ namespace Tests.FakeData.Ports
 
             };
 
-            if (withIds)
-            {
-                retours = retours.WithIds<CapitaineDiplome>(1);
-            }
-
             return retours;
         }
 
-        public static List<Bateau> GetBateaux(bool withIds = false)
+        public static List<Bateau> GetBateaux()
         {
             var retours = new List<Bateau>
             {
@@ -460,11 +430,6 @@ namespace Tests.FakeData.Ports
                 },
 
             };
-
-            if (withIds)
-            {
-                retours = retours.WithIds<Bateau>(1);
-            }
 
             return retours;
         }
