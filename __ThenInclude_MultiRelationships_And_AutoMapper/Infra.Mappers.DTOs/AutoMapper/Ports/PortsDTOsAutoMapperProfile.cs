@@ -9,9 +9,16 @@ using Domain.Entities.Ports;
 using Application.DTOs.Ports;
 using Application.DTOs.Ports.GetPort;
 using Application.DTOs.Ports.GetPorts;
+using Application.DTOs.Ports.AddPort;
 
 using Application.DTOs.Ports.GetVilles;
 using Application.DTOs.Ports.AddVille;
+
+using Application.DTOs.Ports.AddBateau;
+using Application.DTOs.Ports.AddAncre;
+using Application.DTOs.Ports.AddCapitaine;
+using Application.DTOs.Ports.AddDiplome;
+using Application.DTOs.Ports.AddCapitaineDiplome;
 
 namespace Infra.Mappers.DTOs.AutoMapper.Ports
 {
@@ -21,10 +28,19 @@ namespace Infra.Mappers.DTOs.AutoMapper.Ports
         {
             _createPortUseCasesBindings();
             _createVilleUseCasesBindings();
+            _createAutresUseCasesBindings();
         }
 
         private void _createPortUseCasesBindings()
         {
+            //================================= AddPortUseCase =============================
+            CreateMap<AddPortUseCaseRequestDTO, Port>()
+            ;
+
+            CreateMap<Port, AddPortUseCaseResponseDTO>()
+            ;
+
+
             //============================== Pour  GetPortMinimalDataUseCaseResponseDTO et GetPortsMinimalDataUseCaseResponseDTO ====================================
 
             CreateMap<Port, GetPortMinimalDataUseCaseResponseDTO>()
@@ -102,7 +118,7 @@ namespace Infra.Mappers.DTOs.AutoMapper.Ports
                 ))
             ;
 
-            //CreateMap<Diplome, DiplomeDTO>(); //Inutile car on crée ici nous-même le DiplomeDTO à la mano   (new DiplomeDTO {...})
+            //CreateMap<Diplome, DiplomeDTO>(); //Inutile car on crée ici(ci-dessus) nous-même le DiplomeDTO à la mano   (new DiplomeDTO {...})
 
 
 
@@ -127,6 +143,14 @@ namespace Infra.Mappers.DTOs.AutoMapper.Ports
 
         private void _createVilleUseCasesBindings()
         {
+            //================================= AddVilleUseCase =============================
+            CreateMap<AddVilleUseCaseRequestDTO, Ville>()
+            ;
+
+            CreateMap<Ville, AddVilleUseCaseResponseDTO>()
+            ;
+
+
             //================================= GetVillesWithNameContainingUseCase =============================
             //  S'appuie également sur le mappage fait plus haut :   CreateMap<Ville, VilleDTO>().....,
             //  car GetVillesWithNameContainingUseCaseResponseDTO contient une IList<VilleDTO>.
@@ -134,12 +158,59 @@ namespace Infra.Mappers.DTOs.AutoMapper.Ports
             CreateMap<List<Ville>, GetVillesWithNameContainingUseCaseResponseDTO>()
                 .ForMember(dto => dto.Villes, opt => opt.MapFrom(villes => villes))
             ;
+        }
 
-            //================================= GetVillesWithNameContainingUseCase =============================
-            CreateMap<Ville, AddVilleUseCaseResponseDTO>()
+        private void _createAutresUseCasesBindings()
+        {
+            //================================= AddBateauUseCase =============================
+            CreateMap<AddBateauUseCaseRequestDTO, Bateau>()
+            ;
+            
+            CreateMap<Bateau, AddBateauUseCaseResponseDTO>()
+            ;
+
+
+            //================================= AddAncreUseCase =============================
+            CreateMap<AddAncreUseCaseRequestDTO, Ancre>()
+            ;
+
+            CreateMap<Ancre, AddAncreUseCaseResponseDTO>()
+            ;
+
+
+            //================================= AddCapitaineUseCase =============================
+            CreateMap<AddCapitaineUseCaseRequestDTO, Capitaine>()
+            ;
+
+            CreateMap<Capitaine, AddCapitaineUseCaseResponseDTO>()
+            ;
+
+
+            //================================= AddDiplomeUseCase =============================
+            CreateMap<AddDiplomeUseCaseRequestDTO, Diplome>()
+            ;
+
+            CreateMap<Diplome, AddDiplomeUseCaseResponseDTO>()
+            ;
+
+
+            //================================= AddCapitaineDiplomeUseCase =============================
+            CreateMap<AddCapitaineDiplomeUseCaseRequestDTO, CapitaineDiplome>()
+            ;
+
+            CreateMap<CapitaineDiplome, AddCapitaineDiplomeUseCaseResponseDTO>()
+            ;
+
+
+            //================================= AddCapitaineDiplomesUseCase =============================
+            CreateMap<AddCapitaineDiplomesUseCaseRequestDTO, CapitaineDiplome>()
+            ;
+
+            CreateMap<CapitaineDiplomeForAddCapitaineDiplomesUseCaseRequestDTO, CapitaineDiplome>()
             ;
 
         }
+
 
     }
 

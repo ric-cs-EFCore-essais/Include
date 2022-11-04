@@ -16,7 +16,7 @@ namespace Application.UseCases.Ports.AddVille
 
         protected override AddVilleUseCaseResponseDTO TreatRequestDTO(IPortsUnitOfWork portsUnitOfWork, AddVilleUseCaseRequestDTO requestDTO)
         {
-            Ville ville = new Ville { Nom = requestDTO.Nom };
+            Ville ville = portsDTOsMapper.Map<AddVilleUseCaseRequestDTO, Ville>(requestDTO);
 
             portsUnitOfWork.VilleRepository.Add(ville);
             portsUnitOfWork.Commit();

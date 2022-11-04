@@ -2,7 +2,7 @@
 {
     public class CapitaineDiplome : AEntity
     {
-        public int CapitaineId { get; init; }
+        public int CapitaineId { get; set; }
         public Capitaine Capitaine { get; init; }
 
         public int DiplomeId { get; init; }
