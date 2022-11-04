@@ -41,13 +41,13 @@ namespace ConsolePrj
         {
             FrontController frontController = DependenciesInjectionConfiguration.GetSingleton().GetFrontController();
 
-            Console.WriteLine("REQUÊTE:");
-            Console.WriteLine(Debug.GetSerializedData(requestArgs));
+            Console.WriteLine("\nREQUÊTE:");
+            Console.WriteLine("  "+Debug.GetSerializedData(requestArgs));
 
             string response = frontController.TreatRequest(requestArgs);
 
             Console.WriteLine("\nRÉPONSE (serialized) : ");
-            Console.WriteLine(response);
+            Console.WriteLine("  " + response);
         }
 
         private static void Tester()

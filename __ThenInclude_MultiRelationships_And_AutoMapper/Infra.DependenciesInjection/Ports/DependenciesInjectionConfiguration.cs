@@ -24,8 +24,8 @@ namespace Infra.DependenciesInjection.Ports
 {
     public class DependenciesInjectionConfiguration
     {
-        //private readonly bool EF_Mode = false;
-        private readonly bool EF_Mode = true;
+        private readonly bool EF_Mode = false;
+        //private readonly bool EF_Mode = true;
 
         private static DependenciesInjectionConfiguration dependenciesInjectionConfiguration;
 
