@@ -1,8 +1,10 @@
 ﻿using System;
 
+using Infra.DataSet.Interfaces;
+
 namespace Infra.DataSet
 {
-    public class DataSetMetaData
+    public class DataSetMetaData : IDataSetMetaData
     {
         private int _currentAutoIncrementId;
         public int CurrentAutoIncrementId

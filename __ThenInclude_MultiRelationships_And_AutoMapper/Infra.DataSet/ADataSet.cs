@@ -1,5 +1,6 @@
 ﻿using Domain.Entities.Interfaces;
 using Domain.Repositories.Interfaces;
+using Infra.DataSet.Interfaces;
 
 namespace Infra.DataSet
 {
@@ -11,10 +12,23 @@ namespace Infra.DataSet
         {
             get
             {
-                return entities ?? (entities = Load());
+                return entities ?? (entities = LoadData());
             }
         }
 
-        protected abstract IListEnriched<TEntity> Load();
+        protected abstract IListEnriched<TEntity> LoadData();
+
+
+
+        private IDataSetMetaData metaData;
+        public IDataSetMetaData MetaData
+        {
+            get
+            {
+                return metaData ?? (metaData = LoadMetaData());
+            }
+        }
+
+        protected abstract IDataSetMetaData LoadMetaData();
     }
 }

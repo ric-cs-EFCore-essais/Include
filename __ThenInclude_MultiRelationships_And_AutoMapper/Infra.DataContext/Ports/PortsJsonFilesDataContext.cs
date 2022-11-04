@@ -7,11 +7,9 @@ namespace Infra.DataContext.Ports
 {
     public class PortsJsonFilesDataContext : APortsDataContext, IPortsDataContext
     {
-        private readonly JsonFilesDataContext jsonFilesDataContext;
-
         public PortsJsonFilesDataContext(): base()
         {
-            jsonFilesDataContext = new JsonFilesDataContext(GetJsonFilesRootPath()); //Car on ne peut AUSSI hériter de JsonFilesDataContext (pas d'héritage multiple)
+            var jsonFilesDataContext = new JsonFilesDataContext(GetJsonFilesRootPath()); //Car on ne peut EN PLUS hériter de JsonFilesDataContext (pas d'héritage multiple)
 
             Ports = jsonFilesDataContext.GetJsonFileDataSet<Port>(PortsResources.PortsJsonFileName);
             Villes = jsonFilesDataContext.GetJsonFileDataSet<Ville>(PortsResources.VillesJsonFileName);
@@ -21,8 +19,6 @@ namespace Infra.DataContext.Ports
             CapitainesDiplomes = jsonFilesDataContext.GetJsonFileDataSet<CapitaineDiplome>(PortsResources.CapitainesDiplomesJsonFileName);
             Bateaux = jsonFilesDataContext.GetJsonFileDataSet<Bateau>(PortsResources.BateauxJsonFileName);
         }
-
-        public override bool HasMetaData { get; } = true;
 
         private static string GetJsonFilesRootPath()
         {

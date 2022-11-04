@@ -14,15 +14,6 @@ namespace Infra.DataSet
         private readonly JsonFile<ListEnriched<TEntity>> jsonFileForData;
         private readonly JsonFile<DataSetMetaData> jsonFileForMetaData;
 
-        private DataSetMetaData metaData;
-        public DataSetMetaData MetaData
-        {
-            get
-            {
-                return metaData ?? (metaData = LoadMetaData());
-            }
-        }
-
         public JsonFileDataSet(string dataJsonFileFullName, string metaDataJsonFileFullName = null) : base()
         {
             this.jsonFileForData = new JsonFile<ListEnriched<TEntity>>(dataJsonFileFullName);
@@ -33,33 +24,22 @@ namespace Infra.DataSet
             }
         }
 
-        public void Save()
-        {
-            SaveData();
-        }
-
-        protected override IListEnriched<TEntity> Load()
-        {
-            return LoadData();
-        }
-
-
-        private void SaveData()
+        public void SaveData()
         {
             jsonFileForData.Save();
         }
-        private void SaveMetaData()
-        {
-            jsonFileForMetaData?.Save();
-        }
 
-
-        private IListEnriched<TEntity> LoadData()
+        protected override  IListEnriched<TEntity> LoadData()
         {
             return jsonFileForData.Content;
         }
 
-        private DataSetMetaData LoadMetaData()
+        public void SaveMetaData()
+        {
+            jsonFileForMetaData?.Save();
+        }
+
+        protected override IDataSetMetaData LoadMetaData()
         {
             return jsonFileForMetaData?.Content;
         }

@@ -11,16 +11,26 @@ namespace Infra.DataSet
         {
         }
 
-        protected override IListEnriched<TEntity> Load()
+        protected override IListEnriched<TEntity> LoadData()
         {
             var retour = new ListEnriched<TEntity>();
             return retour;
         }
 
-        public void Save()
+        public void SaveData()
         {
             //
         }
 
+        protected override IDataSetMetaData LoadMetaData()
+        {
+            var retour = new DataSetMetaData();
+            return retour;
+        }
+
+        public void SaveMetaData()
+        {
+            //
+        }
     }
 }

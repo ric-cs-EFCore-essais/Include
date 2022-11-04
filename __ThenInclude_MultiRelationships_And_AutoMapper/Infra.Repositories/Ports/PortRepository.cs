@@ -1,10 +1,11 @@
-﻿using Domain.Repositories.Interfaces;
+﻿using System.Collections.Generic;
+using System.Linq;
+
 using Domain.Repositories.Interfaces.Ports;
 using Infra.DataContext.Interfaces.Ports;
+using Infra.DataSet.Interfaces;
 
 using Domain.Entities.Ports;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Infra.Repositories.Ports
 {
@@ -14,9 +15,9 @@ namespace Infra.Repositories.Ports
         {
         }
 
-        protected override IListEnriched<Port> GetEntities()
+        protected override IDataSet<Port> GetDataSet()
         {
-            return dataContext.Ports.Entities;
+            return dataContext.Ports;
         }
 
         public override Port Get(int id)

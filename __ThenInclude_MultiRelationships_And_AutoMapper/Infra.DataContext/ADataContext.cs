@@ -2,11 +2,9 @@
 {
     public abstract class ADataContext
     {
-        public ADataContext()
+        protected ADataContext()
         {
 
         }
-
-        public virtual bool HasMetaData { get; } = false;
     }
 }

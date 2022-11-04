@@ -1,9 +1,8 @@
-﻿using Domain.Repositories.Interfaces;
-using Domain.Repositories.Interfaces.Ports;
+﻿using Domain.Repositories.Interfaces.Ports;
 using Infra.DataContext.Interfaces.Ports;
+using Infra.DataSet.Interfaces;
 
 using Domain.Entities.Ports;
-
 
 namespace Infra.Repositories.Ports
 {
@@ -13,9 +12,9 @@ namespace Infra.Repositories.Ports
         {
         }
 
-        protected override IListEnriched<Ancre> GetEntities()
+        protected override IDataSet<Ancre> GetDataSet()
         {
-            return dataContext.Ancres.Entities;
+            return dataContext.Ancres;
         }
     }
 }

@@ -5,6 +5,7 @@ using System.Linq;
 using Domain.Entities.Specifications.Interfaces;
 using Domain.Repositories.Interfaces;
 using Domain.Repositories.Interfaces.Ports;
+using Infra.DataSet.Interfaces;
 using Infra.DataContext.Interfaces.Ports;
 
 using Domain.Entities.Ports;
@@ -18,9 +19,9 @@ namespace Infra.Repositories.Ports
         {
         }
 
-        protected override IListEnriched<Ville> GetEntities()
+        protected override IDataSet<Ville> GetDataSet()
         {
-            return dataContext.Villes.Entities;
+            return dataContext.Villes;
         }
 
         public override Ville Get(int id)

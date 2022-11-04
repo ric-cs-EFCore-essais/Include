@@ -106,7 +106,7 @@ namespace Infra.DataContext.Properties.Ports {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à I:/.
+        ///   Recherche une chaîne localisée semblable à I:/zzzzzzzTempData/Ports.
         /// </summary>
         internal static string JsonFilesRootPath_Home {
             get {
@@ -115,7 +115,7 @@ namespace Infra.DataContext.Properties.Ports {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à D:/.
+        ///   Recherche une chaîne localisée semblable à D:/zzzzzzzTempData/Ports.
         /// </summary>
         internal static string JsonFilesRootPath_Job {
             get {

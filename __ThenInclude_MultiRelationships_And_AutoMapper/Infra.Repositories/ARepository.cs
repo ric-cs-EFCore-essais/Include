@@ -5,6 +5,7 @@ using System.Linq.Expressions;
 
 using Domain.Entities.Interfaces;
 using Domain.Repositories.Interfaces;
+using Infra.DataSet.Interfaces;
 
 namespace Infra.Repositories
 {

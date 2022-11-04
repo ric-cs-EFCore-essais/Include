@@ -20,13 +20,13 @@ namespace Infra.DataContext.Ports
 
         public void Save()
         {
-            Ports?.Save();
-            Villes?.Save();
-            Ancres?.Save();
-            Diplomes?.Save();
-            Capitaines?.Save();
-            CapitainesDiplomes?.Save();
-            Bateaux?.Save();
+            Ports?.SaveData();
+            Villes?.SaveData();
+            Ancres?.SaveData();
+            Diplomes?.SaveData();
+            Capitaines?.SaveData();
+            CapitainesDiplomes?.SaveData();
+            Bateaux?.SaveData();
         }
 
         public void Dispose()
