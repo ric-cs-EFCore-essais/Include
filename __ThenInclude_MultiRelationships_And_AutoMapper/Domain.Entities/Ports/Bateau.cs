@@ -1,8 +1,6 @@
-﻿using Domain.Entities.Interfaces;
-
-namespace Domain.Entities.Ports
+﻿namespace Domain.Entities.Ports
 {
-    public class Bateau : AEntity, IEntity
+    public class Bateau : AEntity
     {
         public string Nom { get; init; }
 

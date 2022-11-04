@@ -5,7 +5,7 @@ using Infra.DataSet.Interfaces;
 
 namespace Infra.Repositories
 {
-    public abstract class AContextedRepository<TEntity, TDataContext> : ARepository<TEntity, IListEnriched<TEntity>>, IRepository<TEntity>
+    public abstract class AContextedRepository<TEntity, TDataContext> : ARepository<TEntity, IListEnriched<TEntity>> //, IRepository<TEntity>
         where TEntity : IEntity
         where TDataContext: IDataContext
     {

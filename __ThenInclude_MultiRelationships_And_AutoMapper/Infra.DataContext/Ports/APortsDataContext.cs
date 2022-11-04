@@ -31,6 +31,7 @@ namespace Infra.DataContext.Ports
 
         public void Dispose()
         {
+            //
         }
     }
 }

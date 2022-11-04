@@ -1,8 +1,6 @@
-﻿using Domain.Entities.Interfaces;
-
-namespace Domain.Entities.Ports
+﻿namespace Domain.Entities.Ports
 {
-    public class CapitaineDiplome : AEntity, IEntity
+    public class CapitaineDiplome : AEntity
     {
         public int CapitaineId { get; init; }
         public Capitaine Capitaine { get; init; }

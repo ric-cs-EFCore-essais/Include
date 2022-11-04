@@ -42,7 +42,7 @@ namespace Infra.UnitsOfWork.Factories.Ports
             return retour;
         }
 
-        private IPortsDataContext CreateDataContext()
+        private static IPortsDataContext CreateDataContext()
         {
             var retour = new PortsJsonFilesDataContext();
             //var retour = new PortsInMemoryDataContext();

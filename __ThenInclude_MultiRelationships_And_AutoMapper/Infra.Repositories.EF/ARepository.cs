@@ -62,7 +62,7 @@ namespace Infra.Repositories
             }
         }
 
-        private void CheckIfEntitiesCanBeAdded(IEnumerable<TEntity> entities)
+        private static void CheckIfEntitiesCanBeAdded(IEnumerable<TEntity> entities)
         {
             foreach (var entity in entities)
             {
@@ -70,7 +70,7 @@ namespace Infra.Repositories
             }
         }
 
-        private void CheckIfEntityCanBeAdded(TEntity entity)
+        private static void CheckIfEntityCanBeAdded(TEntity entity)
         {
             if (entity.Id != 0)
             {

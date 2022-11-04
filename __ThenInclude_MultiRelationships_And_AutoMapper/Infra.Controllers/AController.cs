@@ -4,7 +4,7 @@ namespace Infra.Controllers
 {
     public abstract class AController
     {
-        protected string GetSerializedDTO<T>(T dto)
+        protected static string GetSerializedDTO<T>(T dto)
             where T : class
         {
             return Debug.GetSerializedData(dto);

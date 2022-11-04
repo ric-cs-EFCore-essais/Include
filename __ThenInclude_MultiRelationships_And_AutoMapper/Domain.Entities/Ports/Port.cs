@@ -1,11 +1,8 @@
 ﻿using System.Collections.Generic;
 
-using Domain.Entities.Interfaces;
-
-
 namespace Domain.Entities.Ports
 {
-    public class Port : AEntity, IEntity
+    public class Port : AEntity
     {
         public string Nom { get; init; }
 

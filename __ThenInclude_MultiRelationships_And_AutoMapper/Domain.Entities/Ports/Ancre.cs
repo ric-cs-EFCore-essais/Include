@@ -1,8 +1,6 @@
-﻿using Domain.Entities.Interfaces;
-
-namespace Domain.Entities.Ports
+﻿namespace Domain.Entities.Ports
 {
-    public class Ancre : AEntity, IEntity
+    public class Ancre : AEntity
     {
         public uint? Poids { get; init; }
 

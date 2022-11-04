@@ -121,7 +121,6 @@ namespace Infra.Mappers.DTOs.AutoMapper.Ports
                 .ForMember(dto => dto.NomVille, opt => opt.MapFrom(port => port.Ville.Nom))
                 .ForMember(dto => dto.NombreBateaux, opt => opt.MapFrom(port => port.Bateaux.Count))
             ;
-            ;
         }
 
 

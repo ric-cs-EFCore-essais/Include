@@ -21,7 +21,12 @@ namespace Infra.Controllers.Ports
         {
             this.portsController = portsController;
             this.villesController = villesController;
+            
+            SetControllersCalls();
+        }
 
+        private void SetControllersCalls()
+        {
             controllersCalls = new Dictionary<string, Func<IList<string>, string>>
             {
                 { "get/ports", (IList<string> args) => portsController.GetPortsMinimalData(args) },
@@ -36,12 +41,10 @@ namespace Infra.Controllers.Ports
 
         public string TreatRequest(string[] requestArgs)
         {
-            Func<IList<string>, string> controllerCall;
-
             if (requestArgs.Length >0) {
                 var controllerMethodId = requestArgs[0].ToLower(); //1er argument
 
-                if (controllersCalls.TryGetValue(controllerMethodId, out controllerCall))
+                if (controllersCalls.TryGetValue(controllerMethodId, out Func<IList<string>, string> controllerCall))
                 {
                     var argumentsApresLe1erArgument = requestArgs.Skip(1).ToList();
                     return controllerCall(argumentsApresLe1erArgument);
