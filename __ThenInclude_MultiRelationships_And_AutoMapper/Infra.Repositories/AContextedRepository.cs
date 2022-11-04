@@ -5,7 +5,7 @@ using Infra.DataSet.Interfaces;
 
 namespace Infra.Repositories
 {
-    public abstract class AContextedRepository<TEntity, TDataContext> : ARepository<TEntity, IListEnriched<TEntity>>
+    public abstract class AContextedRepository<TEntity, TDataContext> : ARepository<TEntity, IListEnriched<TEntity>>, IRepository<TEntity>
         where TEntity : IEntity
         where TDataContext: IDataContext
     {
@@ -31,10 +31,7 @@ namespace Infra.Repositories
         public override void Add(TEntity entity)
         {
             base.Add(entity);
-
             SetEntityId(entity);
-
-            dataContext.Save();
         }
 
         private void SetEntityId(TEntity entity)

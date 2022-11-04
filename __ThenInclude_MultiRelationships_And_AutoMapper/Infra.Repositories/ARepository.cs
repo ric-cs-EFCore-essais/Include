@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 
+using Transverse.Common.DebugTools;
+
 using Domain.Entities.Interfaces;
 using Domain.Repositories.Interfaces;
-using Infra.DataSet.Interfaces;
 
 namespace Infra.Repositories
 {
@@ -23,7 +24,6 @@ namespace Infra.Repositories
             return retour;
         }
 
-        //public IEnumerable<TEntity> Find(Func<TEntity, bool> filter)
         public IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> filterExpression)
         {
             var retour = GetEntities().AsQueryable().Where(filterExpression).ToList();
@@ -44,13 +44,16 @@ namespace Infra.Repositories
             } 
             else
             {
-                throw new Exception("entity.Id must be 0, for an insertion operation.");
+                throw new Exception($"entity.Id must be 0, for an insertion operation : {Debug.GetSerializedData(entity)}");
             }
         }
 
         public void AddRange(IEnumerable<TEntity> entities)
         {
-            GetEntities().AddRange(entities);
+            foreach(var entity in entities)
+            {
+                Add(entity);
+            }
         }
 
         public void Remove(TEntity entity) //By Value (ici une adresse donc)

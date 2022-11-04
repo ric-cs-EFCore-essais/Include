@@ -51,7 +51,10 @@ namespace Infra.Repositories
 
         public void AddRange(IEnumerable<TEntity> entities)
         {
-            GetEntities().AddRange(entities);
+            foreach (var entity in entities)
+            {
+                Add(entity);
+            }
         }
     }
 }
