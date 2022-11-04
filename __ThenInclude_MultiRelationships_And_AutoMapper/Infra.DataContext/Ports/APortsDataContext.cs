@@ -4,7 +4,7 @@ using Domain.Entities.Ports;
 
 namespace Infra.DataContext.Ports
 {
-    public abstract class APortsDataContext
+    public abstract class APortsDataContext : ADataContext
     {
         public IDataSet<Port> Ports { get; protected set; }
         public IDataSet<Ville> Villes { get; protected set; }
@@ -14,7 +14,7 @@ namespace Infra.DataContext.Ports
         public IDataSet<CapitaineDiplome> CapitainesDiplomes { get; protected set; }
         public IDataSet<Bateau> Bateaux { get; protected set; }
 
-        protected APortsDataContext()
+        protected APortsDataContext() : base()
         {
         }
 

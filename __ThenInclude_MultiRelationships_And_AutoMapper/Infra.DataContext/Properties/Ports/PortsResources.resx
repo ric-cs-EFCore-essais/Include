@@ -132,10 +132,10 @@
   <data name="DiplomesJsonFileName" xml:space="preserve">
     <value>Diplomes</value>
   </data>
-  <data name="JsonFilesPath_Home" xml:space="preserve">
+  <data name="JsonFilesRootPath_Home" xml:space="preserve">
     <value>I:/</value>
   </data>
-  <data name="JsonFilesPath_Job" xml:space="preserve">
+  <data name="JsonFilesRootPath_Job" xml:space="preserve">
     <value>D:/</value>
   </data>
   <data name="PortsJsonFileName" xml:space="preserve">

@@ -108,18 +108,18 @@ namespace Infra.DataContext.Properties.Ports {
         /// <summary>
         ///   Recherche une chaîne localisée semblable à I:/.
         /// </summary>
-        internal static string JsonFilesPath_Home {
+        internal static string JsonFilesRootPath_Home {
             get {
-                return ResourceManager.GetString("JsonFilesPath_Home", resourceCulture);
+                return ResourceManager.GetString("JsonFilesRootPath_Home", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Recherche une chaîne localisée semblable à D:/.
         /// </summary>
-        internal static string JsonFilesPath_Job {
+        internal static string JsonFilesRootPath_Job {
             get {
-                return ResourceManager.GetString("JsonFilesPath_Job", resourceCulture);
+                return ResourceManager.GetString("JsonFilesRootPath_Job", resourceCulture);
             }
         }
         

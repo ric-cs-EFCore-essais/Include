@@ -35,14 +35,26 @@ namespace Infra.Repositories
             return retour;
         }
 
-        public void Add(TEntity entity)
+        public virtual void Add(TEntity entity)
         {
-            GetEntities().Add(entity);
+            if (entity.Id == 0) 
+            { 
+                GetEntities().Add(entity);
+            } 
+            else
+            {
+                throw new Exception("entity.Id must be 0, for an insertion operation.");
+            }
         }
 
         public void AddRange(IEnumerable<TEntity> entities)
         {
             GetEntities().AddRange(entities);
+        }
+
+        public void Remove(TEntity entity) //By Value (ici une adresse donc)
+        {
+            GetEntities().Remove(entity);
         }
     }
 }

@@ -44,7 +44,7 @@ namespace Infra.Repositories
             return retour;
         }
 
-        public void Add(TEntity entity)
+        public virtual void Add(TEntity entity)
         {
             GetEntities().Add(entity);
         }

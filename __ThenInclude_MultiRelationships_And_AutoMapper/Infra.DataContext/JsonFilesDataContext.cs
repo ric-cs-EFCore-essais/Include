@@ -1,10 +1,15 @@
-﻿using Transverse.Common.Strings;
+﻿using Infra.DataSet.Interfaces;
+using Domain.Entities.Interfaces;
+
+using Transverse.Common.Strings;
 
 using Infra.Common.DiskElements;
 
+using Infra.DataSet;
+
 namespace Infra.DataContext
 {
-    public class JsonFilesDataContext
+    public class JsonFilesDataContext  //(DataContext pour json files : 1 file par type d'entité)
     {
         private readonly string jsonFilesRootPath;
 
@@ -13,14 +18,24 @@ namespace Infra.DataContext
             this.jsonFilesRootPath = jsonFilesRootPath;
         }
 
-        public string GetJsonDataFileFullName(string jsonFileName)
+        public IDataSet<TEntity> GetJsonFileDataSet<TEntity>(string jsonFileName)
+            where TEntity : IEntity
+        {
+            var retour = new JsonFileDataSet<TEntity>(
+                GetJsonDataFileFullName(jsonFileName),
+                GetJsonMetaDataFileFullName(jsonFileName)
+            );
+            return retour;
+        }
+
+        private string GetJsonDataFileFullName(string jsonFileName)
         {
             var jsonFileFullNamePrefix = GetJsonFileFullNamePrefix(jsonFileName);
             var retour = $"{jsonFileFullNamePrefix}Data.json";
             return retour;
         }
 
-        public string GetJsonMetaDataFileFullName(string jsonFileName)
+        private string GetJsonMetaDataFileFullName(string jsonFileName)
         {
             var jsonFileFullNamePrefix = GetJsonFileFullNamePrefix(jsonFileName);
             var retour = $"{jsonFileFullNamePrefix}MetaData.json";

@@ -1,10 +1,8 @@
-﻿using System;
-using System.IO;
-using System.Text.Json;
-
-using Domain.Entities.Interfaces;
+﻿using Domain.Entities.Interfaces;
 using Domain.Repositories.Interfaces;
 using Infra.DataSet.Interfaces;
+
+using Infra.Common.DiskElements;
 
 
 namespace Infra.DataSet
@@ -12,52 +10,58 @@ namespace Infra.DataSet
     public class JsonFileDataSet<TEntity>: ADataSet<TEntity>, IDataSet<TEntity>
         where TEntity : IEntity
     {
-        private readonly string jsonFile;
+        //2 fichiers json par JsonFileDataSet (1 pour les data, l'autre (éventuel) pour les metadata).
+        private readonly JsonFile<ListEnriched<TEntity>> jsonFileForData;
+        private readonly JsonFile<DataSetMetaData> jsonFileForMetaData;
 
-        public JsonFileDataSet(string jsonFile): base()
+        private DataSetMetaData metaData;
+        public DataSetMetaData MetaData
         {
-            if (string.IsNullOrWhiteSpace(jsonFile))
+            get
             {
-                throw new ArgumentException($"'{nameof(jsonFile)}' ne peut pas avoir une valeur null ou être un espace blanc.", nameof(jsonFile));
+                return metaData ?? (metaData = LoadMetaData());
             }
+        }
 
-            this.jsonFile = jsonFile;
+        public JsonFileDataSet(string dataJsonFileFullName, string metaDataJsonFileFullName = null) : base()
+        {
+            this.jsonFileForData = new JsonFile<ListEnriched<TEntity>>(dataJsonFileFullName);
+
+            if (metaDataJsonFileFullName is not null)
+            {
+                this.jsonFileForMetaData = new JsonFile<DataSetMetaData>(metaDataJsonFileFullName);
+            }
         }
 
         public void Save()
         {
-            var jsonFileContent = JsonSerializer.Serialize<IListEnriched<TEntity>>(Entities);
-            File.WriteAllText(jsonFile, jsonFileContent);
+            SaveData();
         }
 
         protected override IListEnriched<TEntity> Load()
         {
-            IListEnriched<TEntity> retour;
-            var jsonFileContent = GetFileContent();
-            if (!string.IsNullOrWhiteSpace(jsonFileContent))
-            {
-                retour = JsonSerializer.Deserialize<ListEnriched<TEntity>>(jsonFileContent);
-
-            }
-            else
-            {
-                retour = new ListEnriched<TEntity>();
-            }
-
-            return retour;
+            return LoadData();
         }
 
-        private string GetFileContent()
+
+        private void SaveData()
         {
-            string retour = null;
+            jsonFileForData.Save();
+        }
+        private void SaveMetaData()
+        {
+            jsonFileForMetaData?.Save();
+        }
 
-            try
-            {
-                retour = File.ReadAllText(jsonFile);
-            }
-            catch (Exception) {}
 
-            return retour;
+        private IListEnriched<TEntity> LoadData()
+        {
+            return jsonFileForData.Content;
+        }
+
+        private DataSetMetaData LoadMetaData()
+        {
+            return jsonFileForMetaData?.Content;
         }
     }
 }

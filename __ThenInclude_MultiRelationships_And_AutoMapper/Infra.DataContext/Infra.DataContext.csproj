@@ -5,7 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Infra.Common.DiskElements" Version="1.0.0" />
     <PackageReference Include="Infra.Common.Environment" Version="1.0.1" />
     <PackageReference Include="Transverse.Common.Strings" Version="1.0.0" />
   </ItemGroup>
