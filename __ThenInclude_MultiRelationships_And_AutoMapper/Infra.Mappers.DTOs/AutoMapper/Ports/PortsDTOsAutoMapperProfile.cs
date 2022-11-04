@@ -9,7 +9,9 @@ using Domain.Entities.Ports;
 using Application.DTOs.Ports;
 using Application.DTOs.Ports.GetPort;
 using Application.DTOs.Ports.GetPorts;
+
 using Application.DTOs.Ports.GetVilles;
+using Application.DTOs.Ports.AddVille;
 
 namespace Infra.Mappers.DTOs.AutoMapper.Ports
 {
@@ -133,6 +135,12 @@ namespace Infra.Mappers.DTOs.AutoMapper.Ports
             CreateMap<List<Ville>, GetVillesWithNameContainingUseCaseResponseDTO>()
                 .ForMember(dto => dto.Villes, opt => opt.MapFrom(villes => villes))
             ;
+
+            //================================= GetVillesWithNameContainingUseCase =============================
+            CreateMap<Ville, AddVilleUseCaseResponseDTO>()
+                //.ForMember(dto => dto.Id, opt => opt.MapFrom(ville => ville.Id))
+            ;
+
         }
 
     }

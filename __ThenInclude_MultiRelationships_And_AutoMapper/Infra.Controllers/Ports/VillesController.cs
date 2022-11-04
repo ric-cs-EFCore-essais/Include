@@ -4,6 +4,7 @@ using Application.UseCases.Interfaces.Ports;
 using Infra.Controllers.Interfaces.Ports;
 
 using Application.DTOs.Ports.GetVilles;
+using Application.DTOs.Ports.AddVille;
 
 namespace Infra.Controllers.Ports
 {
@@ -21,11 +22,11 @@ namespace Infra.Controllers.Ports
             this.addVilleUseCase = addVilleUseCase;
         }
 
-        public string AjouterVille(IList<string> args)
+        public string AddVille(IList<string> args)
         {
             var addVilleUseCaseRequestDTO = new AddVilleUseCaseRequestDTO()
             {
-                SubString = (args.Count > 0) ? args[0] : string.Empty
+                Nom = (args.Count > 0) ? args[0] : string.Empty
             };
 
             var responseDTO = addVilleUseCase.Execute(addVilleUseCaseRequestDTO);

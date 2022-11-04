@@ -29,7 +29,8 @@ namespace Infra.Controllers.Ports
                 { "get/port", (IList<string> args) => portsController.GetPortMinimalData(args) },
                 { "get/port/fulldata", (IList<string> args) => portsController.GetPortFullData(args) },
 
-                { "get/villes/withnamecontaining", (IList<string> args) => villesController.GetVillesWithNameContaining(args) }, //Filtrable (via args[1])
+                { "get/villes/withnamecontaining", (IList<string> args) => villesController.GetVillesWithNameContaining(args) }, //Filtrable donc (via args[1])
+                { "post/ville/add", (IList<string> args) => villesController.AddVille(args) },
             };
         }
 

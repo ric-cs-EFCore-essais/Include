@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-using Application.UseCases.Interfaces.Ports;
+﻿using Application.UseCases.Interfaces.Ports;
 using Application.DTOs.Mappers.Interfaces.Ports;
 using Domain.UnitsOfWork.Interfaces.Ports;
 
