@@ -15,6 +15,7 @@ using Tests.FakeData.Ports;
 using Infra.Controllers.Ports;
 using Infra.DependenciesInjection.Ports.Factories;
 using Infra.DependenciesInjection.Ports;
+using Infra.Config.DataAccess;
 
 namespace ConsolePrj
 {
@@ -24,22 +25,61 @@ namespace ConsolePrj
 
         static void Main(string[] requestArgs)
         {
-            //Tester(); return;
+            SeedRepositoriesIfEmpty();
 
+            //---------------
+            //TesterGet(); return;
+
+            //---------------
+            TesterRequests(requestArgs);
+
+            //---------------
+            Console.WriteLine("\n\nOk"); Console.ReadKey();
+        }
+
+        private static void SeedRepositoriesIfEmpty()
+        {
+            if (MyConfig.DataAccessConfig.DataStoreMode == DataStoreMode.EF)
+            {
+                SeedRepositoriesIfEmpty_EF();
+            }
+            else if (MyConfig.DataAccessConfig.DataStoreMode == DataStoreMode.JSON)
+            {
+                SeedRepositoriesIfEmpty_JSON();
+            }
+
+        }
+
+        //=========================================================================================================================================
+
+        private static void TesterRequests(string[] requestArgs)
+        {
             //requestArgs = new[] { "get/ports" };
             //requestArgs = new[] { "get/ports/fulldata" };
             //requestArgs = new[] { "get/port", "2"};
             //requestArgs = new[] { "get/port/fulldata", "2" };
-            //requestArgs = new[] { "get/villes/withnamecontaining", "n"};
-            //requestArgs = new[] { "post/ville/add", "newVilleName"};
-            TreatRequest(requestArgs);
+            //requestArgs = new[] { "post/port/add", "NewPort", "3"}; //Nom, VilleId
 
-            Console.WriteLine("\n\nOk"); Console.ReadKey();
+            //requestArgs = new[] { "get/villes/withnamecontaining", "n"};
+            //requestArgs = new[] { "post/ville/add", "newVilleName"}; //Nom
+
+            //requestArgs = new[] { "post/ancre/add", "410"}; //Poids
+
+            //requestArgs = new[] { "post/capitaine/add", "CaptainChoc"}; //Nom
+
+            //requestArgs = new[] { "post/diplome/add", "BAFA" }; //Intitule
+
+            //requestArgs = new[] { "post/bateau/add", "Le MALU", "1", "12", "3" }; //Nom, PortId, AncreId, CapitaineId
+
+            //requestArgs = new[] { "post/capitainediplome/add", "3", "4" "1975" }; //CapitaineId, DiplomeId, AnneeObtention
+            //requestArgs = new[] { "post/capitainediplomes/add", "2", "3-1975;2-1986" }; //CapitaineId,  DiplomeId-AnneeObtention;DiplomeId-AnneeObtention;...
+
+            TreatRequest(requestArgs);
         }
 
         private static void TreatRequest(string[] requestArgs)
         {
-            FrontController frontController = DependenciesInjectionConfiguration.GetSingleton().GetFrontController();
+            FrontController frontController = DependenciesInjectionConfiguration.GetSingleton(MyConfig.DataAccessConfig).GetFrontController();
 
             Console.WriteLine("\nREQUÊTE:");
             Console.WriteLine("  "+Debug.GetSerializedData(requestArgs));
@@ -50,25 +90,28 @@ namespace ConsolePrj
             Console.WriteLine("  " + response);
         }
 
-        private static void Tester()
+        private static void TesterGet()
         {
             chrono = new Chrono();
-            Tester_PortsJsonFilesDataContext();
-            //Tester_PortsDbDataContext();
+
+            if (MyConfig.DataAccessConfig.DataStoreMode == DataStoreMode.EF)
+            {
+                Tester_GetPortsDbDataContext_EF();
+            }
+            else if (MyConfig.DataAccessConfig.DataStoreMode == DataStoreMode.JSON)
+            {
+                Tester_GetPortsJsonFilesDataContext();
+            }
         }
 
-        private static void Tester_PortsDbDataContext()
+
+        //====================================================== via EF ==================================================================================
+        private static void Tester_GetPortsDbDataContext_EF()
         {
-            Console.WriteLine("\n\n***********  Tester_PortsDbDataContext() ***********\n\n");
+            Console.WriteLine("\n\n***********  Tester_PortsDbDataContext_EF() ***********\n\n");
 
-            PortsDBServerAccessConfigurationFactory portsDBServerAccessConfigurationFactory = new PortsDBServerAccessConfigurationFactory();
-            IDBServerAccessConfiguration portsDBServerAccessConfiguration = portsDBServerAccessConfigurationFactory.GetSingleton();
-
-            IDbDataContextFactory<PortsDbDataContext> dbDataContextFactory = Infra.DataContext.EF.Ports.PortsDbDataContextFactory.GetSingleton(portsDBServerAccessConfiguration);
-            using (IPortsUnitOfWork portsUnitOfWork = new Infra.UnitsOfWork.EF.Factories.Ports.PortsUnitOfWorkFactory(dbDataContextFactory).GetInstance())
+            using (IPortsUnitOfWork portsUnitOfWork = GetUnitOfWork_EF())
             {
-                SeedRepositoriesIfEmpty(portsUnitOfWork);
-
                 //>>>Debug.ShowData gère désormais bien les dépendances cycliques (ici : Capitaine -> CapitainesDiplomes -> Capitaine, et Diplome -> CapitaineDiplomes -> Diplome). (Gère en ignorant).
 
                 chrono.Start();
@@ -91,8 +134,28 @@ namespace ConsolePrj
                 Debug.ShowData(portsUnitOfWork.VilleRepository.GetByPort(portId: 3)); Console.ReadKey(); Console.WriteLine("\n\n");
             }
         }
+        private static IPortsUnitOfWork GetUnitOfWork_EF()
+        {
+            PortsDBServerAccessConfigurationFactory portsDBServerAccessConfigurationFactory = new PortsDBServerAccessConfigurationFactory();
+            IDBServerAccessConfiguration portsDBServerAccessConfiguration = portsDBServerAccessConfigurationFactory.GetSingleton();
 
-        private static void Tester_PortsJsonFilesDataContext()
+            IDbDataContextFactory<PortsDbDataContext> dbDataContextFactory = Infra.DataContext.EF.Ports.PortsDbDataContextFactory.GetSingleton(portsDBServerAccessConfiguration);
+
+            return new Infra.UnitsOfWork.EF.Factories.Ports.PortsUnitOfWorkFactory(dbDataContextFactory).GetInstance();
+        }
+        private static void SeedRepositoriesIfEmpty_EF()
+        {
+            Console.WriteLine("\n\n***********  SeedRepositoriesIfEmpty_EF() ***********\n\n");
+
+            using (IPortsUnitOfWork portsUnitOfWork = GetUnitOfWork_EF())
+            {
+                SeedRepositoriesIfEmpty(portsUnitOfWork);
+            }
+        }
+
+        //====================================================== JSON ==================================================================================
+
+        private static void Tester_GetPortsJsonFilesDataContext()
         {
             Console.WriteLine("\n\n***********  Tester_PortsJsonFilesDataContext() ***********\n\n");
 
@@ -125,7 +188,18 @@ namespace ConsolePrj
 
             }
         }
+        private static void SeedRepositoriesIfEmpty_JSON()
+        {
+            Console.WriteLine("\n\n***********  SeedRepositoriesIfEmpty_JSON() ***********\n\n");
 
+            using (IPortsUnitOfWork portsUnitOfWork = new PortsUnitOfWorkFactory().GetInstance())
+            {
+                SeedRepositoriesIfEmpty(portsUnitOfWork);
+            }
+        }
+
+        //============================================================================================================================================================
+        //============================================================================================================================================================
         private static void SeedRepositoriesIfEmpty(IPortsUnitOfWork portsUnitOfWork)
         {
             if (!portsUnitOfWork.VilleRepository.GetAll().Any())

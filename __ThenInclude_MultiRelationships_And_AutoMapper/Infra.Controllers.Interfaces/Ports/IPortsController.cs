@@ -9,5 +9,7 @@ namespace Infra.Controllers.Interfaces.Ports
 
         string GetPortsMinimalData(IList<string> args);
         string GetPortFullData(IList<string> args);
+
+        string AddPort(IList<string> args);
     }
 }

@@ -203,8 +203,15 @@ namespace Infra.Mappers.DTOs.AutoMapper.Ports
 
 
             //================================= AddCapitaineDiplomesUseCase =============================
-            CreateMap<AddCapitaineDiplomesUseCaseRequestDTO, CapitaineDiplome>()
-            ;
+            //CreateMap<AddCapitaineDiplomesUseCaseRequestDTO, List<CapitaineDiplome>>()
+            //    .ForMember(capitaineDiplomes => capitaineDiplomes, 
+            //               opt => opt.MapFrom(dto => dto.Diplomes.Select(
+            //                                                        diplome => new CapitaineDiplome { CapitaineId = dto.CapitaineId, DiplomeId = diplome.DiplomeId, AnneeObtention = diplome.AnneeObtention }
+            //                                                      )
+
+            //                                  )
+            //    )
+            //;
 
             CreateMap<CapitaineDiplomeForAddCapitaineDiplomesUseCaseRequestDTO, CapitaineDiplome>()
             ;
