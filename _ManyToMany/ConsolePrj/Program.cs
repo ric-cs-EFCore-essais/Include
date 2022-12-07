@@ -151,7 +151,7 @@ namespace ConsolePrj
         //            myDbContext.NumerosTiragesLoto.Where(nt => nt.TirageLotoId == tirage.Id) //On ne s'intéresse qu'aux records de NumerosTiragesLoto qui sont relatifs à ce tirage
         //            .Join(myDbContext.Numeros, //Jointure de cet extrait(donc de la table de liaison NumerosTiragesLoto) avec la table Numeros
 
-        //                nt => nt.NumeroId, //Jointure via :   nt.TirageLotoId == tirage.Id
+        //                nt => nt.NumeroId, //Jointure via :   nt.NumeroId == numero.Id
         //                numero => numero.Id,
 
 
