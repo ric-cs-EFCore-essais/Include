@@ -26,7 +26,7 @@ namespace Infra.Controllers.Ports
         {
             var addVilleUseCaseRequestDTO = new AddVilleUseCaseRequestDTO()
             {
-                Nom = (args.Count > 0) ? args[0] : string.Empty
+                Nom = (args.Count > 0) ? args[0] : null
             };
 
             var responseDTO = addVilleUseCase.Execute(addVilleUseCaseRequestDTO);

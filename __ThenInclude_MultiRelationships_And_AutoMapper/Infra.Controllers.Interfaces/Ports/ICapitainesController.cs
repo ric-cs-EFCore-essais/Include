@@ -2,8 +2,8 @@
 
 namespace Infra.Controllers.Interfaces.Ports
 {
-    public interface IAncresController
+    public interface ICapitainesController
     {
-        string AddAncre(IList<string> args);
+        string AddCapitaine(IList<string> args);
     }
 }

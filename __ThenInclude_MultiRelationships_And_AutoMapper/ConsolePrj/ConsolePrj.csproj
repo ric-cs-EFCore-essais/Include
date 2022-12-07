@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Infra.Config\Infra.Config.csproj" />
     <ProjectReference Include="..\Infra.Controllers\Infra.Controllers.csproj" />
     <ProjectReference Include="..\Infra.DataContext.EF\Infra.DataContext.EF.csproj" />
     <ProjectReference Include="..\Infra.DataContext\Infra.DataContext.csproj" />

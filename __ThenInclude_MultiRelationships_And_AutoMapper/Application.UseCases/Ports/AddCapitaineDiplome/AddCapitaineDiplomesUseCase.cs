@@ -23,7 +23,6 @@ namespace Application.UseCases.Ports.AddCapitaineDiplome
             CapitaineDiplome capitaineDiplome;
             foreach (var diplome in requestDTO.Diplomes)
             {
-                //capitaineDiplomes.Add(new CapitaineDiplome { CapitaineId = requestDTO.CapitaineId, DiplomeId = diplome.DiplomeId, AnneeObtention = diplome.AnneeObtention });
                 capitaineDiplome = portsDTOsMapper.Map<CapitaineDiplomeForAddCapitaineDiplomesUseCaseRequestDTO, CapitaineDiplome>(diplome);
                 capitaineDiplome.CapitaineId = requestDTO.CapitaineId;
 
