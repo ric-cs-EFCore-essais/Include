@@ -169,7 +169,6 @@ namespace Infra.Mappers.DTOs.AutoMapper.Ports
             CreateMap<Bateau, AddBateauUseCaseResponseDTO>()
             ;
 
-
             //================================= AddAncreUseCase =============================
             CreateMap<AddAncreUseCaseRequestDTO, Ancre>()
             ;

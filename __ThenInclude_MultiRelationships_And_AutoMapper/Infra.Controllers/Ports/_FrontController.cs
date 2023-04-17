@@ -68,7 +68,8 @@ namespace Infra.Controllers.Ports
 
         public string TreatRequest(string[] requestArgs)
         {
-            if (requestArgs.Length >0) {
+            if (requestArgs.Length > 0)
+            {
                 var controllerMethodId = requestArgs[0].ToLower(); //1er argument
 
                 if (controllersCalls.TryGetValue(controllerMethodId, out Func<IList<string>, string> controllerCall))
